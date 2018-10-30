@@ -1,0 +1,128 @@
+.Home-main {
+  background: url("./dog.jpg") no-repeat center center fixed;
+  min-height: 100%;
+  min-width: 1025px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-size: 100%;
+}
+.Home-main-header {
+  background-color: grey;
+  opacity: 0.6;
+  padding: 15px;
+}
+.Home-main-footer {
+  background-color: grey;
+  opacity: 0.6;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.Home-main-logo {
+  border: 3px solid black;
+  border-radius: 7px;
+  background-color: white;
+  opacity: 0.9;
+  color: black;
+  font-size: 30px;
+  font-weight: 800;
+  padding: 5px;
+}
+.Home-main-comment {
+  text-align: center;
+  margin-top: 130px;
+  font-size: 100px;
+  color: white;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px gray;
+  opacity: 0.8;
+}
+.buttons {
+  text-align: center;
+  margin-top: 200px;
+}
+.Home-main-button1 button {
+  background: gray;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  position: relative;
+  height: 60px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  margin-right: 30px;
+}
+.Home-main-button1 button:hover {
+  background: black;
+  opacity: 0.8;
+  color: white;
+}
+.Home-main-button1 button:before,
+.Home-main-button1 button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 4px;
+  width: 0;
+  background: gray;
+  transition: 400ms ease all;
+}
+.Home-main-button1 button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.Home-main-button1 button:hover:before,
+.Home-main-button1 button:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+
+.Home-main-button2 button {
+  background: lightskyblue;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  position: relative;
+  height: 60px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  margin-left: 30px;
+}
+.Home-main-button2 button:hover {
+  background: cornflowerblue;
+  color: white;
+}
+.Home-main-button2 button:before,
+.Home-main-button2 button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 4px;
+  width: 0;
+  background: blue;
+  transition: 400ms ease all;
+}
+.Home-main-button2 button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.Home-main-button2 button:hover:before,
+.Home-main-button2 button:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Home from "./routes/Home/Home";
 import Main from "./routes/Main/Main";
 import Posts from "./routes/Posts/Posts";
 import Login from "./routes/Login/Login";
@@ -18,11 +17,10 @@ class App extends Component {
       <Router>
         <div>
           <div>
-              <div>
-                <Header />
-              </div>
+            <div>
+              <Header />
+            </div>
             <Switch>
-              <Route exact path="/" component={Home} />
               <Route path="/main" component={Main} />
               <Route path="/posts" component={Posts} />
               <Route path="/login" component={Login} />

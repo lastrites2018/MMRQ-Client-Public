@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react'
+
 import { Redirect } from 'react-router-dom';
 
-const logged = false;
-
-const Mypage = () => {
-  return (
-    <div>
-      {
-        !logged && <Redirect to="/login"/>
-      }
-    </div>
-  );
-};
-
-export default Mypage;
+export default class Mypage extends Component {
+  render() {
+    const logged = false;
+    return (
+      <div>
+          {
+            !logged && <Redirect to="/login" />
+          }
+      </div>
+    )
+  }
+}

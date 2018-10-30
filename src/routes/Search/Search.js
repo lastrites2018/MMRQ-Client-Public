@@ -9,3 +9,4 @@ const Search = ({location}) => {
 };
 
 export default Search;
+

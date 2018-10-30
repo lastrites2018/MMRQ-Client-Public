@@ -5,8 +5,7 @@ import "./Header.css";
 const Header = () => {
   return (
     <div className="header">
-      <NavLink exact to="/" className="item" activeClassName="active">홈</NavLink>
-      <NavLink to="/main/MMreQ" className="item" activeClassName="active">메인</NavLink>
+      <NavLink to="/main/MMresQ" className="item" activeClassName="active">메인</NavLink>
       <NavLink to="/posts" className="item" activeClassName="active">포스트</NavLink>
       <NavLink to="/login" className="item" activeClassName="active">로그인</NavLink>
       <NavLink to="/mypage" className="item" activeClassName="active">마이페이지</NavLink>

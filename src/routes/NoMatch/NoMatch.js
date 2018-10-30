@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-const NoMatch = () => {
-  return (
-    <div>
-      여기는 어떻게 오셨는지 ...
-      404!!!
-    </div>
-  );
-};
-
-export default NoMatch;
+export default class NoMatch extends Component {
+  render() {
+    return (
+      <div>
+        여긴 어떻게 오셨는지.........
+        404!!!!!!!!!!!!!
+      </div>
+    )
+  }
+}

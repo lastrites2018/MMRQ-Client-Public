@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import HomeMain from "./Home_Main";
+import "./Home.css";
 
-export default class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <div>
-        요기가 홈이요
+        <HomeMain />
       </div>
     );
   }
 }
+
+export default Home;

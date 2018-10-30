@@ -16,7 +16,6 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <div>
             <div>
               <Header />
             </div>
@@ -29,7 +28,6 @@ class App extends Component {
               <Route path="/signUp" component={SignUp} />
               <Route component={NoMatch} />
             </Switch>
-          </div>
         </div>
       </Router>
     );

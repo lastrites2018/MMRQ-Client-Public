@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react'
+// import Header from "../components/Header";
 
-const Main = ({match}) => {
-  return (
-    <div>
-      {match.params.username}의 소개
-    </div>
-  );
-};
 
-export default Main;
+export default class Main extends Component {
+  render() {
+    return (
+      <div>
+        <div>
+          {/* <Header /> */}
+        </div>
+        Main
+      </div>
+    )
+  }
+}

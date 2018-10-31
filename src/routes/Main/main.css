@@ -1,3 +1,8 @@
+.component_body{
+  width: 1100px;
+  margin: auto;
+}
+
 .main_pet_notice{
   float: right;
   height: 100%;
@@ -32,6 +37,7 @@
   width: 1000px;
   height: 1000px;
   margin: auto;
+  
 }
 
 .main_section2_post {
@@ -59,6 +65,8 @@
 
 .main_section2_plzfind {
   margin-top: 40px;
+  border-top: 1.4px dashed #E5E5E5;
+  padding-top: 20px;
   font-family: 'Jua', sans-serif;
   font-size: 2em
 }

@@ -8,6 +8,7 @@ import Mypage from "./routes/Mypage/Mypage";
 import Search from "./routes/Search/Search";
 import SignUp from "./routes/SignUp/SignUp";
 import NoMatch from "./routes/NoMatch/NoMatch";
+import Notification from './routes/Notification/Notification';
 
 import Header from "./components/Header";
 
@@ -26,6 +27,7 @@ class App extends Component {
               <Route path="/mypage" component={Mypage} />
               <Route path="/search" component={Search} />
               <Route path="/signUp" component={SignUp} />
+              <Route path="/notification" component={Notification} />
               <Route component={NoMatch} />
             </Switch>
         </div>

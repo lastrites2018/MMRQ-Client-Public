@@ -7,10 +7,10 @@ const HomeMainButton1 = ({ history }) => {
       <button
         onClick={() => {
           console.log(history);
-          history.push("/posts");
+          history.push("/find");
         }}
       >
-        버튼1
+        Missing Report
       </button>
     </span>
   );

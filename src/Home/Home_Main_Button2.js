@@ -6,10 +6,10 @@ const HomeMainButton2 = ({ history }) => {
     <span className="Home-main-button2">
       <button
         onClick={() => {
-          history.push("/search");
+          history.push("/witness");
         }}
       >
-        버튼2
+        Witness Report
       </button>
     </span>
   );

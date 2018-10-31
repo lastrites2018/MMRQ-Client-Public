@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import "./main.css";
-import MainPost from "./main_post"
+import MainSection1 from "./main_section1"
+import MainSection2 from "./main_section2"
+
 
 export default class Main extends Component {
   render() {
     return (
-      <MainPost />
+      <div className="component_body">
+      <MainSection1 />
+      <MainSection2 />
+      </div>
     );
   }
 }

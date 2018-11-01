@@ -31,3 +31,10 @@
   margin-left: 10px;
   margin-bottom: 10px;
 }
+#citySelect {
+  display: inline;
+}
+#districtSelect {
+  display: inline;
+  margin-left: 10px;
+}

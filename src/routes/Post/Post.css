@@ -1,0 +1,33 @@
+.post_body {
+  width: 1000px;
+  margin: auto;
+  border: 1px solid black;
+}
+.post_picture {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+.classificationButton {
+  margin: 10px;
+}
+.missingPlace {
+  margin: 10px;
+}
+.location {
+  margin: 10px;
+}
+.exactLocation {
+  margin: 10px;
+}
+.dogInfo {
+  margin: 10px;
+}
+.sex,
+.reward {
+  margin-left: 10px;
+}
+.explanation {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}

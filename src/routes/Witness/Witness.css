@@ -1,0 +1,30 @@
+.witness {
+  width: 1100px;
+  margin: auto;
+}
+.witness-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.witness-header-searchbar {
+  height: 30px;
+  width: 400px;
+}
+.witness-header-button {
+  width: 2%;
+}
+.witness-header-write {
+  text-align: right;
+}
+.witness-container-outer {
+  background-color: white;
+  padding-bottom: 30px;
+}
+.witness-container-inner {
+  background-color: pink;
+  padding: 10px;
+}
+.witness-container-img {
+  width: 100%;
+  height: auto;
+}

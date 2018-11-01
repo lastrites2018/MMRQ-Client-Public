@@ -10,6 +10,7 @@ import SignUp from "./routes/SignUp/SignUp";
 import Find from "./routes/Find/Find";
 import Witness from "./routes/Witness/Witness";
 import NoMatch from "./routes/NoMatch/NoMatch";
+import Notification from './routes/Notification/Notification';
 
 import Header from "./components/Header";
 
@@ -30,6 +31,7 @@ class App extends Component {
               <Route path="/signUp" component={SignUp} />
               <Route path="/find" component={Find} />
               <Route path="/witness" component={Witness} />
+
               <Route component={NoMatch} />
             </Switch>
         </div>

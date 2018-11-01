@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import HomeMainButton1 from "./Home_Main_Button1";
+import HomeMainButton2 from "./Home_Main_Button2";
 
 class HomeMain extends Component {
-  setRedirectButton1 = () => (
-    <Redirect to="/posts" />
-  )
-  setRedirectButton2 = () => (
-    <Redirect to="/search" />
-  )
-
   render() {
     return (
       <div className="Home-main">
@@ -17,12 +11,8 @@ class HomeMain extends Component {
         </div>
         <div className="Home-main-comment">Please Help My Friends</div>
         <div className="buttons">
-          <span className="Home-main-button1">
-            <button onClick={this.setRedirectButton1}>버튼1</button>
-          </span>
-          <span className="Home-main-button2">
-            <button onClick={this.setRedirectButton2}>버튼2</button>
-          </span>
+          <HomeMainButton1 />
+          <HomeMainButton2 />
         </div>
         <div className="Home-main-footer" />
       </div>

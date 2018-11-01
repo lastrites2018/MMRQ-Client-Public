@@ -3,6 +3,11 @@
   margin: auto;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
 /*------------------------------section1_start---------------------------------*/
 
 .main_pet_notice{
@@ -87,10 +92,10 @@
 
 /*------------------------------section2_start---------------------------------*/
 
-.main_section2_contents {
+/* .main_section2_contents {
   height: 1000px;
   margin: auto;
-}
+} */
 
 .main_section2_post {
   width: 200px;

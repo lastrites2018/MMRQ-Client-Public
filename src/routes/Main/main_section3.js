@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Main_section2_list1 } from "./Main_sections_list"
+import { Main_section2_list2 } from "./Main_sections_list";
 
 
-export default class main_section2 extends Component {
+export default class main_section3 extends Component {
   constructor(props){
     super(props)
   }
   render() {
-    console.log(this.props.findData)
+    console.log(this.props.witnessData)
     return (
       <div className="main_section2_contents">
         <div className="main_section2_plzfind_line" >
-
+        
         {/*---------------------plz_find_title start----------------------*/}
           <div className="main_section2_plzfind_title">
             <NavLink to ="/find">
@@ -25,10 +25,11 @@ export default class main_section2 extends Component {
         
         {/*---------------------article start----------------------*/}
           <div className="main_section2_posts">
-           {this.props.findData.map((find, idx)=>{
-             return <Main_section2_list1 find={find} key={idx} />
+           {this.props.witnessData.map((witness, idx)=>{
+             return <Main_section2_list2 witness={witness} key={idx} />;
            })}
           </div>
+          
         {/*---------------------article end----------------------*/}            
         </div>
       </div>

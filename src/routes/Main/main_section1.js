@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Main_section1_list, Main_section2_list1 } from "./Main_sections_list";
+import { Main_section1_list1 } from "./Main_sections_list";
+
 
 import dog from "./dog.jpg"
 
@@ -9,6 +10,7 @@ export default class main_section1 extends Component {
   }
 
   render() {
+    console.log(this.props.findData)
     return (
       <div>
         <div className="main_section1_post">
@@ -26,3 +28,12 @@ export default class main_section1 extends Component {
     )
   }
 }
+
+    // return <div>
+    //     <div className="main_section1_post">
+    //       >{this.props.findData.map((find, idx) => {
+    //         return <Main_section1_list find={find} key={idx} />;
+    //       })}
+    //     </div>
+    //   </div>;
+    // )

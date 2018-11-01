@@ -7,7 +7,7 @@ import dog from "./dog.jpg";
 class Main_section1_list extends Component {
   render() {
     return (
-        <div className="main_section1_post">
+        <div className="main_section1_post" >
         <div className="notice_contents">
         <div className="notice_contents_back">
         <p className="pet_name"><a>{this.props.find.petname}</a> 찾아주세요!!</p>
@@ -16,14 +16,14 @@ class Main_section1_list extends Component {
         <p className="pet_post_contents">{this.props.find.contents}</p>
         </div>
         </div>
-        <img src={dog} className="main_pet_notice" alt="image" />
+        <img src={this.props.find.petimage} className="main_pet_notice" alt="image" />
         </div>
     );
   }
 }
 
 
-class Main_section2_list1 extends Component {
+class Main_section2_list extends Component {
   constructor(props){
     super(props)
   }
@@ -33,7 +33,7 @@ class Main_section2_list1 extends Component {
     return (
       <NavLink to="/find">
         <article>
-            <img className="main_section2_post" src={dog} alt="idx" />
+            <img className="main_section2_post" src={`${this.props.find.petimage}`} alt="idx" />
             <div className="post_lost_location">
               실종장소: {this.props.find.location}
             </div>
@@ -47,18 +47,17 @@ class Main_section2_list1 extends Component {
 }
 
 
-class Main_section2_list2 extends Component {
+class Main_section3_list extends Component {
   render() {
     console.log(this.props.witness)
     return (
       <NavLink to="/find">
         <article>
-            <img className="main_section2_post" src={dog} alt="idx" />
+            <img className="main_section2_post" src={`${this.props.witness.petimage}`} alt="idx" />
             <div className="post_lost_location">
-              실종장소: {this.props.witness.location}
+              목격장소: {this.props.witness.location}
             </div>
             <div className="post_lost_pet_inf">종류: {this.props.witness.petbreed} / {this.props.witness.petsex}</div>
-            <div className="post_lost_pet_reward">사례금: {this.props.witness.reward}</div>
             <div className="post_lost_pet_post_date">Date: {this.props.witness.postdate}</div>
         </article>
       </NavLink>
@@ -68,6 +67,6 @@ class Main_section2_list2 extends Component {
 
 export {
   Main_section1_list, 
-  Main_section2_list1, 
-  Main_section2_list2
+  Main_section2_list, 
+  Main_section3_list
 }

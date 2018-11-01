@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Main_section2_list2 } from "./Main_sections_list";
+import { Main_section3_list } from "./Main_sections_list";
 
 
 export default class main_section3 extends Component {
@@ -26,7 +26,7 @@ export default class main_section3 extends Component {
         {/*---------------------article start----------------------*/}
           <div className="main_section2_posts">
            {this.props.witnessData.map((witness, idx)=>{
-             return <Main_section2_list2 witness={witness} key={idx} />;
+             return <Main_section3_list witness={witness} key={idx} />;
            })}
           </div>
           

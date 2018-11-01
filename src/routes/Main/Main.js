@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./main.css";
-import MainSection1 from "./main_section1"
-import MainSection2 from "./main_section2"
-import MainSection3 from "./main_section3"
-import MainSlide from "./Main_slide"
+import MainSection1 from "./Main_section1";
+import MainSection2 from "./Main_section2"
+import MainSection3 from "./Main_section3"
+
 
 import axios from "axios";
 
@@ -41,7 +41,7 @@ export default class Main extends Component {
     }
     return <div className="component_body">
         {/* <MainSection1 findData={this.state.findData} /> */}
-        <MainSlide findData={this.state.findData} />
+        <MainSection1 findData={this.state.findData} />
         <MainSection2 findData={this.state.findData} />
         <MainSection3 witnessData={this.state.witnessData} />
       </div>;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import { Main_section1_list } from "./Main_sections_list";
+import { Main_section1_list } from "./main_sections_list";
 
 
 export default class Main_slide extends Component {

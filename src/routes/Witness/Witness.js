@@ -1,44 +1,98 @@
 import React, { Component } from 'react';
+import Modal from 'react-responsive-modal';
+import { Form, Select, Option} from 'informed';
+import axios from 'axios';
+
 import './Witness.css';
 
 class Witness extends Component {
+  constructor(props){ 
+    super(props);
+
+    this.state={
+      open: false,
+      serverData: [],
+    };
+  }
+
+  onOpenModal = () => {
+    this.setState({open: true})
+  }
+
+  onCloseModal = () => {
+    this.setState({open: false})
+  }
+
+  componentDidMount(){
+    axios.get('http://localhost:3000/witness')
+    .then( res => {
+      console.log('check check check data', res);
+      this.setState({serverData: res.data})
+    })
+    .catch(err => console.log('에러났쭁', err))
+  }
+
   render(){
-    //src='https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png'
-    const urlOne = 'https://picsum.photos/200/300';
-    //const urlTwo = "https://images.unsplash.com/photo-1530579807716-d82c0991629a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c708171e9cdb8ae7ed04f8e37e2808c&auto=format&fit=crop&w=668&q=80";
+    // const urlOne = 'https://picsum.photos/200/300';
+    // const tempImg = 'https://images.unsplash.com/photo-1528113513525-92e3d53bc9ad?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=16d58d12bcc952da16c4b4d670638202&auto=format&fit=crop&w=2734&q=80';
 
     return(
         <div className='witness' >
           
         <div className="witness-header">
-            <input className="witness-header-searchbar" type='text' placeholder='Search Here' />
-            <input className="witness-header-button" type='image' src='https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png'></input>
-            <button className="witness-header-write">글쓰기</button>
+            <h1 className="witness-header-subtitle">길 잃은 아이를 목격했어요</h1>
+            <div>
+
+              <form className="witness-header-form">
+                <select>
+                  <option value="울산">울산</option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+                  <option value="4"></option>
+                </select>
+
+                <select>
+                  <option value>a</option>
+                  <option value>a</option>
+                  <option value>a</option>
+                  <option value>a</option>
+                </select>
+
+                <input className="witness-header-searchbar" type='text' placeholder='Search Here' />
+                <input className="witness-header-button" type='image' src='https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png' alt=''></input>
+                <button className="witness-header-write">글쓰기</button>
+              </form>
+
+            </div>
+            
+            
         </div> 
 
-            <div class="witness-container row">
+            <div className="witness-container row">
                 {
-                    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(value => 
-                    <div className="witness-container-outer col-md-3" >
-                            <div className="witness-container-inner">
-                                <img className="witness-container-img" src={urlOne}  />
+                    this.state.serverData.map((element, idx) => 
+                    <div className="witness-container-outer col-md-4" >
+                            <div className="witness-container-inner" onClick={this.onOpenModal} >
+                                <img className="witness-container-img" src={element.url} alt='' />
                             </div>
+                              <Modal classNames='witness-modal' open={this.state.open} onClose={this.onCloseModal} center>
+                                <h2>{element.title}</h2>
+                                <div>
+                                  <img className='witness-modal-img' src={element.url} alt='' /> 
+                                  <p>
+                                    이름: 뚝섬
+                                    나이: 0살
+                                    개종: 허스키
+                                    잃어버린곳: 코드스테이츠
+                                    사례금: 없음
+                                  </p>
+                                </div>
+                              </Modal>
                     </div>)
                 }
             </div>
 
             <br></br>
-
-            {/* <div class="photoContainer2 row">
-                {
-                    [5,6,7,8].map(value => 
-                    <div class="SecondRow col-md-3" style={{backgroundColor: 'white'}}>
-                            <div style={{backgroundColor: 'skyblue', padding: '10px' }}>
-                                <img src={urlTwo} style={{ width: '100%', height: 'auto'}} />
-                            </div>
-                    </div>)
-                }
-            </div> */}
 
         </div>
 

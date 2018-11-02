@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Post.css";
 import AddressSelect from "./AddressSelect";
+import FileUploadTool from "./FileUploadTool";
 
 class Post extends Component {
   state = {
@@ -111,6 +112,7 @@ class Post extends Component {
           </select>
         </div>
         <div className="postPictureBody" />
+        {/* <FileUploadTool /> */}
         {this.missingOrFoundPlace()}
         <AddressSelect />
         <div className="exactLocation">

@@ -25,3 +25,4 @@ export default class Main_slide extends Component {
     );
   }
 }
+

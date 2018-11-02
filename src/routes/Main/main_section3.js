@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Main_section3_list } from "./Main_sections_list";
 
 
@@ -15,11 +15,11 @@ export default class main_section3 extends Component {
         
         {/*---------------------plz_find_title start----------------------*/}
           <div className="main_section2_plzfind_title">
-            <NavLink to ="/find">
+            <Link to ="/find">
               <div className="main_section2_plzfind">우리 아이를 찾아주세요</div>
               <div className="main_section2_plzfind_note">가족을 잃은 슬픔에 애타게 기다리고 있습니다</div>
               <div className="main_section2_plzfind_note">많은 관심과 제보 부탁드립니다.</div>
-            </NavLink>
+            </Link>
           </div>
         {/*---------------------plz_find_title start----------------------*/}
         

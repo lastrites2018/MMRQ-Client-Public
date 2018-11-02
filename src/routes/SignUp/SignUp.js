@@ -32,8 +32,8 @@ export default class SignUp extends Component {
         <Form id="validate-form">
           <AuthContent title="회원가입">
             <label htmlFor="validate-color">이메일 </label>
-            <Text field="email" id="validate-email" validate={validate} />
-            {/* <InputWithLabel label="이메일" name="email" placeholder="이메일" /> */}
+            {/* <Text field="email" id="validate-email" validate={validate} /> */}
+            <InputWithLabel label="이메일" name="email" placeholder="이메일" />
             <InputWithLabel
               label="연락처"
               name="handphone"

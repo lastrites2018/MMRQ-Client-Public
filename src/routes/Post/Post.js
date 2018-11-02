@@ -6,6 +6,7 @@ import FileUploadTool from "./FileUploadTool";
 class Post extends Component {
   state = {
     currentClassification: "",
+    classificationData: "",
     dogSpecies: [
       "골든 두들",
       "골든 리트리버",
@@ -75,7 +76,10 @@ class Post extends Component {
     ]
   };
   classificationSelect = event => {
-    this.setState({ currentClassification: event.target.value });
+    this.setState({
+      currentClassification: event.target.value,
+      classificationData: event.target.value
+    });
   };
   missingOrFoundPlace = () => {
     if (this.state.currentClassification === "찾아주세요") {
@@ -100,8 +104,9 @@ class Post extends Component {
   render() {
     return (
       <div className="postBody">
+        <div className="postPictureBody" />
         <div className="classificationButton">
-          <span>유형을 선택해주세요</span>
+          <div>유형을 선택해주세요</div>
           <select
             id="classificationSelect"
             onChange={this.classificationSelect}
@@ -110,13 +115,29 @@ class Post extends Component {
             <option value="찾아주세요">찾아주세요</option>
             <option value="목격했어요">목격했어요</option>
           </select>
+          {console.log(
+            this.state.classificationData,
+            this.state.currentClassification
+          )}
         </div>
-        <div className="postPictureBody" />
         {/* <FileUploadTool /> */}
+        <div className="writter">
+          <div>작성자</div>
+          <input type="text" name="writtenBy" size="8" placeholder="글쓴이" />
+        </div>
+        <div className="title">
+          <div>글제목</div>
+          <input type="text" name="title" size="100" placeholder="글 제목" />
+        </div>
         {this.missingOrFoundPlace()}
         <AddressSelect />
         <div className="exactLocation">
-          <input type="text" name="exactLocation" size="100" />
+          <input
+            type="text"
+            name="exactLocation"
+            size="100"
+            placeholder="상세 주소"
+          />
         </div>
         <div className="dogInfo">
           <span className="species">
@@ -143,7 +164,12 @@ class Post extends Component {
           {this.reward()}
         </div>
         <div className="explanation">
-          <input type="text" name="explanation" size="100" />
+          <input
+            type="text"
+            name="explanation"
+            size="100"
+            placeholder="특징 및 상세 설명"
+          />
         </div>
       </div>
     );

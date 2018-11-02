@@ -12,6 +12,9 @@
 .classificationButton {
   margin: 10px;
 }
+.classificationButton div {
+  margin: 10px;
+}
 .missngPlace {
   margin: 10px;
 }
@@ -22,10 +25,10 @@
   margin: 10px;
 }
 .exactLocation {
-  margin: 10px;
+  margin: 20px;
 }
 .dogInfo {
-  margin: 10px;
+  margin: 5px 20px;
 }
 .sex,
 .reward {
@@ -38,11 +41,12 @@
   margin: 10px;
 }
 .explanation {
-  margin-left: 10px;
+  margin-left: 20px;
   margin-bottom: 20px;
 }
 #citySelect {
   display: inline;
+  margin-left: 10px;
 }
 #districtSelect {
   display: inline;
@@ -55,5 +59,18 @@
   margin: 10px;
 }
 .no {
-  margin: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.writter {
+  margin: 20px;
+}
+.writter div {
+  margin-bottom: 10px;
+}
+.title {
+  margin: 20px;
+}
+.title div {
+  margin-bottom: 10px;
 }

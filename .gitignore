@@ -6,3 +6,5 @@ node_modules/
 
 ## Compiled files ##
 compiled/
+
+.package-lock.json

@@ -1,18 +1,28 @@
-import React, { Component } from 'react'
-import dog from "./dog.jpg"
+import React, { Component } from "react";
+import Slider from "react-slick";
+import { Main_section1_list } from "./Main_sections_list";
 
-export default class main_section1 extends Component {
+
+export default class Main_slide extends Component {
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2500,
+    };
     return (
-        <div className="main_section1_post">
-        <div className="notice_contents">
-        <div>
-        <p>멍멍이</p>
-        <p>찾아주쇼</p>
-        </div>
-        </div>
-        <img src={dog} className="main_pet_notice" alt="image" />
-        </div>
-    )
+      <div>
+        <Slider {...settings}>
+          {this.props.findData.map((find, idx) => {
+            return <Main_section1_list find={find} key={idx} />;
+          })}
+        </Slider>
+      </div>
+    );
   }
 }
+

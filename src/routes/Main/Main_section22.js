@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Main_section2_list } from "./Main_sections_list"
 
 
-export default class main_section2 extends Component {
+export default class Main_section22 extends Component {
   constructor(props){
     super(props)
   }

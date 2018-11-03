@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 
 
 class Find_section1 extends Component {
-  constructor(props){
-    super(props)
-  }
 
   render() {
     return (

@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-class Main_section1_list extends Component {
+class MainSectionList1 extends Component {
   render() {
     return (
         <div className="main_section1_post" >
         <div className="notice_contents">
         <div className="notice_contents_back">
-        <p className="pet_name"><a>{this.props.find.petname}</a> 찾아주세요!!</p>
+        <p className="pet_name">{this.props.find.petname}<br /> 찾아주세요!!</p>
         <p className="pet_breed">{`${this.props.find.petbreed} / ${this.props.find.petsex}`}</p>
-        <p className="pet_lost_location"><a style={{borderBottom:"2px solid"}}>{this.props.find.location}</a></p>
+        <p className="pet_lost_location">{this.props.find.location}</p>
         {/* <p className="pet_post_contents">{`${this.props.find.contents.slice(0,290)} ...`}</p> */}
         <p className="pet_post_contents">
               {
@@ -20,24 +20,24 @@ class Main_section1_list extends Component {
         </p>
         </div>
         </div>
-        <img src={this.props.find.petimage} className="main_pet_notice" alt="image" />
+        <img src={this.props.find.petimage} className="main_pet_notice" alt=""/>
         </div>
     );
   }
 }
 
 
-class Main_section2_list extends Component {
-  constructor(props){
-    super(props)
-  }
+class MainSectionList2 extends Component {
+  // constructor(props){
+  //   super(props)
+  // }
 
   render() {
-    console.log(this.props.find)
+    // console.log(this.props.find)
     return (
       <Link to="/find">
         <article>
-            <img className="main_section2_post" src={`${this.props.find.petimage}`} alt="idx" />
+            <img className="main_section2_post" src={`${this.props.find.petimage}`} alt=""/>
             <div className="article_title">{
               this.props.find.title.length > 24 ? 
               `${this.props.find.title.slice(0,24)} ...` : this.props.find.title
@@ -54,7 +54,7 @@ class Main_section2_list extends Component {
 }
 
 
-class Main_section3_list extends Component {
+class MainSectionList3 extends Component {
   render() {
     // console.log(this.props.witness)
     // console.log(this.props.witness.title);
@@ -78,7 +78,7 @@ class Main_section3_list extends Component {
 }
 
 export {
-  Main_section1_list, 
-  Main_section2_list, 
-  Main_section3_list
+  MainSectionList1, 
+  MainSectionList2, 
+  MainSectionList3
 }

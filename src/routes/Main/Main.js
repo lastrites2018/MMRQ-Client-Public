@@ -7,45 +7,46 @@ import MainSection3 from "./Main_section3"
 
 import axios from "axios";
 
-
 export default class Main extends Component {
-    state ={
-      findData:[],
-      witnessData:[]
-    }
+  state = {
+    findData: [],
+    witnessData: []
+  };
 
   componentDidMount() {
-    axios.get("http://localhost:5000/find?id_lte=8")
+    axios
+      .get("http://localhost:5000/find?id_lte=8")
       .then(res => {
-        console.log("axios_get",res.data);
+        // console.log("axios_get", res.data);
         this.setState({
           findData: res.data
-        })
+        });
       })
-      .catch(err => console.log(err))
-      
-    axios.get("http://localhost:5000/witness?id_lte=8")
+      .catch(err => console.log(err));
+
+    axios
+      .get("http://localhost:5000/witness?id_lte=8")
       .then(res => {
-        console.log("axios_get",res.data);
+        // console.log("axios_get", res.data);
         this.setState({
           witnessData: res.data
-        })
+        });
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
-  
-  
+
   render() {
-    if (this.state.findData.length === 0 || this.state.witnessData.length === 0) {
+    if (
+      this.state.findData.length === 0 ||
+      this.state.witnessData.length === 0
+    ) {
       return <div>loding....</div>;
     }
-    return <div className="component_body">
-        {/* <MainSection1 findData={this.state.findData} /> */}
+    return (
+      <div className="component_body">
         <MainSection1 findData={this.state.findData} />
         <MainSection2 findData={this.state.findData} />
         <MainSection3 witnessData={this.state.witnessData} />
-      </div>;
-  }
+      </div>
+    )}
 }
-
-

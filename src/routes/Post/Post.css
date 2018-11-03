@@ -1,17 +1,21 @@
-.post_body {
+.postBody {
   width: 1000px;
   margin: auto;
+  margin-bottom: 50px;
   border: 1px solid black;
 }
-.post_picture {
-  margin: 10px;
-  padding: 10px;
+.postPictureBody {
+  margin: 40px 300px;
+  padding: 180px;
   border: 1px solid black;
 }
 .classificationButton {
   margin: 10px;
 }
-.missingPlace {
+.missngPlace {
+  margin: 10px;
+}
+.iFound {
   margin: 10px;
 }
 .location {
@@ -27,9 +31,15 @@
 .reward {
   margin-left: 10px;
 }
+.reward input {
+  margin-left: 10px;
+}
+.sexSelect {
+  margin: 10px;
+}
 .explanation {
   margin-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 #citySelect {
   display: inline;
@@ -37,4 +47,13 @@
 #districtSelect {
   display: inline;
   margin-left: 10px;
+}
+#classificationSelect {
+  margin-left: 10px;
+}
+.speciesSelect {
+  margin: 10px;
+}
+.no {
+  margin: 10px;
 }

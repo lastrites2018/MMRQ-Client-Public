@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Main_section2_list } from "./Main_sections_list"
+import { MainSectionList2 } from "./Main_sections_list"
 
 
 export default class Main_section2 extends Component {
@@ -26,7 +26,7 @@ export default class Main_section2 extends Component {
         {/*---------------------article start----------------------*/}
           <div className="main_section2_posts">
            {this.props.findData.map((find, idx)=>{
-             return <Main_section2_list find={find} key={idx} />;
+             return <MainSectionList2 find={find} key={idx} />;
            })}
           </div>
         {/*---------------------article end----------------------*/}            

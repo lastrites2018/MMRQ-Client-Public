@@ -1,14 +1,13 @@
 .header_line {
   margin: 30px 30px 70px;
   height: 80px;
-  background: url(/static/media/logo.31172a39.png) no-repeat;
+  background: url("/Header/logo.png") no-repeat;
   background-size: 60px;
 }
 
 .header {
   padding-left: 60px;
     display: table;
-    /* width: 42%; */
     float: right;
     font-family: 'Jua', sans-serif;
     background: url("./foot_icon.png") no-repeat;

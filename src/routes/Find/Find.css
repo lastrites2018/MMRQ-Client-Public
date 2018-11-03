@@ -1,0 +1,51 @@
+.component_body{
+  width: 1000px;
+  margin: auto;
+}
+.find_section2_posts {
+  overflow: hidden;
+}
+
+.find_section2_post {
+  width: 300px;
+  height: 300px;
+  margin: 20px 30px 20px 0;
+  background-position: center;
+  background-size: 100%;
+  padding: 9px;
+  background: #FFF;
+  border: 1px solid #E5E5E5;
+  box-shadow: 5px 5px 3px #F5F5F5;
+  border-radius: 15px;
+  float: left;
+}
+
+.article_title {
+  height: auto;
+  font-family: 'Cute Font', cursive;
+  font-size: 1.7em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.find_article {
+  width: 283px;
+  float: left;
+  margin-right: 50px;
+  text-align: center;
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+
+.buttonForm {
+  text-align: center;
+  margin: 60px;
+}
+
+button {
+  margin: 3px;
+  padding: 5px 7px;
+  font-size: 0.7em;
+}

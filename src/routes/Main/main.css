@@ -3,6 +3,13 @@
   margin: auto;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
+/*------------------------------section1_start---------------------------------*/
+
 .main_pet_notice{
   float: right;
   height: 100%;
@@ -10,7 +17,7 @@
 
 .notice_contents{
   float: left;
-  width: 25%; 
+  width: 33%; 
   height: 100%;
   text-align: center;
   display: inline-table
@@ -21,24 +28,74 @@
   vertical-align: middle
 }
 
+.notice_contents div{
+  background: url(highlighting.png) no-repeat;
+  background-size: 300px 140px;
+  background-position: 0px 35px;
+}
+
 .main_section1_post{
-  width: 1000px;
   height: 465px;
   margin: auto;
+  margin-bottom: 80px;
   background-position: center;
   background-size: 100%;
   padding: 9px;
   background: #FFF;
   border: 1px solid #E5E5E5;
-  box-shadow: 1px 1px 3px #F5F5F5;
+  border-radius: 15px;
+  box-shadow: 5px 6px 3px #F5F5F5;
+  font-family: 'Jua', sans-serif; 
 }
 
-.main_section2_contents {
-  width: 1000px;
+.pet_name {
+  font-family: 'Jua', sans-serif;
+  font-size: 2em;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pet_breed {
+  font-family: 'Jua', sans-serif;
+  font-size: 1.3em;
+}
+
+.pet_post_contents {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 1.1em;
+  font-weight: bolder;
+}
+
+.main_section1_post img{
+  border-radius: 15px;
+  width: 65%
+}
+
+
+/*------------------------------section1_end---------------------------------*/
+
+/*------------------------------section2_start---------------------------------*/
+
+/* .main_section2_contents {
   height: 1000px;
   margin: auto;
-  
-}
+} */
 
 .main_section2_post {
   width: 200px;
@@ -49,7 +106,8 @@
   padding: 9px;
   background: #FFF;
   border: 1px solid #E5E5E5;
-  box-shadow: 1px 1px 3px #F5F5F5;
+  box-shadow: 5px 5px 3px #F5F5F5;
+  border-radius: 15px;
   float: left;
 }
 
@@ -63,19 +121,25 @@
   margin-bottom: 5px
 }
 
+.main_section2_plzfind_title {
+  display: inline-table;  
+  cursor: pointer;
+}
+
 .main_section2_plzfind {
-  margin-top: 40px;
-  border-top: 1.4px dashed #E5E5E5;
   padding-top: 20px;
   font-family: 'Jua', sans-serif;
   font-size: 2em
 }
 
-.main_section2_plzfind_Line {
+.main_section2_plzfind_line {
   overflow: hidden;
   height: auto;
+  margin-top: 120px;
   margin-bottom: 40px;
+  border-top: 1.4px dashed #E5E5E5;
 }
+
 
 .main_section2_plzfind_note {
   /* font-family: 'Jua', sans-serif; */
@@ -88,3 +152,6 @@ article {
   float: left;
   margin-right: 50px;
 }
+
+
+/*------------------------------section2_end---------------------------------*/

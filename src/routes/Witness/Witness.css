@@ -1,47 +1,50 @@
-.witness {
-  width: 1000px;
-  margin: auto;
-}
-.witness-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.witness-header-form{
-    width: auto;
-}
-.witness-header-subtitle{
-    text-align: left;
-}
-.witness-header-searchbar {
-  height: 30px;
-  width: 100px;
-}
-.witness-header-button {
-  width: 2%;
+.container {
 
 }
+.witness {
+    width: 1000px;
+    margin: auto;
+}
+.witness-header {
+}
+.witness-header-form {
+}
+.witness-header-subtitle {
+}
+.witness-header-searchbar {
+}
+.witness-header-button {
+  width: 20px;
+}
 .witness-header-write {
-  text-align: right;
 }
-.witness-container-outer {
-  background-color: white;
-  padding-bottom: 30px;
-}
-.witness-container-inner {
-  background-color: pink;
-  padding: 10px;
+.witness-container-list {
+  display: inline-table;
+  width: 300px;
+  height: 500px;
 }
 .witness-container-img {
-  width: 300px;
-  height: 400px;
+  width: 200px;
+  height: 300px;
 }
-.witness-modal{
-  font-family: sans-serif;
-  text-align: center;
-  width: 100%;
-  height: auto;
+.witness-container-content {
+  width: 200;
+  height: 100px;
+  float: left;
 }
-.witness-modal-img{
-    width: 100%;
-    height: auto;
+.witness-modal {
+}
+.witness-modal-img {
+  width: 200px;
+  height: 300px;
+}
+ul.pagination {
+  background-color: white;
+  list-style: none;
+}
+
+ul.pagination li {
+  display: inline-block;
+  border: 1px solid;
+  margin: 10px;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Modal from 'react-responsive-modal';
-import { Form, Select, Option} from 'informed';
+import Witness_list from './Witness_list';
+//import { Form, Select, Option} from 'informed';
 import axios from 'axios';
 
 import './Witness.css';
@@ -10,32 +10,23 @@ class Witness extends Component {
     super(props);
 
     this.state={
-      open: false,
-      serverData: [],
+      witnessData: [],
+      pageCount: 0,
+      perPage:10,
+      startOffSet: 0,
+      endOffset: 10,
     };
-  }
-
-  onOpenModal = () => {
-    this.setState({open: true})
-  }
-
-  onCloseModal = () => {
-    this.setState({open: false})
-  }
+  };
 
   componentDidMount(){
-    axios.get('http://localhost:3000/witness')
+    axios.get('http://localhost:5000/witness')
     .then( res => {
-      console.log('check check check data', res);
-      this.setState({serverData: res.data})
+      this.setState({witnessData: res.data, pageCount: res.data.length / this.state.perPage })
     })
-    .catch(err => console.log('에러났쭁', err))
-  }
+    .catch(err => console.log('에러났어 :::', err))
+  };
 
   render(){
-    // const urlOne = 'https://picsum.photos/200/300';
-    // const tempImg = 'https://images.unsplash.com/photo-1528113513525-92e3d53bc9ad?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=16d58d12bcc952da16c4b4d670638202&auto=format&fit=crop&w=2734&q=80';
-
     return(
         <div className='witness' >
           
@@ -68,30 +59,18 @@ class Witness extends Component {
             
         </div> 
 
-            <div className="witness-container row">
+            <div className="witness-container">
                 {
-                    this.state.serverData.map((element, idx) => 
-                    <div className="witness-container-outer col-md-4" >
-                            <div className="witness-container-inner" onClick={this.onOpenModal} >
-                                <img className="witness-container-img" src={element.url} alt='' />
-                            </div>
-                              <Modal classNames='witness-modal' open={this.state.open} onClose={this.onCloseModal} center>
-                                <h2>{element.title}</h2>
-                                <div>
-                                  <img className='witness-modal-img' src={element.url} alt='' /> 
-                                  <p>
-                                    이름: 뚝섬
-                                    나이: 0살
-                                    개종: 허스키
-                                    잃어버린곳: 코드스테이츠
-                                    사례금: 없음
-                                  </p>
-                                </div>
-                              </Modal>
-                    </div>)
+                    <Witness_list 
+                      lists={this.state.witnessData} 
+                      pageCounts={this.state.pageCount} 
+                      listLength={this.state.witnessData.length} 
+                      endOffset={this.state.endOffset} 
+                      startOffset={this.state.startOffSet}
+                      perPage={this.state.perPage}
+                      />
                 }
             </div>
-
             <br></br>
 
         </div>

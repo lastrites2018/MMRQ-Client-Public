@@ -27,20 +27,22 @@ export default class Find extends Component {
         // console.log("이게 레인지",_range)
         this.setState({
           findData: res.data,
-          numberOfButtons: _.range(1, Math.ceil(res.data.length/12)+1)
+          // numberOfButtons: Math.ceil(res.data.length/12)
+          numberOfButtons: _.range(1, Math.ceil(res.data.length / 12) + 1)
         });
-        console.log(this.state.numberOfButtons)
+        // console.log(this.state.numberOfButtons)
+        console.log(this.state.numberOfButtons);
       })
       .catch(err => console.log(err));
   }
 
   _pageIdxChange = (pageNumber) =>{
     console.log("pageIdxChange실행되나??")
-    console.log("pageNumber: ",pageNumber)
     this.setState({
       currentPageFirstIdx : pageNumber -1,
       currentPageLastIdx : pageNumber
     })
+    console.log("pageNumber: ",pageNumber)
   }
 
 
@@ -57,9 +59,13 @@ export default class Find extends Component {
     }
     return (
       <div className="component_body">
-      {/* {console.log(this.state.da)} */}
       <FindSection1 findData={this.state.findData.slice(FirstIdx*dataLimit, LastIdx*dataLimit)} />
-      <FindButton pageIdxChange={this._pageIdxChange}/>
+      <div className="buttonForm">
+      {this.state.numberOfButtons.map((pageNumber)=>{
+        return (
+        <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber}/>
+        )})}
+      </div>
     </div>
     )}
   }

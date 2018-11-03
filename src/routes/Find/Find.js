@@ -42,7 +42,21 @@ export default class Find extends Component {
       currentPageFirstIdx : pageNumber -1,
       currentPageLastIdx : pageNumber
     })
-    console.log("pageNumber: ",pageNumber)
+    // console.log("pageNumber: ",pageNumber)
+  }
+
+  _beforePageMove = () => {
+    this.setState({
+      currentPageFirstIdx: this.state.currentPageFirstIdx - 1,
+      currentPageLastIdx: this.state.currentPageLastIdx - 1
+    });
+  }
+
+  _nextPageMove = () => {
+    this.setState({
+      currentPageFirstIdx: this.state.currentPageFirstIdx + 1,
+      currentPageLastIdx: this.state.currentPageLastIdx + 1
+    });
   }
 
 
@@ -61,10 +75,12 @@ export default class Find extends Component {
       <div className="component_body">
       <FindSection1 findData={this.state.findData.slice(FirstIdx*dataLimit, LastIdx*dataLimit)} />
       <div className="buttonForm">
+      <button onClick={this._beforePageMove}>〈</button>
       {this.state.numberOfButtons.map((pageNumber)=>{
         return (
         <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber}/>
         )})}
+      <button onClick={this._beforePageMove}>〉</button>
       </div>
     </div>
     )}

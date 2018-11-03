@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./main.css";
-import MainSection11 from "./Main_section11";
-import MainSection22 from "./Main_section22";
-import MainSection33 from "./Main_section33";
+import MainSection1 from "./Main_section1";
+import MainSection2 from "./Main_section2"
+import MainSection3 from "./Main_section3"
+
 
 import axios from "axios";
 
@@ -16,7 +17,7 @@ export default class Main extends Component {
     axios
       .get("http://localhost:5000/find?id_lte=8")
       .then(res => {
-        console.log("axios_get", res.data);
+        // console.log("axios_get", res.data);
         this.setState({
           findData: res.data
         });
@@ -26,7 +27,7 @@ export default class Main extends Component {
     axios
       .get("http://localhost:5000/witness?id_lte=8")
       .then(res => {
-        console.log("axios_get", res.data);
+        // console.log("axios_get", res.data);
         this.setState({
           witnessData: res.data
         });
@@ -43,11 +44,9 @@ export default class Main extends Component {
     }
     return (
       <div className="component_body">
-        {/* <MainSection1 findData={this.state.findData} /> */}
-        <MainSection11 findData={this.state.findData} />
-        <MainSection22 findData={this.state.findData} />
-        <MainSection33 witnessData={this.state.witnessData} />
+        <MainSection1 findData={this.state.findData} />
+        <MainSection2 findData={this.state.findData} />
+        <MainSection3 witnessData={this.state.witnessData} />
       </div>
-    );
-  }
+    )}
 }

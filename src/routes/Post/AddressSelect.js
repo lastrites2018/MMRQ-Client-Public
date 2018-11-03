@@ -311,7 +311,13 @@ class AddressSelect extends Component {
   render() {
     return (
       <div className="location">
-        <select id="citySelect" onChange={this.citySelect.bind(this)}>
+        <select
+          id="citySelect"
+          onChange={event => {
+            this.citySelect(event);
+            this.props.changeLocationCity(event);
+          }}
+        >
           <option value="">Select One...</option>
           {this.state.city.map((city, index) => {
             return (
@@ -321,7 +327,10 @@ class AddressSelect extends Component {
             );
           })}
         </select>
-        <select id="districtSelect">
+        <select
+          id="districtSelect"
+          onChange={this.props.changeLocationDistrict}
+        >
           <option value="">Select One...</option>
           {this.isCurrentCityExist()}
         </select>

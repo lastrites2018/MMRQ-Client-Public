@@ -12,16 +12,14 @@ class Witness extends Component {
     this.state={
       witnessData: [],
       pageCount: 0,
-      perPage:10,
-      startOffSet: 0,
-      endOffset: 10,
+     
     };
   };
 
   componentDidMount(){
     axios.get('http://localhost:5000/witness')
     .then( res => {
-      this.setState({witnessData: res.data, pageCount: res.data.length / this.state.perPage })
+      this.setState({witnessData: res.data, pageCount: res.data.length / 10 })
     })
     .catch(err => console.log('에러났어 :::', err))
   };
@@ -65,9 +63,7 @@ class Witness extends Component {
                       lists={this.state.witnessData} 
                       pageCounts={this.state.pageCount} 
                       listLength={this.state.witnessData.length} 
-                      endOffset={this.state.endOffset} 
-                      startOffset={this.state.startOffSet}
-                      perPage={this.state.perPage}
+                      
                       />
                 }
             </div>

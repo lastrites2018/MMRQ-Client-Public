@@ -11,9 +11,9 @@ class Witness_list extends Component{
             index: null,
             elementGetter: null,
             activePage: 1,
-            perPage: this.props.perPage,
-            startOffset: this.props.startOffset,
-            endOffset: this.props.endOffset,
+            perPage: 10,
+            startOffset: 0,
+            endOffset: 10,
             perPageData:[],
         };
     };
@@ -28,13 +28,16 @@ class Witness_list extends Component{
 
     handlePageChange = (pageNumber) => {
         console.log(`active page is ${pageNumber}`);
-        let startOffset;
-        startOffset += 10;
         let endOffset = Math.ceil(pageNumber * 10);
-        let perPageData = this.props.lists.slice(startOffset, endOffset);
-        this.setState({activePage: pageNumber, endOffset: endOffset, startOffset: startOffset, perPageData: perPageData});
+        let perPageData = this.props.lists.slice(this.state.startOffset, endOffset);
+        this.setState({activePage: pageNumber, endOffset: endOffset, startOffset: this.state.startOffset, perPageData: perPageData});
 
     };
+
+    componentDidMount = () =>{
+        //console.log(this.props.lists)
+        this.setState({perPageData: this.props.lists.slice(this.state.startOffset, this.state.endOffset)})
+    }
 
     render(){ 
         // console.log(this.props.pageCounts)
@@ -54,7 +57,7 @@ class Witness_list extends Component{
                 this.state.perPageData.map((element, idx) => {
                    return ( 
                                  <div className="witness-container-list" onClick={() => this.onOpenModal(idx,element)} >
-                                    <img className="witness-container-img" src={element.url} alt='' />
+                                    <img className="witness-container-img" src={element.petimage} alt='' />
                                     <div className="witness-container-contents">{element.id}</div>
                                     <div className="witness-container-contents">{element.traits}</div>
                                  </div>      
@@ -65,7 +68,7 @@ class Witness_list extends Component{
             <Modal classNames='witness-modal' open={this.state.open} onClose={this.onCloseModal} center>
                             {this.state.elementGetter ? <h2>{this.state.elementGetter.title }</h2> : 'loading...' }
                                 <div>
-                                    {this.state.elementGetter ? <img className='witness-modal-img' src={this.state.elementGetter.url} alt='' /> : 'loading...'}
+                                    {this.state.elementGetter ? <img className='witness-modal-img' src={this.state.elementGetter.petimage} alt='' /> : 'loading...'}
                                         <div>
                                             이름: 나무
                                             나이: 0살
@@ -81,8 +84,7 @@ class Witness_list extends Component{
                 itemsCountPerPage={10}
                 totalItemsCount={this.props.listLength}
                 pageRangeDisplayed={this.props.pageCounts}
-                onChange={this.handlePageChange}
-            />
+                onChange={this.handlePageChange} />
 
         </div>
     );

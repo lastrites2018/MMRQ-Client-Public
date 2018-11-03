@@ -6,3 +6,7 @@ node_modules/
 
 ## Compiled files ##
 compiled/
+
+##misc
+.package.lock
+.yarn.lock

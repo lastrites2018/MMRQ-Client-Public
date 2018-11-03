@@ -11,7 +11,8 @@ import Find from "./routes/Find/Find";
 import Witness from "./routes/Witness/Witness";
 import NoMatch from "./routes/NoMatch/NoMatch";
 
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 class App extends Component {
   render() {
@@ -33,6 +34,9 @@ class App extends Component {
 
               <Route component={NoMatch} />
             </Switch>
+            <div>
+              <Footer />
+            </div>
         </div>
       </Router>
     );

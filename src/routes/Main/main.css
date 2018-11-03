@@ -31,7 +31,7 @@ a{
 .notice_contents div{
   background: url(highlighting.png) no-repeat;
   background-size: 300px 140px;
-  background-position: 0px 35px;
+  background-position: 0px 27px;
 }
 
 .main_section1_post{
@@ -77,9 +77,12 @@ a{
 }
 
 .pet_post_contents {
-  font-family: 'Nanum Gothic', sans-serif;
+  line-height: 30px;
+  margin: auto;
+  font-family: 'Sunflower', sans-serif;
   font-size: 1.1em;
   font-weight: bolder;
+
 }
 
 .main_section1_post img{
@@ -142,15 +145,24 @@ a{
 
 
 .main_section2_plzfind_note {
-  /* font-family: 'Jua', sans-serif; */
-  font-size: 0.9em;
-  font-weight: 300
+  line-height: 20px;
+  font-family: 'Sunflower', sans-serif;
+  font-size: 0.4em;
 }
 
 article {
   width: 200px;
   float: left;
   margin-right: 50px;
+  text-align: center;
+}
+
+.article_title {
+  height: 325px;
+  font-family: 'Cute Font', cursive;
+  font-size: 1.7em;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
 

@@ -9,10 +9,12 @@ class HomeMain extends Component {
         <div className="Home-main-header">
           <span className="Home-main-logo">MMRQ</span>
         </div>
-        <div className="Home-main-comment">Please Help My Friends</div>
-        <div className="buttons">
-          <HomeMainButton1 />
-          <HomeMainButton2 />
+        <div className="Home-main-picture">
+          <div className="Home-main-comment">Please Help My Friends</div>
+          <div className="buttons">
+            <HomeMainButton1 />
+            <HomeMainButton2 />
+          </div>
         </div>
         <div className="Home-main-footer" />
       </div>

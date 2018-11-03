@@ -1,4 +1,8 @@
-.component_body{
+.find {
+  width: 1100px;
+  margin: auto;
+}
+.component_body {
   width: 1000px;
   margin: auto;
 }
@@ -14,16 +18,16 @@
   background-position: center;
   background-size: 100%;
   padding: 9px;
-  background: #FFF;
-  border: 1px solid #E5E5E5;
-  box-shadow: 5px 5px 3px #F5F5F5;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 5px 5px 3px #f5f5f5;
   border-radius: 15px;
   float: left;
 }
 
 .article_title {
   height: auto;
-  font-family: 'Cute Font', cursive;
+  font-family: "Cute Font", cursive;
   font-size: 1.7em;
   margin-bottom: 15px;
   font-weight: bold;
@@ -35,8 +39,6 @@
   margin-right: 50px;
   text-align: center;
 }
-
-
 
 /* ------------------------------------------------------------------------- */
 

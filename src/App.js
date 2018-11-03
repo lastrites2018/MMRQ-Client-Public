@@ -10,7 +10,6 @@ import SignUp from "./routes/SignUp/SignUp";
 import Find from "./routes/Find/Find";
 import Witness from "./routes/Witness/Witness";
 import NoMatch from "./routes/NoMatch/NoMatch";
-import Notification from './routes/Notification/Notification';
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";

@@ -7,7 +7,6 @@ import _ from "lodash"
 
 import "./Find.css"
 
-
 export default class Find extends Component {
   
   state = {
@@ -85,3 +84,4 @@ export default class Find extends Component {
     </div>
     )}
   }
+

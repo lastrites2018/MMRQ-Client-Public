@@ -13,7 +13,7 @@ export default class Find extends Component {
     findData: [],
     currentPageFirstIdx: 0,
     currentPageLastIdx: 1,
-    dataLimit: 12,
+    dataLimit: 15,
     numberOfButtons: []
   };
 
@@ -26,7 +26,7 @@ export default class Find extends Component {
         this.setState({
           findData: res.data,
           // numberOfButtons: Math.ceil(res.data.length/12)
-          numberOfButtons: _.range(1, Math.ceil(res.data.length / 12) + 1)
+          numberOfButtons: _.range(1, Math.ceil(res.data.length / 15) + 1)
         });
         // console.log(this.state.numberOfButtons);
       })
@@ -79,9 +79,10 @@ export default class Find extends Component {
         <FindSection1 findData={this.state.findData.slice(FirstIdx*dataLimit, LastIdx*dataLimit)} />
         <div className="buttonForm">
           <button onClick={this._beforePageMove}>〈</button>
+          
           {this.state.numberOfButtons.map((pageNumber,idx)=>{
             return (
-            <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber} key={idx}/>
+              <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber} currentPage={LastIdx} key={idx}/>
             )})}
           <button onClick={this._nextPageMove}>〉</button>
         </div>

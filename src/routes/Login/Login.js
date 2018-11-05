@@ -8,6 +8,7 @@ import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 // import { withRouter, Redirect } from 'react-router-dom';
 import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 
 const LoginStyle = styled.div`
   padding-top: 2rem;
@@ -19,6 +20,9 @@ const LoginStyle = styled.div`
 
 class Login extends Component {
   // _isLogin = false;
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -40,13 +44,14 @@ class Login extends Component {
     this.setState({ canSubmit: true });
   }
   submit = data => {
+    const { cookies } = props;
     console.log('data', data);
     Axios.post('http://localhost:5000/users', data)
       .then(response => {
         console.log('response', response);
         console.log(this, '로그인 완료');
         // this._isLogin = true;
-        // Cookies.set('test', data.email, { path: '/', maxAge: 3600 });
+        cookies.set('test', data.email, { path: '/', maxAge: 3600 });
         // Cookies.save('token', 'token-value', {
         //   maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
         // });
@@ -111,5 +116,5 @@ class Login extends Component {
 //   }
 // }
 
-export default Login;
+export default withCookies(Login);
 // export default withRouter(Login);

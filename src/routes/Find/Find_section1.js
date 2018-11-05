@@ -16,7 +16,7 @@ class Find_section1 extends Component {
         <Link to="/find">
         <article className="find_article" key={idx}>
             {/* {console.log(find)} */}
-            <img className="find_section2_post" src={`${find.petimage}`}  />
+            <img className="find_section2_post" src={`${find.petimage}`} alt="" />
             <div className="article_title">{
               find.title.length > 24 ? 
               `${find.title.slice(0,24)} ...` : find.title

@@ -1,5 +1,4 @@
 .Home-main {
-  background: url("./dog.jpg") no-repeat center center fixed;
   min-height: 100%;
   min-width: 1025px;
   width: 100%;
@@ -7,16 +6,19 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-size: 100%;
 }
 .Home-main-header {
   background-color: grey;
-  opacity: 0.6;
   padding: 15px;
+}
+.Home-main-picture {
+  background: url("./dog.jpg") no-repeat center center fixed;
+  min-height: 100%;
+  background-size: 100%;
+  padding-top: 10%;
 }
 .Home-main-footer {
   background-color: grey;
-  opacity: 0.6;
   padding: 20px;
   position: absolute;
   bottom: 0;
@@ -34,7 +36,6 @@
 }
 .Home-main-comment {
   text-align: center;
-  margin-top: 130px;
   font-size: 100px;
   color: white;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px gray;

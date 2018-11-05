@@ -8,5 +8,6 @@ node_modules/
 compiled/
 
 ##misc
-.package.lock
+.package-lock.json
+package-lock.json
 .yarn.lock

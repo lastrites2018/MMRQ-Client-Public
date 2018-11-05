@@ -6,6 +6,7 @@
   width: 1000px;
   margin: auto;
 }
+
 .find_section2_posts {
   overflow: hidden;
 }
@@ -46,8 +47,12 @@
   margin: 60px;
 }
 
-button {
+button{
   margin: 3px;
   padding: 5px 7px;
   font-size: 0.7em;
+}
+
+button:focus{
+  outline: none;
 }

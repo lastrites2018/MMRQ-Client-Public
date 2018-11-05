@@ -7,6 +7,7 @@ import Axios from 'axios';
 // import { Router, Redirect } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 // import { withRouter, Redirect } from 'react-router-dom';
+import { withCookies, Cookies } from 'react-cookie';
 
 const LoginStyle = styled.div`
   padding-top: 2rem;
@@ -39,16 +40,22 @@ class Login extends Component {
     this.setState({ canSubmit: true });
   }
   submit = data => {
+    console.log('data', data);
     Axios.post('http://localhost:5000/users', data)
       .then(response => {
         console.log('response', response);
         console.log(this, '로그인 완료');
         // this._isLogin = true;
+        // Cookies.set('test', data.email, { path: '/', maxAge: 3600 });
+        // Cookies.save('token', 'token-value', {
+        //   maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
+        // });
         this.setState({ isLogin: true });
         // this.props.history.push('/main');
         // response && <Redirect to="/main" />;
       })
       .catch(error => console.log('error', error));
+
     // alert(JSON.stringify(data, null, 4));
   };
 

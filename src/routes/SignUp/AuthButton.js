@@ -31,21 +31,8 @@ const Wrapper = styled.div`
 `;
 
 const AuthButton = ({ children, onClick }) => (
-  //   <Wrapper onClick={onClick}>
-  //   <Wrapper onClick={this.props.submit}>
-  <Wrapper
-    onClick={
-      (onClick = () =>
-        console.log(
-          'children',
-          children,
-          'onClick',
-          onClick,
-          'props',
-          this.props
-        ))
-    }
-  >
+  <Wrapper onClick={onClick}>
+    {/* <Wrapper onClick={this.props.submit}> */}
     {children}
   </Wrapper>
 );

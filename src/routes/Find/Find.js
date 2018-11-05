@@ -3,21 +3,20 @@ import React, { Component } from 'react'
 import FindSection1 from "./Find_section1"
 import FindButton from "./Find_button"
 
-import axios from "axios"
-import _ from "lodash"
+import axios from "axios";
+import _ from "lodash";
 
-import "./Find.css"
+import "./Find.css";
 
 export default class Find extends Component {
-  
   state = {
     findData: [],
     currentPageFirstIdx: 0,
     currentPageLastIdx: 1,
     dataLimit: 12,
-    numberOfButtons: [],
-  }
-  
+    numberOfButtons: []
+  };
+
   componentDidMount() {
     axios
       // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
@@ -37,11 +36,11 @@ export default class Find extends Component {
   _pageIdxChange = (pageNumber) =>{
     // console.log("pageIdxChange실행되나??")
     this.setState({
-      currentPageFirstIdx : pageNumber -1,
-      currentPageLastIdx : pageNumber
-    })
+      currentPageFirstIdx: pageNumber - 1,
+      currentPageLastIdx: pageNumber
+    });
     // console.log("pageNumber: ",pageNumber)
-  }
+  };
 
   _beforePageMove = () => {
     this.state.currentPageFirstIdx !== 0 ? 
@@ -68,27 +67,25 @@ export default class Find extends Component {
 
 
   render() {
-    const dataLimit = this.state.dataLimit
-    const FirstIdx = this.state.currentPageFirstIdx
-    const LastIdx = this.state.currentPageLastIdx
+    const dataLimit = this.state.dataLimit;
+    const FirstIdx = this.state.currentPageFirstIdx;
+    const LastIdx = this.state.currentPageLastIdx;
 
-    if (
-      this.state.findData.length === 0 
-    ) {
+    if (this.state.findData.length === 0) {
       return <div>loding....</div>;
     }
     return (
       <div className="component_body">
-      <FindSection1 findData={this.state.findData.slice(FirstIdx*dataLimit, LastIdx*dataLimit)} />
-      <div className="buttonForm">
-      <button onClick={this._beforePageMove}>〈</button>
-      {this.state.numberOfButtons.map((pageNumber,idx)=>{
-        return (
-        <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber} key={idx}/>
-        )})}
-      <button onClick={this._nextPageMove}>〉</button>
+        <FindSection1 findData={this.state.findData.slice(FirstIdx*dataLimit, LastIdx*dataLimit)} />
+        <div className="buttonForm">
+          <button onClick={this._beforePageMove}>〈</button>
+          {this.state.numberOfButtons.map((pageNumber,idx)=>{
+            return (
+            <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber} key={idx}/>
+            )})}
+          <button onClick={this._nextPageMove}>〉</button>
+        </div>
       </div>
-    </div>
-    )}
+    );
   }
-
+}

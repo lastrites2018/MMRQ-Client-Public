@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Post.css";
 import AddressSelect from "./AddressSelect";
+import PhotoUpload from "./PhotoUpload";
 import axios from "axios";
 
 class Post extends Component {
@@ -95,6 +96,11 @@ class Post extends Component {
       classificationData: event.target.value
     });
   };
+  makeRewardData = event => {
+    this.setState({
+      rewardData: event.target.value
+    });
+  };
   makeWritterData = event => {
     this.setState({
       writterData: event.target.value
@@ -150,11 +156,20 @@ class Post extends Component {
       return (
         <span className="reward">
           사례금:{" "}
-          <input type="text" name="reward" placeholder="금액" size="8" /> 만 원
+          <input
+            type="text"
+            name="reward"
+            placeholder="금액"
+            size="8"
+            onChange={this.makeRewardData}
+            value={this.state.rewardData}
+          />{" "}
+          만 원
         </span>
       );
     }
   };
+
   makePostData = () => {
     if (
       this.state.classificationData &&
@@ -165,7 +180,33 @@ class Post extends Component {
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData
+      this.state.featureData &&
+      this.state.rewardData
+    ) {
+      this.setState({
+        postData: {
+          writter: this.state.writterData,
+          title: this.state.titleData,
+          city: this.state.locationCityData,
+          district: this.state.locationDistrictData,
+          locationDetail: this.state.locationDetailData,
+          species: this.state.speciesData,
+          sex: this.state.sexData,
+          feature: this.state.featureData,
+          reward: this.state.rewardData
+        }
+      });
+    } else if (
+      this.state.classificationData &&
+      this.state.writterData &&
+      this.state.titleData &&
+      this.state.locationCityData &&
+      this.state.locationDistrictData &&
+      this.state.locationDetailData &&
+      this.state.speciesData &&
+      this.state.sexData &&
+      this.state.featureData &&
+      this.state.rewardData
     ) {
       this.setState({
         postData: {
@@ -186,18 +227,28 @@ class Post extends Component {
   };
 
   submitData = () => {
-    axios
-      .post("http://localhost:5000/find", this.state.postData)
-      .then(response => {
-        console.log(response, "리스폰스으으");
-      })
-      .catch(err => console.log(err, "errrr"));
+    if (this.state.currentClassification === "목격했어요") {
+      axios
+        .post("http://localhost:5000/witness", this.state.postData)
+        .then(response => {
+          console.log("목격 리스폰스으으으으");
+        })
+        .catch(err => console.log(err, "목격 에러다아아아아"));
+    } else if (this.state.currentClassification === "찾아주세요") {
+      axios
+        .post("http://localhost:5000/find", this.state.postData)
+        .then(response => {
+          console.log("실종신고 리스폰스으으으");
+        })
+        .catch(err => console.log(err, "실종신고 에러다아아아"));
+    }
   };
 
   render() {
     return (
       <div className="postBody">
         <div className="postPictureBody" />
+        <PhotoUpload />
         <div className="classificationButton">
           <div>유형을 선택해주세요</div>
           <select
@@ -272,6 +323,7 @@ class Post extends Component {
           </span>
           {this.reward()}
         </div>
+        {console.log(this.state.currentClassification)}
         <div className="explanation">
           <input
             type="text"

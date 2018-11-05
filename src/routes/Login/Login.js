@@ -3,6 +3,11 @@ import Formsy from 'formsy-react';
 import MyInput from './MyInput';
 import styled from 'styled-components';
 import './login.css';
+import Axios from 'axios';
+// import { Router, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+// import { withRouter, Redirect } from 'react-router-dom';
+import { withCookies, Cookies } from 'react-cookie';
 
 const LoginStyle = styled.div`
   padding-top: 2rem;
@@ -13,9 +18,17 @@ const LoginStyle = styled.div`
 `;
 
 class Login extends Component {
+  // _isLogin = false;
+
   constructor(props) {
     super(props);
-    this.state = { canSubmit: false };
+    // this.state = {
+    //   canSubmit: false
+    //  };
+    this.state = {
+      canSubmit: false,
+      isLogin: false
+    };
     this.disableButton = this.disableButton.bind(this);
     this.enableButton = this.enableButton.bind(this);
   }
@@ -26,14 +39,32 @@ class Login extends Component {
   enableButton() {
     this.setState({ canSubmit: true });
   }
-  submit(data) {
-    alert(JSON.stringify(data, null, 4));
-  }
+  submit = data => {
+    console.log('data', data);
+    Axios.post('http://localhost:5000/users', data)
+      .then(response => {
+        console.log('response', response);
+        console.log(this, '로그인 완료');
+        // this._isLogin = true;
+        // Cookies.set('test', data.email, { path: '/', maxAge: 3600 });
+        // Cookies.save('token', 'token-value', {
+        //   maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
+        // });
+        this.setState({ isLogin: true });
+        // this.props.history.push('/main');
+        // response && <Redirect to="/main" />;
+      })
+      .catch(error => console.log('error', error));
+
+    // alert(JSON.stringify(data, null, 4));
+  };
 
   render() {
     return (
       <LoginStyle>
         <div>
+          {this.state.isLogin && <Redirect to="/main" />}
+          {/* {!this.isLogin ? <div>로그인이 필요합니다 </div> : null} */}
           {/* <h3>로그인</h3> */}
           <Formsy
             onSubmit={this.submit}
@@ -81,3 +112,4 @@ class Login extends Component {
 // }
 
 export default Login;
+// export default withRouter(Login);

@@ -5,14 +5,12 @@ import Pagination from "react-js-pagination";
 class Witness_list extends Component{ 
     constructor(props){
         super(props);
-      
-        this.state ={
+       
+        this.state = {
             open: false,
             index: null,
             elementGetter: null,
             activePage: 0,
-            startOffset: 0,
-            endOffset: 10,
             perPageData: [],
         };
     };
@@ -27,27 +25,21 @@ class Witness_list extends Component{
 
     handlePageChange = (pageNumber) => {
         console.log(`active page is ${pageNumber}`);
+        let startIndex = pageNumber * 10 - 10;
+        let endIndex = pageNumber * 10;
         this.setState({activePage: pageNumber, 
-                       startOffset: pageNumber * 10 - 10, 
-                       endOffset: pageNumber * 10, 
-                       perPageData: this.props.lists.slice(this.state.startOffset, this.state.endOffset)
+                       perPageData: this.props.lists.slice(startIndex, endIndex)
         });
     };
 
-    componentDidMount = () =>{
-        
+    componentDidMount = () => {
+        this.setState({perPageData: this.props.lists.slice(0, 10)})
     };
 
     render(){ 
-        if(!this.state){
-            return <div>loading..</div>
+        if(this.state.perPageData.length === 0){
+            return <div>loading..</div>  
         };
-
-         console.log('startOffset:::', this.state.startOffset);
-         console.log('endOffset:::' , this.state.endOffset);
-        // console.log('perPage::::', this.state.perPage);
-        // console.log('listCount::::', this.props.listLength);
-        // console.log('pageCount:::;', this.props.pageCounts);
 
     return (
         <div>
@@ -57,22 +49,25 @@ class Witness_list extends Component{
                                  <div className="witness-container-list" onClick={() => this.onOpenModal(idx,element)} >
                                     <img className="witness-container-img" src={element.petimage} alt='' />
                                     <div className="witness-container-contents">{element.id}</div>
-                                    <div className="witness-container-contents">{element.traits}</div>
+                                    <div className="witness-container-contents">{element.feature}</div>
                                  </div>      
                 )})
             }
 
-            <Modal classNames='witness-modal' open={this.state.open} onClose={this.onCloseModal} center>
+            <Modal className='witness-modal' open={this.state.open} onClose={this.onCloseModal} center>
                             {this.state.elementGetter ? <h2>{this.state.elementGetter.title }</h2> : 'loading...' }
                                 <div>
-                                    {this.state.elementGetter ? <img className='witness-modal-img' src={this.state.elementGetter.petimage} alt='' /> : 'loading...'}
-                                        <div>
-                                            이름: 나무
-                                            나이: 0살
-                                            개종: 허스키
-                                            잃어버린곳: 코드스테이츠
-                                            사례금: 없음
-                                        </div>
+                                    <div className="witness-modal-info">
+                                                기본정보
+                                                {this.state.elementGetter ? <div> 목격장소: {this.state.elementGetter.citylocation}  {this.state.elementGetter.districtlocation} </div> : 'loading...'} 
+                                                {this.state.elementGetter ? <div> 이름: {this.state.elementGetter.petname} </div> : 'loading...'}
+                                                {this.state.elementGetter ? <div> 견종: {this.state.elementGetter.petbreed} </div> : 'loading...'}     
+                                                {this.state.elementGetter ? <div> 성별: {this.state.elementGetter.petsex} </div> : 'loading...'}
+                                                {this.state.elementGetter ? <div> 작성자: {this.state.elementGetter.writer} </div> : 'loading...'}  
+                                                {this.state.elementGetter ? <div> 연락처: {this.state.elementGetter.handphone} </div> : 'loading...'}  
+                                    </div>
+                                        {this.state.elementGetter ? <img className='witness-modal-img' src={this.state.elementGetter.petimage} alt='' /> : 'loading...'}
+                                        {this.state.elementGetter ? <div> 상세정보: {this.state.elementGetter.contents} </div> : 'loading...'}  
                                 </div>
              </Modal>
 

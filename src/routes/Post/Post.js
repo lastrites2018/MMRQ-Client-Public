@@ -10,7 +10,7 @@ class Post extends Component {
     this.state = {
       currentClassification: "",
       classificationData: "",
-      writterData: "",
+      writerData: "",
       titleData: "",
       locationCityData: "",
       locationDistrictData: "",
@@ -101,9 +101,9 @@ class Post extends Component {
       rewardData: event.target.value
     });
   };
-  makeWritterData = event => {
+  makeWriterData = event => {
     this.setState({
-      writterData: event.target.value
+      writerData: event.target.value
     });
   };
   makeTitleData = event => {
@@ -173,7 +173,7 @@ class Post extends Component {
   makePostData = () => {
     if (
       this.state.classificationData &&
-      this.state.writterData &&
+      this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -185,7 +185,7 @@ class Post extends Component {
     ) {
       this.setState({
         postData: {
-          writter: this.state.writterData,
+          writer: this.state.writerData,
           title: this.state.titleData,
           city: this.state.locationCityData,
           district: this.state.locationDistrictData,
@@ -198,7 +198,7 @@ class Post extends Component {
       });
     } else if (
       this.state.classificationData &&
-      this.state.writterData &&
+      this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -210,8 +210,7 @@ class Post extends Component {
     ) {
       this.setState({
         postData: {
-          board: this.state.classificationData,
-          writter: this.state.writterData,
+          writer: this.state.writerData,
           title: this.state.titleData,
           city: this.state.locationCityData,
           district: this.state.locationDistrictData,
@@ -261,11 +260,11 @@ class Post extends Component {
           </select>
         </div>
         {/* <FileUploadTool /> */}
-        <div className="writter">
+        <div className="writer">
           <div>작성자</div>
           <input
-            onChange={this.makeWritterData}
-            value={this.state.writterData}
+            onChange={this.makeWriterData}
+            value={this.state.writerData}
             type="text"
             name="writtenBy"
             size="8"

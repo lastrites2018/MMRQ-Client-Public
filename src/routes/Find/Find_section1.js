@@ -23,7 +23,7 @@ class Find_section1 extends Component {
             }
             </div>
             <div className="article_location">실종장소: {find.location}</div>
-            <div className="article_pet_inf">종류: {find.petbreed} / {find.petsex}</div>
+            <div className="article_pet_inf">종류: {find.species} / {find.sex}</div>
             <div className="article_pet_reward">사례금: {find.reward}</div>
             <div className="article_pet_post_date">Date: {find.postdate}</div>
         </article>

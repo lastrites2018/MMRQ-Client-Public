@@ -33,10 +33,7 @@ class MyInput extends React.Component {
     return (
       <div className={className}>
         <label htmlFor={this.props.name}>{`${this.props.title}ㅤㅤㅤ`}</label>
-<<<<<<< HEAD
-=======
         {/* <label htmlFor={this.props.name}>{`${this.props.title}ㅤㅤㅤ　`}</label> */}
->>>>>>> bcd87c1c1d4bdb399be9c4c481f3f6a5845e3a4a
         <input
           onChange={this.changeValue}
           name={this.props.name}

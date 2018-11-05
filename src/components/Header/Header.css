@@ -7,12 +7,12 @@
 
 .header {
   padding-left: 60px;
-    display: table;
-    float: right;
-    font-family: 'Jua', sans-serif;
-    background: url("./foot_icon.png") no-repeat;
-    background-size: 34px;
-    background-position: 20px;
+  display: table;
+  float: right;
+  font-family: 'Jua', sans-serif;
+  background: url("./foot_icon.png") no-repeat;
+  background-size: 34px;
+  background-position: 20px;
 }
 
 .item {

@@ -8,14 +8,15 @@ class MainSectionList1 extends Component {
         <div className="main_section1_post" >
         <div className="notice_contents">
         <div className="notice_contents_back">
-        <p className="pet_name">{this.props.find.petname}<br /> 찾아주세요!!</p>
-        <p className="pet_breed">{`${this.props.find.petbreed} / ${this.props.find.petsex}`}</p>
+        <div className="main_section1_post_back">
+          <p className="pet_name">{this.props.find.petname}<br /> 찾아주세요!!</p>
+        </div>
+        <p className="pet_breed">{`${this.props.find.species} / ${this.props.find.sex}`}</p>
         <p className="pet_lost_location">{this.props.find.location}</p>
-        {/* <p className="pet_post_contents">{`${this.props.find.contents.slice(0,290)} ...`}</p> */}
         <p className="pet_post_contents">
               {
-                this.props.find.contents.length > 160 ? 
-                `${this.props.find.contents.slice(0,160)} ...` : this.props.find.contents
+                this.props.find.contents.length > 130 ? 
+                `${this.props.find.contents.slice(0,130)} ...` : this.props.find.contents
               }
         </p>
         </div>
@@ -28,9 +29,6 @@ class MainSectionList1 extends Component {
 
 
 class MainSectionList2 extends Component {
-  // constructor(props){
-  //   super(props)
-  // }
 
   render() {
     // console.log(this.props.find)
@@ -44,7 +42,7 @@ class MainSectionList2 extends Component {
             }
             </div>
             <div className="article_location">실종장소: {this.props.find.location}</div>
-            <div className="article_pet_inf">종류: {this.props.find.petbreed} / {this.props.find.petsex}</div>
+            <div className="article_pet_inf">종류: {this.props.find.species} / {this.props.find.sex}</div>
             <div className="article_pet_reward">사례금: {this.props.find.reward}</div>
             <div className="article_pet_post_date">Date: {this.props.find.postdate}</div>
         </article>
@@ -69,7 +67,7 @@ class MainSectionList3 extends Component {
             }
             </div>
             <div className="article_location">목격장소: {this.props.witness.location}</div>
-            <div className="article_pet_inf">종류: {this.props.witness.petbreed} / {this.props.witness.petsex}</div>
+            <div className="article_pet_inf">종류: {this.props.witness.species} / {this.props.witness.sex}</div>
             <div className="article_pet_post_date">Date: {this.props.witness.postdate}</div>
         </article>
       </Link>

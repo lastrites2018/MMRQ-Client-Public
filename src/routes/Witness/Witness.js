@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Witness_list from "./Witness_list";
 //import { Form, Select, Option} from 'informed';
 import axios from "axios";
+import AddressSelect from "../Post/AddressSelect";
+import DistrictSelect from "../Post/DistrictSelect";
 
 import "./Witness.css";
 
@@ -24,42 +26,46 @@ class Witness extends Component {
           pageCount: res.data.length / 10
         });
       })
-      .catch(err => console.log("에러났어 :::", err));
+      .catch(err => console.log("error description:::", err));
   }
 
   render() {
+    //console.log('tw',this.state.witnessData)
+    if (this.state.witnessData.length === 0) {
+      return <div>loading...</div>;
+    }
+
     return (
       <div className="witness">
         <div className="witness-header">
           <h1 className="witness-header-subtitle">길 잃은 아이를 목격했어요</h1>
           <div>
             <form className="witness-header-form">
-              <select>
-                <option value="울산">울산</option>
-                <option value="2" />
-                <option value="3" />
-                <option value="4" />
-              </select>
-
-              <select>
-                <option value>a</option>
-                <option value>a</option>
-                <option value>a</option>
-                <option value>a</option>
-              </select>
-
-              <input
-                className="witness-header-searchbar"
-                type="text"
-                placeholder="Search Here"
-              />
+              <AddressSelect />
               <input
                 className="witness-header-button"
                 type="image"
                 src="https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png"
                 alt=""
               />
-              <button className="witness-header-write">글쓰기</button>
+              {/* <DistrictSelect /> */}
+              {/* <select>
+                  <option value="울산">울산</option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+                  <option value="4"></option>
+                </select>
+
+                <select>
+                  <option value>a</option>
+                  <option value>a</option>
+                  <option value>a</option>
+                  <option value>a</option>
+                </select>
+
+                <input className="witness-header-searchbar" type='text' placeholder='Search Here' />
+                <input className="witness-header-button" type='image' src='https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png' alt=''></input>
+                <button className="witness-header-write">글쓰기</button> */}
             </form>
           </div>
         </div>
@@ -68,7 +74,7 @@ class Witness extends Component {
           {
             <Witness_list
               lists={this.state.witnessData}
-              pageCounts={this.state.pageCount}
+              pageCounts={Math.ceil(this.state.pageCount)}
               listLength={this.state.witnessData.length}
             />
           }

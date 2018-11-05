@@ -40,7 +40,7 @@
   text-align: center;
 }
 
-/* ------------------------------------------------------------------------- */
+/* ------------------------------ page move button ------------------------------------------- */
 
 .buttonForm {
   text-align: center;
@@ -55,4 +55,9 @@ button{
 
 button:focus{
   outline: none;
+}
+
+.clickedButton {
+  color: white;
+  background: #6565ff;
 }

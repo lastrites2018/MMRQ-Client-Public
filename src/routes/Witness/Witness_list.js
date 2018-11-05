@@ -10,11 +10,10 @@ class Witness_list extends Component{
             open: false,
             index: null,
             elementGetter: null,
-            activePage: 1,
-            perPage: 10,
+            activePage: 0,
             startOffset: 0,
             endOffset: 10,
-            perPageData:[],
+            perPageData: [],
         };
     };
 
@@ -28,32 +27,31 @@ class Witness_list extends Component{
 
     handlePageChange = (pageNumber) => {
         console.log(`active page is ${pageNumber}`);
-        let endOffset = Math.ceil(pageNumber * 10);
-        let perPageData = this.props.lists.slice(this.state.startOffset, endOffset);
-        this.setState({activePage: pageNumber, endOffset: endOffset, startOffset: this.state.startOffset, perPageData: perPageData});
-
+        this.setState({activePage: pageNumber, 
+                       startOffset: pageNumber * 10 - 10, 
+                       endOffset: pageNumber * 10, 
+                       perPageData: this.props.lists.slice(this.state.startOffset, this.state.endOffset)
+        });
     };
 
     componentDidMount = () =>{
-        //console.log(this.props.lists)
-        this.setState({perPageData: this.props.lists.slice(this.state.startOffset, this.state.endOffset)})
-    }
+        
+    };
 
     render(){ 
-        // console.log(this.props.pageCounts)
-        if(!this.state ){
+        if(!this.state){
             return <div>loading..</div>
         };
+
          console.log('startOffset:::', this.state.startOffset);
          console.log('endOffset:::' , this.state.endOffset);
-         console.log('perPage::::', this.state.perPage);
+        // console.log('perPage::::', this.state.perPage);
         // console.log('listCount::::', this.props.listLength);
         // console.log('pageCount:::;', this.props.pageCounts);
 
     return (
         <div>
             {
-
                 this.state.perPageData.map((element, idx) => {
                    return ( 
                                  <div className="witness-container-list" onClick={() => this.onOpenModal(idx,element)} >
@@ -62,7 +60,6 @@ class Witness_list extends Component{
                                     <div className="witness-container-contents">{element.traits}</div>
                                  </div>      
                 )})
-                
             }
 
             <Modal classNames='witness-modal' open={this.state.open} onClose={this.onCloseModal} center>

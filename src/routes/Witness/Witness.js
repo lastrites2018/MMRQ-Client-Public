@@ -12,7 +12,6 @@ class Witness extends Component {
     this.state={
       witnessData: [],
       pageCount: 0,
-     
     };
   };
 
@@ -61,9 +60,8 @@ class Witness extends Component {
                 {
                     <Witness_list 
                       lists={this.state.witnessData} 
-                      pageCounts={this.state.pageCount} 
+                      pageCounts={Math.ceil(this.state.pageCount)} 
                       listLength={this.state.witnessData.length} 
-                      
                       />
                 }
             </div>

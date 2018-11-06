@@ -4,9 +4,7 @@ import { MainSectionList3 } from "./Main_sections_list";
 
 
 export default class Main_section3 extends Component {
-  constructor(props){
-    super(props)
-  }
+  
   render() {
     // console.log(this.props.witnessData)
     return (

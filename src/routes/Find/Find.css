@@ -27,7 +27,7 @@
 
 .article_title {
   height: auto;
-  font-family: "Cute Font", cursive;
+  font-family: 'Cute Font', cursive;
   font-size: 1.7em;
   margin-bottom: 15px;
   font-weight: bold;
@@ -40,19 +40,47 @@
   text-align: center;
 }
 
-/* ------------------------------------------------------------------------- */
+/* ------------------------------ page move button ------------------------------------------- */
 
 .buttonForm {
   text-align: center;
   margin: 60px;
 }
 
-button{
+button {
   margin: 3px;
   padding: 5px 7px;
   font-size: 0.7em;
 }
 
-button:focus{
+button:focus {
   outline: none;
+}
+
+.clickedButton {
+  color: white;
+  background: #6565ff;
+}
+
+.unclickedButton {
+  color: black;
+  background: white;
+}
+
+.modal {
+  position: absolute;
+  background: #fff;
+  top: 15%;
+  left: 11%;
+  right: 11%;
+  padding: 15px;
+  border: 1px solid #444;
+  height: 53em;
+  margin-top: 10em;
+}
+
+.asd {
+  float: right;
+  padding: 4px;
+  font-size: 1em;
 }

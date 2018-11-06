@@ -66,6 +66,35 @@ export default class Find extends Component {
     console.log('찍히나?');
   };
 
+  _filterSearch = (city, district) => {
+    let onlyCityURL = `http://localhost:5000/witness?citylocation=${city}`;
+    let cityDistrictURL = `http://localhost:5000/witness?citylocation=${city}&districtlocation=${district}`;
+
+    if (!district) {
+      axios
+        .get(onlyCityURL)
+        .then(res => {
+          this.setState(prevState => ({
+            witnessData: res.data,
+            pageCount: res.data.length / 15
+          }));
+        })
+        .catch(err => console.log("error description:::", err));
+    } else {
+      axios
+        .get(cityDistrictURL)
+        .then(res => {
+          console.log(res);
+          this.setState(prevState => ({
+            ...prevState,
+            witnessData: res.data,
+            pageCount: res.data.length / 15
+          }));
+        })
+        .catch(err => console.log("error description:::", err));
+    }
+  };
+
   render() {
     const dataLimit = this.state.dataLimit;
     const FirstIdx = this.state.currentPageFirstIdx;
@@ -92,7 +121,7 @@ export default class Find extends Component {
             많은 관심과 제보 부탁드립니다.
           </div>
           <div>
-            <WitnessHeader />
+            <WitnessHeader _filterSearch={this._filterSearch} />
           </div>
         </div>
 

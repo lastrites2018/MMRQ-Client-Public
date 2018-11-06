@@ -319,7 +319,7 @@ class WitnessHeader extends Component {
 
   searchAddress = (event) => {
     event.preventDefault();
-    this.props.filterSearch(this.state.currentCity, this.state.searchDistrict);
+    this.props._filterSearch(this.state.currentCity, this.state.searchDistrict);
   };
 
 

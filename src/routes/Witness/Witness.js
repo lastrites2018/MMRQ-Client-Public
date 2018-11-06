@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Witness_list from "./Witness_list";
-//import { Form, Select, Option} from 'informed';
+import WitnessHeader from "./Witness_header";
 import axios from "axios";
-import AddressSelect from "../Post/AddressSelect";
-import DistrictSelect from "../Post/DistrictSelect";
 
 import "./Witness.css";
 
@@ -23,51 +21,50 @@ class Witness extends Component {
       .then(res => {
         this.setState({
           witnessData: res.data,
-          pageCount: res.data.length / 10
+          pageCount: res.data.length / 15
         });
       })
       .catch(err => console.log("error description:::", err));
   }
 
+  filterSearch = (city, district) => {
+    let onlyCityURL = `http://localhost:5000/witness?citylocation=${city}`;
+    let cityDistrictURL = `http://localhost:5000/witness?citylocation=${city}&districtlocation=${district}`;
+
+    if (!district) {
+      axios
+        .get(onlyCityURL)
+        .then(res => {
+          this.setState(prevState => ({
+            witnessData: res.data,
+            pageCount: res.data.length / 15
+          }));
+        })
+        .catch(err => console.log("error description:::", err));
+    } else {
+      axios
+        .get(cityDistrictURL)
+        .then(res => {
+          console.log(res);
+          this.setState(prevState => ({
+            ...prevState,
+            witnessData: res.data,
+            pageCount: res.data.length / 15
+          }));
+        })
+        .catch(err => console.log("error description:::", err));
+    }
+  };
+
   render() {
-    //console.log('tw',this.state.witnessData)
     if (this.state.witnessData.length === 0) {
       return <div>loading...</div>;
     }
-
+    console.log(this.state.witnessData);
     return (
       <div className="witness">
         <div className="witness-header">
-          <h1 className="witness-header-subtitle">길 잃은 아이를 목격했어요</h1>
-          <div>
-            <form className="witness-header-form">
-              <AddressSelect />
-              <input
-                className="witness-header-button"
-                type="image"
-                src="https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png"
-                alt=""
-              />
-              {/* <DistrictSelect /> */}
-              {/* <select>
-                  <option value="울산">울산</option>
-                  <option value="2"></option>
-                  <option value="3"></option>
-                  <option value="4"></option>
-                </select>
-
-                <select>
-                  <option value>a</option>
-                  <option value>a</option>
-                  <option value>a</option>
-                  <option value>a</option>
-                </select>
-
-                <input className="witness-header-searchbar" type='text' placeholder='Search Here' />
-                <input className="witness-header-button" type='image' src='https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png' alt=''></input>
-                <button className="witness-header-write">글쓰기</button> */}
-            </form>
-          </div>
+          <WitnessHeader filterSearch={this.filterSearch} />
         </div>
 
         <div className="witness-container">

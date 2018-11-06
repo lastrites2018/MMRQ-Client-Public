@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import './app.css';
+
 import Main from './routes/Main/Main';
 import Post from './routes/Post/Post';
 import Login from './routes/Login/Login';
@@ -24,6 +26,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     const { cookies } = props;
+    this.state = {
+      backGround: true
+    };
     cookies.get('test')
       ? (this.state = { login: true })
       : (this.state = { login: false });
@@ -31,6 +36,12 @@ class App extends Component {
     this.cookieSet = this.cookieSet.bind(this);
     this.logout = this.logout.bind(this);
   }
+
+  backGroundSet = () => {
+    this.setState({
+      backGround: !this.state.backGround
+    });
+  };
 
   cookieSet = data => {
     const { cookies } = this.props;
@@ -48,7 +59,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div class={this.state.backGround ? 'modalBack' : 'a'}>
           <div>
             <Header login={this.state.login} logout={this.logout} />
           </div>

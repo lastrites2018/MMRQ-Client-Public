@@ -66,3 +66,21 @@ button:focus {
   color: black;
   background: white;
 }
+
+.modal {
+  position: absolute;
+  background: #fff;
+  top: 15%;
+  left: 11%;
+  right: 11%;
+  padding: 15px;
+  border: 1px solid #444;
+  height: 53em;
+  margin-top: 10em;
+}
+
+.asd {
+  float: right;
+  padding: 4px;
+  font-size: 1em;
+}

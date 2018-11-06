@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "./Post.css";
 import AddressSelect from "./AddressSelect";
 import PhotoUpload from "./PhotoUpload";
@@ -18,6 +19,7 @@ class Post extends Component {
       speciesData: "",
       sexData: "",
       featureData: "",
+      imageData: "",
       dogSpecies: [
         "골든 두들",
         "골든 리트리버",
@@ -67,7 +69,7 @@ class Post extends Component {
         "스피츠",
         "시바견",
         "시베리안 허스키",
-        "시추",
+        "시츄",
         "실키 테리어",
         "아메리칸 불리",
         "아키타견",
@@ -88,8 +90,19 @@ class Post extends Component {
     };
     this.makeLocationCityData = this.makeLocationCityData.bind(this);
     this.makeLocationDistrictData = this.makeLocationDistrictData.bind(this);
+    this.makeImageData = this.makeImageData.bind(this);
+    this.cancelPhoto = this.cancelPhoto.bind(this);
   }
-
+  makeImageData = val => {
+    this.setState({
+      imageData: val
+    });
+  };
+  cancelPhoto = () => {
+    this.setState({
+      imageData: ""
+    });
+  };
   classificationSelect = event => {
     this.setState({
       currentClassification: event.target.value,
@@ -141,7 +154,6 @@ class Post extends Component {
       featureData: event.target.value
     });
   };
-
   missingOrFoundPlace = () => {
     if (this.state.currentClassification === "찾아주세요") {
       return <div className="missngPlace">실종장소</div>;
@@ -181,7 +193,8 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.featureData &&
-      this.state.rewardData
+      this.state.rewardData &&
+      this.state.imageData
     ) {
       this.setState({
         postData: {
@@ -193,7 +206,8 @@ class Post extends Component {
           species: this.state.speciesData,
           sex: this.state.sexData,
           feature: this.state.featureData,
-          reward: this.state.rewardData
+          reward: this.state.rewardData,
+          image: this.state.imageData
         }
       });
     } else if (
@@ -206,7 +220,8 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.featureData &&
-      this.state.rewardData
+      this.state.rewardData &&
+      this.state.imageData
     ) {
       this.setState({
         postData: {
@@ -217,7 +232,8 @@ class Post extends Component {
           locationDetail: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
-          feature: this.state.featureData
+          feature: this.state.featureData,
+          image: this.state.imageData
         }
       });
     } else {
@@ -226,18 +242,50 @@ class Post extends Component {
   };
 
   submitData = () => {
-    if (this.state.currentClassification === "목격했어요") {
+    if (
+      this.state.currentClassification === "목격했어요" &&
+      this.state.classificationData &&
+      this.state.writerData &&
+      this.state.titleData &&
+      this.state.locationCityData &&
+      this.state.locationDistrictData &&
+      this.state.locationDetailData &&
+      this.state.speciesData &&
+      this.state.sexData &&
+      this.state.featureData &&
+      this.state.rewardData &&
+      this.state.imageData
+    ) {
       axios
         .post("http://localhost:5000/witness", this.state.postData)
         .then(response => {
           console.log("목격 리스폰스으으으으");
         })
+        .then(() => {
+          this.props.history.push("/witness");
+        })
         .catch(err => console.log(err, "목격 에러다아아아아"));
-    } else if (this.state.currentClassification === "찾아주세요") {
+    } else if (
+      this.state.currentClassification === "찾아주세요" &&
+      this.state.classificationData &&
+      this.state.writerData &&
+      this.state.titleData &&
+      this.state.locationCityData &&
+      this.state.locationDistrictData &&
+      this.state.locationDetailData &&
+      this.state.speciesData &&
+      this.state.sexData &&
+      this.state.featureData &&
+      this.state.rewardData &&
+      this.state.imageData
+    ) {
       axios
         .post("http://localhost:5000/find", this.state.postData)
         .then(response => {
           console.log("실종신고 리스폰스으으으");
+        })
+        .then(() => {
+          this.props.history.push("/find");
         })
         .catch(err => console.log(err, "실종신고 에러다아아아"));
     }
@@ -246,8 +294,14 @@ class Post extends Component {
   render() {
     return (
       <div className="postBody">
-        <div className="postPictureBody" />
-        <PhotoUpload />
+        <div className="postPictureBody">
+          <img src={this.state.imageData} alt="" className="uploadImg" />
+        </div>
+        <PhotoUpload
+          makingImage={this.makeImageData}
+          photoSelectedOrNot={this.state.imageData}
+          cancelPhoto={this.cancelPhoto}
+        />
         <div className="classificationButton">
           <div>유형을 선택해주세요</div>
           <select
@@ -279,7 +333,7 @@ class Post extends Component {
             type="text"
             name="title"
             size="100"
-            placeholder="글 제목"
+            placeholder="   글 제목"
           />
         </div>
         {this.missingOrFoundPlace()}
@@ -299,7 +353,7 @@ class Post extends Component {
         </div>
         <div className="dogInfo">
           <span className="species">
-            견종:
+            <span>견종:</span>
             <select className="speciesSelect" onChange={this.makeSpeciesData}>
               <option value="">Select One...</option>
               {this.state.dogSpecies.map((dog, index) => {
@@ -312,7 +366,7 @@ class Post extends Component {
             </select>
           </span>
           <span className="sex">
-            성별:
+            <span>성별:</span>
             <select className="sexSelect" onChange={this.makeSexData}>
               <option value="">Select One...</option>
               <option value="남">남</option>
@@ -322,7 +376,6 @@ class Post extends Component {
           </span>
           {this.reward()}
         </div>
-        {console.log(this.state.currentClassification)}
         <div className="explanation">
           <input
             type="text"
@@ -349,4 +402,4 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default withRouter(Post);

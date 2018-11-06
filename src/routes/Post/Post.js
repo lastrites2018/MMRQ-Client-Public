@@ -18,6 +18,7 @@ class Post extends Component {
       speciesData: "",
       sexData: "",
       featureData: "",
+      imageData: "",
       dogSpecies: [
         "골든 두들",
         "골든 리트리버",
@@ -89,7 +90,6 @@ class Post extends Component {
     this.makeLocationCityData = this.makeLocationCityData.bind(this);
     this.makeLocationDistrictData = this.makeLocationDistrictData.bind(this);
   }
-
   classificationSelect = event => {
     this.setState({
       currentClassification: event.target.value,
@@ -141,7 +141,6 @@ class Post extends Component {
       featureData: event.target.value
     });
   };
-
   missingOrFoundPlace = () => {
     if (this.state.currentClassification === "찾아주세요") {
       return <div className="missngPlace">실종장소</div>;
@@ -322,7 +321,6 @@ class Post extends Component {
           </span>
           {this.reward()}
         </div>
-        {console.log(this.state.currentClassification)}
         <div className="explanation">
           <input
             type="text"

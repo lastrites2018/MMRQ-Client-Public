@@ -37,11 +37,14 @@ class PhotoUpload extends Component {
     } else {
       return (
         <div>
-          <input type="file" onChange={this.makeBaseImg} readOnly />
-
-          <button className="canclePhoto" onClick={this.props.cancelPhoto}>
-            취소
-          </button>
+          <div>
+            <input type="file" onChange={this.makeBaseImg} />
+          </div>
+          <div>
+            <button className="cancelPhoto" onClick={this.props.cancelPhoto}>
+              취소
+            </button>
+          </div>
         </div>
       );
     }

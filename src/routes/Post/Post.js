@@ -333,7 +333,7 @@ class Post extends Component {
             type="text"
             name="title"
             size="100"
-            placeholder="글 제목"
+            placeholder="   글 제목"
           />
         </div>
         {this.missingOrFoundPlace()}
@@ -397,7 +397,6 @@ class Post extends Component {
             등록하기
           </button>
         </div>
-        {console.log(this.state.postData)}
       </div>
     );
   }

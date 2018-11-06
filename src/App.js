@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import "./app.css"
+
 import Main from "./routes/Main/Main";
 import Post from "./routes/Post/Post";
 import Login from "./routes/Login/Login";
@@ -15,10 +17,21 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
 class App extends Component {
+
+  state = {
+    backGround: true
+  }
+
+  backGroundSet = () => {
+    this.setState({
+      backGround : !this.state.backGround
+    })
+  }
+
   render() {
     return (
       <Router>
-        <div>
+        <div class={this.state.backGround ? "modalBack" : "a"}>
             <div>
               <Header />
             </div>
@@ -29,7 +42,8 @@ class App extends Component {
               <Route path="/mypage" component={Mypage} />
               <Route path="/search" component={Search} />
               <Route path="/signUp" component={SignUp} />
-              <Route path="/find" component={Find} />
+              {/* <Route path="/find" component={Find} backGroundSet={this.backGroundSet}/> */}
+              <Route path="/find" render={() => <Find backGroundSet={this.backGroundSet}/>} />
               <Route path="/witness" component={Witness} />
               <Route component={NoMatch} />
             </Switch>

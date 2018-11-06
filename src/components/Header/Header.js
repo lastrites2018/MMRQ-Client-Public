@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './Header.css';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-import { Z_DEFAULT_COMPRESSION } from 'zlib';
+// import { Z_DEFAULT_COMPRESSION } from 'zlib';
 
 class Header extends Component {
   static propTypes = {
@@ -13,38 +13,21 @@ class Header extends Component {
   constructor(props) {
     super(props);
     const { cookies } = props;
-    console.log('header', this.props.logout);
-
-    console.log('cdookie!', cookies.get('test'));
-    // this.state = {
-    //   login: false
-    //   //   // login:false,
-    // };
+    // console.log('header', this.props.logout);
+    // console.log('header cookie!', cookies.get('test'));
     cookies.get('test')
       ? (this.state = { login: true })
       : (this.state = { login: false });
-    // this.state = {
-    //   login: false
-    //   // login:false,
-    // };
   }
 
-  // logout = () => {
-  //   console.log('실행?');
-  //   const { cookies } = this.props;
-  //   cookies.remove('test');
-  //   // this.setState = { login: false };
-  //   this.setState(prevState => ({ login: false }));
-  // };
-
   loginchange = () => {
-    return this.state.login ? (
+    return this.props.login ? (
       <div>
         <NavLink
           to="/main"
           className="item"
           activeClassName="active"
-          onClick={this.logout}
+          onClick={this.props.logout}
         >
           로그아웃
         </NavLink>
@@ -91,7 +74,6 @@ class Header extends Component {
   }
 }
 
-// export default Header;
 export default withCookies(Header);
 
 // import React from 'react';

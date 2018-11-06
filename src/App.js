@@ -33,17 +33,15 @@ class App extends Component {
   }
 
   cookieSet = data => {
-    console.log('쿠키셋 실행?');
     const { cookies } = this.props;
     cookies.set('test', data.email, { path: '/', maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
   };
 
   logout = () => {
-    console.log('실행?');
     const { cookies } = this.props;
     cookies.remove('test');
-    // this.setState = { login: false };
+    // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
     this.setState(prevState => ({ login: false }));
   };
 
@@ -52,17 +50,15 @@ class App extends Component {
       <Router>
         <div>
           <div>
-            <Header logout={this.logout.bind(this)} />
+            <Header login={this.state.login} logout={this.logout} />
           </div>
           <Switch>
             <Route path="/main" component={Main} />
             <Route path="/post" component={Post} />
             <Route
               path="/login"
-              component={Login}
-              render={props => (
-                <Login {...props} cookieSet={this.cookieSet} someProp={100} />
-              )}
+              // component={Login}
+              render={() => <Login cookieSet={this.cookieSet} />}
             />
             {/* <Route path="/login" component={Login} cookieSet={this.cookieSet} /> */}
             <Route path="/mypage" component={Mypage} />

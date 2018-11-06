@@ -26,8 +26,7 @@ class Login extends Component {
 
   constructor(props) {
     super(props);
-    console.log('로그인 쿠키셋 체크', this.props.someProp);
-    console.log('로그인 쿠키셋 체크', this.props.cookieSet);
+    // console.log('로그인 쿠키셋 체크', this.props.cookieSet);
     const { cookies } = props;
     console.log('cookie!', cookies.get('test'));
     this.state = {
@@ -45,12 +44,11 @@ class Login extends Component {
     this.setState({ canSubmit: true });
   }
   submit = data => {
-    const { cookies } = this.props;
-    console.log('data', data);
+    // console.log('data', data);
     Axios.post('http://localhost:5000/users', data)
       .then(response => {
-        console.log('response', response);
-        console.log(this, '로그인 완료');
+        // console.log('response', response);
+        // console.log(this, '로그인 완료');
         this.setState({ isLogin: true });
         this.props.cookieSet(data);
         // this._isLogin = true;

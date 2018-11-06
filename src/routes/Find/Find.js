@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import FindSection1 from "./Find_section1"
 import FindButton from "./Find_button"
+import Modal from "./Modal"
 
 import axios from "axios";
 import _ from "lodash";
@@ -9,84 +10,101 @@ import _ from "lodash";
 import "./Find.css";
 
 export default class Find extends Component {
-  state = {
-    findData: [],
-    currentPageFirstIdx: 0,
-    currentPageLastIdx: 1,
-    dataLimit: 15,
-    numberOfButtons: []
-  };
 
-  componentDidMount() {
-    axios
-      // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
-      .get("http://localhost:5000/find")
-      .then(res => {
-        // console.log("axios_get", res.data);
-        this.setState({
-          findData: res.data,
-          // numberOfButtons: Math.ceil(res.data.length/12)
-          numberOfButtons: _.range(1, Math.ceil(res.data.length / 15) + 1)
-        });
-        // console.log(this.state.numberOfButtons);
-      })
-      .catch(err => console.log(err));
+  constructor(props) {
+    super(props);
+    this.state = {
+      findData: [],
+      currentPageFirstIdx: 0,
+      currentPageLastIdx: 1,
+      dataLimit: 15,
+      numberOfButtons: [],
+      modalOpen: true
+    };
+    this.modalOpenSet = this.modalOpenSet.bind(this);
   }
 
+  
+  
+  componentDidMount() {
+    axios
+    // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
+    .get("http://localhost:5000/find")
+    .then(res => {
+      this.setState({
+        findData: res.data,
+        numberOfButtons: _.range(1, Math.ceil(res.data.length / 15) + 1)
+      });
+    })
+    .catch(err => console.log(err));
+  }
+  
   _pageIdxChange = (pageNumber) =>{
-    // console.log("pageIdxChange실행되나??")
     this.setState({
       currentPageFirstIdx: pageNumber - 1,
       currentPageLastIdx: pageNumber
     });
-    // console.log("pageNumber: ",pageNumber)
   };
-
+  
   _beforePageMove = () => {
-    this.state.currentPageFirstIdx !== 0 ? 
-      this.setState({
+    if(this.state.currentPageFirstIdx !== 0){
+      return this.setState({
         currentPageFirstIdx: this.state.currentPageFirstIdx - 1,
         currentPageLastIdx: this.state.currentPageLastIdx - 1
       })
-      :
-      console.log('!콘솔을 못지움....')
-      // console.log("numberOfButtons", this.state.numberOfButtons.length);
+    }
   }
-
+  
   _nextPageMove = () => {
-    // {console.log(this.state.numberOfButtons.length)}
-    this.state.currentPageLastIdx !== this.state.numberOfButtons.length ?
-    this.setState({
-      currentPageFirstIdx: this.state.currentPageFirstIdx + 1,
-      currentPageLastIdx: this.state.currentPageLastIdx + 1
-    })
-    :
-    console.log('!콘솔을 못지움....') // if문으로 고치는게 나음
+    if(this.state.currentPageLastIdx !== this.state.numberOfButtons.length){
+      return this.setState({
+        currentPageFirstIdx: this.state.currentPageFirstIdx + 1,
+        currentPageLastIdx: this.state.currentPageLastIdx + 1
+      })
+    }
   }
 
-
-
+  modalOpenSet = () => {
+    // this.setState({
+    //   modalOpen: !this.state.modalOpen
+    // })
+    console.log("찍히나?")
+  }
+  
+  
   render() {
     const dataLimit = this.state.dataLimit;
     const FirstIdx = this.state.currentPageFirstIdx;
     const LastIdx = this.state.currentPageLastIdx;
-
+    
+    // {console.log(this.props.backGroundSet)}
     if (this.state.findData.length === 0) {
       return <div>loding....</div>;
     }
     return (
       <div className="component_body">
+        <Modal backGroundSet={this.props.backGroundSet} modalOpenSet={this.modalOpenSet}/>
+        {/* {this.state.modalOpen ? <Modal backGroundSet={this.props.backGroundSet} modalOpenSet={this.modalOpenSet}/> : null} */}
+        {/* <Modal backGroundSet={this.props.backGroundSet} modalOpenSet={this.modalOpenSet}/> */}
+        <div className="find_title">
+              <div className="main_section2_plzfind">우리 아이를 찾아주세요</div>
+              <div className="main_section2_plzfind_note">가족을 잃은 슬픔에 애타게 기다리고 있습니다</div>
+              <div className="main_section2_plzfind_note">많은 관심과 제보 부탁드립니다.</div>
+        </div>
+
         <FindSection1 findData={this.state.findData.slice(FirstIdx*dataLimit, LastIdx*dataLimit)} />
+  
         <div className="buttonForm">
-          <button onClick={this._beforePageMove}>〈</button>
-          
+          <button onClick={this._beforePageMove}>〈</button>  
           {this.state.numberOfButtons.map((pageNumber,idx)=>{
             return (
               <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber} currentPage={LastIdx} key={idx}/>
             )})}
           <button onClick={this._nextPageMove}>〉</button>
+          {/* <div>마지막 페이지 입니다</div> */}
         </div>
       </div>
     );
   }
 }
+

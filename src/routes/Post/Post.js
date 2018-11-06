@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "./Post.css";
 import AddressSelect from "./AddressSelect";
 import PhotoUpload from "./PhotoUpload";
@@ -89,7 +90,13 @@ class Post extends Component {
     };
     this.makeLocationCityData = this.makeLocationCityData.bind(this);
     this.makeLocationDistrictData = this.makeLocationDistrictData.bind(this);
+    this.makeImageData = this.makeImageData.bind(this);
   }
+  makeImageData = val => {
+    this.setState({
+      imageData: val
+    });
+  };
   classificationSelect = event => {
     this.setState({
       currentClassification: event.target.value,
@@ -180,7 +187,8 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.featureData &&
-      this.state.rewardData
+      this.state.rewardData &&
+      this.state.imageData
     ) {
       this.setState({
         postData: {
@@ -192,7 +200,8 @@ class Post extends Component {
           species: this.state.speciesData,
           sex: this.state.sexData,
           feature: this.state.featureData,
-          reward: this.state.rewardData
+          reward: this.state.rewardData,
+          image: this.state.imageData
         }
       });
     } else if (
@@ -205,7 +214,8 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.featureData &&
-      this.state.rewardData
+      this.state.rewardData &&
+      this.state.imageData
     ) {
       this.setState({
         postData: {
@@ -216,7 +226,8 @@ class Post extends Component {
           locationDetail: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
-          feature: this.state.featureData
+          feature: this.state.featureData,
+          image: this.state.imageData
         }
       });
     } else {
@@ -231,12 +242,18 @@ class Post extends Component {
         .then(response => {
           console.log("목격 리스폰스으으으으");
         })
+        .then(() => {
+          this.props.history.push("/witness");
+        })
         .catch(err => console.log(err, "목격 에러다아아아아"));
     } else if (this.state.currentClassification === "찾아주세요") {
       axios
         .post("http://localhost:5000/find", this.state.postData)
         .then(response => {
           console.log("실종신고 리스폰스으으으");
+        })
+        .then(() => {
+          this.props.history.push("/find");
         })
         .catch(err => console.log(err, "실종신고 에러다아아아"));
     }
@@ -245,8 +262,10 @@ class Post extends Component {
   render() {
     return (
       <div className="postBody">
-        <div className="postPictureBody" />
-        <PhotoUpload />
+        <div className="postPictureBody">
+          <img src={this.state.imageData} alt="" className="uploadImg" />
+        </div>
+        <PhotoUpload makingImage={this.makeImageData} />
         <div className="classificationButton">
           <div>유형을 선택해주세요</div>
           <select
@@ -342,9 +361,10 @@ class Post extends Component {
             등록하기
           </button>
         </div>
+        {console.log(this.state.postData)}
       </div>
     );
   }
 }
 
-export default Post;
+export default withRouter(Post);

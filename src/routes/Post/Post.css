@@ -6,8 +6,14 @@
 }
 .postPictureBody {
   margin: 40px 300px;
-  padding: 180px;
+  height: 20em;
+  width: 20em;
   border: 1px solid black;
+}
+.uploadImg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 .classificationButton {
   margin: 10px;

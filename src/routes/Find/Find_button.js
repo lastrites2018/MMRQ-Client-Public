@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Find_button extends Component {
-  _changeCurrentPage = (e) => {
+  _changeCurrentPage = e => {
     // console.log(e.target.innerText)
     this.props.pageIdxChange(this.props.pageNumber);
   };
@@ -12,8 +12,8 @@ class Find_button extends Component {
         className={
           `pageButton${this.props.pageNumber}` ===
           `pageButton${this.props.currentPage}`
-            ? "clickedButton"
-            : ""
+            ? 'clickedButton'
+            : ''
         }
         onClick={this._changeCurrentPage}
       >

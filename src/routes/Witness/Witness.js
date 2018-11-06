@@ -1,88 +1,126 @@
-import React, { Component } from "react";
-import Witness_list from "./Witness_list";
-//import { Form, Select, Option} from 'informed';
-import axios from "axios";
-import AddressSelect from "../Post/AddressSelect";
-import DistrictSelect from "../Post/DistrictSelect";
+import React, { Component } from 'react';
 
-import "./Witness.css";
+import WitnessSection1 from './Witness_section1';
+import WitnessHeader from './Witness_header';
+import WitnessButton from './Witness_button';
+import Modal from './Modal';
 
-class Witness extends Component {
+import axios from 'axios';
+import _ from 'lodash';
+
+import './Witness.css';
+
+export default class Find extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       witnessData: [],
-      pageCount: 0
+      currentPageFirstIdx: 0,
+      currentPageLastIdx: 1,
+      dataLimit: 15,
+      numberOfButtons: [],
+      modalOpen: true
     };
+    this.modalOpenSet = this.modalOpenSet.bind(this);
   }
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/witness")
+      // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
+      .get('http://localhost:5000/witness')
       .then(res => {
         this.setState({
           witnessData: res.data,
-          pageCount: res.data.length / 10
+          numberOfButtons: _.range(1, Math.ceil(res.data.length / 15) + 1)
         });
       })
-      .catch(err => console.log("error description:::", err));
+      .catch(err => console.log(err));
   }
 
-  render() {
-    //console.log('tw',this.state.witnessData)
-    if (this.state.witnessData.length === 0) {
-      return <div>loading...</div>;
+  _pageIdxChange = pageNumber => {
+    this.setState({
+      currentPageFirstIdx: pageNumber - 1,
+      currentPageLastIdx: pageNumber
+    });
+  };
+
+  _beforePageMove = () => {
+    if (this.state.currentPageFirstIdx !== 0) {
+      return this.setState({
+        currentPageFirstIdx: this.state.currentPageFirstIdx - 1,
+        currentPageLastIdx: this.state.currentPageLastIdx - 1
+      });
     }
+  };
 
+  _nextPageMove = () => {
+    if (this.state.currentPageLastIdx !== this.state.numberOfButtons.length) {
+      return this.setState({
+        currentPageFirstIdx: this.state.currentPageFirstIdx + 1,
+        currentPageLastIdx: this.state.currentPageLastIdx + 1
+      });
+    }
+  };
+
+  modalOpenSet = () => {
+    console.log('찍히나?');
+  };
+
+  render() {
+    const dataLimit = this.state.dataLimit;
+    const FirstIdx = this.state.currentPageFirstIdx;
+    const LastIdx = this.state.currentPageLastIdx;
+
+    // {console.log(this.props.backGroundSet)}
+    if (this.state.witnessData.length === 0) {
+      return <div>loding....</div>;
+    }
     return (
-      <div className="witness">
-        <div className="witness-header">
-          <h1 className="witness-header-subtitle">길 잃은 아이를 목격했어요</h1>
+      <div className="component_body">
+        <Modal
+          backGroundSet={this.props.backGroundSet}
+          modalOpenSet={this.modalOpenSet}
+        />
+        {/* {this.state.modalOpen ? <Modal backGroundSet={this.props.backGroundSet} modalOpenSet={this.modalOpenSet}/> : null} */}
+        {/* <Modal backGroundSet={this.props.backGroundSet} modalOpenSet={this.modalOpenSet}/> */}
+        <div className="witness_title">
+          <div className="main_section2_plzfind">우리 아이를 찾아주세요</div>
+          <div className="main_section2_plzfind_note">
+            가족을 잃은 슬픔에 애타게 기다리고 있습니다
+          </div>
+          <div className="main_section2_plzfind_note">
+            많은 관심과 제보 부탁드립니다.
+          </div>
           <div>
-            <form className="witness-header-form">
-              <AddressSelect />
-              <input
-                className="witness-header-button"
-                type="image"
-                src="https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png"
-                alt=""
-              />
-              {/* <DistrictSelect /> */}
-              {/* <select>
-                  <option value="울산">울산</option>
-                  <option value="2"></option>
-                  <option value="3"></option>
-                  <option value="4"></option>
-                </select>
-
-                <select>
-                  <option value>a</option>
-                  <option value>a</option>
-                  <option value>a</option>
-                  <option value>a</option>
-                </select>
-
-                <input className="witness-header-searchbar" type='text' placeholder='Search Here' />
-                <input className="witness-header-button" type='image' src='https://ezanga-cdn.cdnedge.bluemix.net/images/icons/sem.png' alt=''></input>
-                <button className="witness-header-write">글쓰기</button> */}
-            </form>
+            <WitnessHeader />
           </div>
         </div>
 
-        <div className="witness-container">
-          {
-            <Witness_list
-              lists={this.state.witnessData}
-              pageCounts={Math.ceil(this.state.pageCount)}
-              listLength={this.state.witnessData.length}
-            />
-          }
+        <WitnessSection1
+          witnessData={this.state.witnessData.slice(
+            FirstIdx * dataLimit,
+            LastIdx * dataLimit
+          )}
+        />
+
+        <div className="buttonForm">
+          <button onClick={this._beforePageMove}>〈</button>
+          {this.state.numberOfButtons.map((pageNumber, idx) => {
+            return (
+              <WitnessButton
+                pageIdxChange={this._pageIdxChange}
+                pageNumber={pageNumber}
+                nowPage={this.state.nowPage}
+                toggle={this._toggle}
+                currentPage={LastIdx}
+                key={idx}
+              />
+            );
+          })}
+          <button onClick={this._nextPageMove}>〉</button>
+          {/* <div>마지막 페이지 입니다</div> */}
         </div>
-        <br />
       </div>
     );
   }
 }
-
-export default Witness;

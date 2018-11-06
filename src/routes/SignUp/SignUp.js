@@ -3,21 +3,21 @@ import AuthContent from './AuthContent';
 import InputWithLabel from './InputWithLabel';
 import AuthButton from './AuthButton';
 import styled from 'styled-components';
-import { Form, Text } from 'informed';
+import { Form } from 'informed';
 import Axios from 'axios';
 
-const validate = value => {
-  return !value || value.length < 4
-    ? '최소 4글자 이상은 입력해주셔야 합니다.'
-    : null;
-};
+// const validate = value => {
+//   return !value || value.length < 4
+//     ? '최소 4글자 이상은 입력해주셔야 합니다.'
+//     : null;
+// };
 
-const numberValidate = value => {
-  // pattern="^\d{3}-\d{4}-\d{4}$"
-  return !value || value.length < 4
-    ? '최소 4글자 이상은 입력해주셔야 합니다.'
-    : null;
-};
+// const numberValidate = value => {
+//   // pattern="^\d{3}-\d{4}-\d{4}$"
+//   return !value || value.length < 4
+//     ? '최소 4글자 이상은 입력해주셔야 합니다.'
+//     : null;
+// };
 const Wrapp = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;

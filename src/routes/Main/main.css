@@ -23,15 +23,12 @@ a{
   display: inline-table
 }
 
-.notice_contents div{
-  display: table-cell;
-  vertical-align: middle
+.notice_contents p {
+  margin: 15px
 }
-
 .notice_contents div{
-  background: url(highlighting.png) no-repeat;
-  background-size: 300px 140px;
-  background-position: 0px 27px;
+  /* display: table-cell; */
+  vertical-align: middle
 }
 
 .main_section1_post{
@@ -48,7 +45,15 @@ a{
   font-family: 'Jua', sans-serif; 
 }
 
+.main_section1_post_back {
+  padding: 1em;
+  background: url(/static/media/highlighting.20bb1a2e.png) no-repeat;
+  background-size: 300px 140px;
+  background-position: center;
+}
+
 .pet_name {
+  padding: 22px;
   font-family: 'Jua', sans-serif;
   font-size: 2em;
   animation: pulse 1s infinite;

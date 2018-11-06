@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Find_button extends Component {
+class Witness_button extends Component {
   _changeCurrentPage = e => {
     // console.log(e.target.innerText)
     this.props.pageIdxChange(this.props.pageNumber);
@@ -23,4 +23,4 @@ class Find_button extends Component {
   }
 }
 
-export default Find_button;
+export default Witness_button;

@@ -1,47 +1,17 @@
-.container {
-  
-}
-.witness {
+.find {
   width: 1100px;
   margin: auto;
 }
-.witness-header {
+.component_body {
+  width: 1000px;
+  margin: auto;
+}
 
+.witness_section2_posts {
+  overflow: hidden;
 }
-.witness-header-form {
-  
-}
-.witness-header-subtitle {
 
-}
-.witness-header-searchbar {
-
-}
-.witness-header-button {
-  width: 4em;
-}
-.witness-header-write {
-
-}
-.witness-container{
-  
-}
-.witness-container-outline{
-  text-align: center;
-}
-.witness-container-list {
-  display: inline-table;
-  width: 300px;
-  height: 500px;
-}
-.witness-container-title{
-  height: auto;
-  font-family: "Cute Font", cursive;
-  font-size: 1.7em;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-.witness-container-img {
+.witness_section2_post {
   width: 300px;
   height: 300px;
   margin: 20px 30px 20px 0;
@@ -54,32 +24,63 @@
   border-radius: 15px;
   float: left;
 }
-.witness-container-content {
-  width: 200;
-  height: 100px;
+
+.article_title {
+  height: auto;
+  font-family: 'Cute Font', cursive;
+  font-size: 1.7em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.witness_article {
+  width: 283px;
   float: left;
+  margin-right: 50px;
+  text-align: center; 
 }
-.witness-modal {
-}
-.witness-modal-img {
-  width: 200px;
-  height: 300px;
-}
-ul.pagination {
-  background-color: white;
-  list-style: none; 
+
+/* ------------------------------ page move button ------------------------------------------- */
+
+.buttonForm {
   text-align: center;
   margin: 60px;
 }
 
-ul.pagination li {
-  display: inline-block;
-  /* border: 1px solid; */
-  /* margin: 10px; */
+button {
   margin: 3px;
   padding: 5px 7px;
   font-size: 0.7em;
 }
-button:focus{
+
+button:focus {
   outline: none;
+}
+
+.clickedButton {
+  color: white;
+  background: #6565ff;
+}
+
+.unclickedButton {
+  color: black;
+  background: white;
+}
+
+.modal {
+  position: absolute;
+  background: #fff;
+  top: 15%;
+  left: 11%;
+  right: 11%;
+  padding: 15px;
+  border: 1px solid #444;
+  height: 53em;
+  margin-top: 10em;
+}
+
+.asd {
+  float: right;
+  padding: 4px;
+  font-size: 1em;
 }

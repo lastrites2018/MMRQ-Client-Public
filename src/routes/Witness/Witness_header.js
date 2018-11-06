@@ -332,7 +332,6 @@ class WitnessHeader extends Component {
 
     return (
       <div>
-        <h1 className="witness-header-subtitle">길 잃은 아이를 목격했어요</h1>
         <form className="witness-header-form">
           지역으로 검색해보기:
           <span className="location">

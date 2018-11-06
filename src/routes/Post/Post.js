@@ -236,7 +236,20 @@ class Post extends Component {
   };
 
   submitData = () => {
-    if (this.state.currentClassification === "목격했어요") {
+    if (
+      this.state.currentClassification === "목격했어요" &&
+      this.state.classificationData &&
+      this.state.writerData &&
+      this.state.titleData &&
+      this.state.locationCityData &&
+      this.state.locationDistrictData &&
+      this.state.locationDetailData &&
+      this.state.speciesData &&
+      this.state.sexData &&
+      this.state.featureData &&
+      this.state.rewardData &&
+      this.state.imageData
+    ) {
       axios
         .post("http://localhost:5000/witness", this.state.postData)
         .then(response => {
@@ -246,7 +259,20 @@ class Post extends Component {
           this.props.history.push("/witness");
         })
         .catch(err => console.log(err, "목격 에러다아아아아"));
-    } else if (this.state.currentClassification === "찾아주세요") {
+    } else if (
+      this.state.currentClassification === "찾아주세요" &&
+      this.state.classificationData &&
+      this.state.writerData &&
+      this.state.titleData &&
+      this.state.locationCityData &&
+      this.state.locationDistrictData &&
+      this.state.locationDetailData &&
+      this.state.speciesData &&
+      this.state.sexData &&
+      this.state.featureData &&
+      this.state.rewardData &&
+      this.state.imageData
+    ) {
       axios
         .post("http://localhost:5000/find", this.state.postData)
         .then(response => {

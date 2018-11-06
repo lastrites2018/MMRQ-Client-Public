@@ -27,12 +27,22 @@ class PhotoUpload extends Component {
   sendImageToPost = () => {
     this.props.makingImage(this.state.base64Img);
   };
+  selectOrDeleteImg = () => {
+    if (!this.props.photoSelectedOrNot) {
+      return <input type="file" onChange={this.makeBaseImg} />;
+    } else {
+      return (
+        <div>
+          <input type="file" onChange={this.makeBaseImg} />
+          <button className="canclePhoto" onClick={this.props.cancelPhoto}>
+            취소
+          </button>
+        </div>
+      );
+    }
+  };
   render() {
-    return (
-      <div>
-        <input type="file" onChange={this.makeBaseImg} />
-      </div>
-    );
+    return <div className="photoInput">{this.selectOrDeleteImg()}</div>;
   }
 }
 

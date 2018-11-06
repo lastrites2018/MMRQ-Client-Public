@@ -91,10 +91,16 @@ class Post extends Component {
     this.makeLocationCityData = this.makeLocationCityData.bind(this);
     this.makeLocationDistrictData = this.makeLocationDistrictData.bind(this);
     this.makeImageData = this.makeImageData.bind(this);
+    this.cancelPhoto = this.cancelPhoto.bind(this);
   }
   makeImageData = val => {
     this.setState({
       imageData: val
+    });
+  };
+  cancelPhoto = () => {
+    this.setState({
+      imageData: ""
     });
   };
   classificationSelect = event => {
@@ -291,7 +297,11 @@ class Post extends Component {
         <div className="postPictureBody">
           <img src={this.state.imageData} alt="" className="uploadImg" />
         </div>
-        <PhotoUpload makingImage={this.makeImageData} />
+        <PhotoUpload
+          makingImage={this.makeImageData}
+          photoSelectedOrNot={this.state.imageData}
+          cancelPhoto={this.cancelPhoto}
+        />
         <div className="classificationButton">
           <div>유형을 선택해주세요</div>
           <select

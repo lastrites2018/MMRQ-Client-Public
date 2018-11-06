@@ -69,7 +69,7 @@ class Post extends Component {
         "스피츠",
         "시바견",
         "시베리안 허스키",
-        "시추",
+        "시츄",
         "실키 테리어",
         "아메리칸 불리",
         "아키타견",
@@ -353,7 +353,7 @@ class Post extends Component {
         </div>
         <div className="dogInfo">
           <span className="species">
-            견종:
+            <span>견종:</span>
             <select className="speciesSelect" onChange={this.makeSpeciesData}>
               <option value="">Select One...</option>
               {this.state.dogSpecies.map((dog, index) => {
@@ -366,7 +366,7 @@ class Post extends Component {
             </select>
           </span>
           <span className="sex">
-            성별:
+            <span>성별:</span>
             <select className="sexSelect" onChange={this.makeSexData}>
               <option value="">Select One...</option>
               <option value="남">남</option>

@@ -29,11 +29,16 @@ class PhotoUpload extends Component {
   };
   selectOrDeleteImg = () => {
     if (!this.props.photoSelectedOrNot) {
-      return <input type="file" onChange={this.makeBaseImg} />;
-    } else {
       return (
         <div>
           <input type="file" onChange={this.makeBaseImg} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <input type="file" onChange={this.makeBaseImg} readOnly />
+
           <button className="canclePhoto" onClick={this.props.cancelPhoto}>
             취소
           </button>

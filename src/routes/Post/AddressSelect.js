@@ -315,6 +315,7 @@ class AddressSelect extends Component {
           id="citySelect"
           onChange={event => {
             this.citySelect(event);
+            this.props.changeLocationCity(event);
           }}
         >
           <option value="">Select One...</option>

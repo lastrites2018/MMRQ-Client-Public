@@ -127,3 +127,46 @@
   width: 100%;
   transition: 800ms ease all;
 }
+.homeToMain {
+  font-size: 40px;
+  text-align: center;
+}
+.homeToMain a {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  position: relative;
+  height: 60px;
+  font-size: 0.5em;
+  padding: 2px 1em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.homeToMain a:hover {
+  background: lightgreen;
+  color: white;
+}
+.homeToMain a:before,
+.homeToMain a:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 4px;
+  width: 0;
+  background: green;
+  transition: 400ms ease all;
+}
+.homeToMain a:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.homeToMain a:hover:before,
+.homeToMain a:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}

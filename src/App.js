@@ -57,6 +57,7 @@ class App extends Component {
     const { cookies } = this.props;
     cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
+
   };
 
   logout = () => {
@@ -64,13 +65,14 @@ class App extends Component {
     cookies.remove('token');
     // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
     this.setState(prevState => ({ login: false }));
+    
   };
 
   modalOpenChange = () => {
     this.setState({
       modalStatus: !this.state.modalStatus,
     })
-  }
+  };
   
   render() {
     return (
@@ -83,7 +85,6 @@ class App extends Component {
               <Route path="/main" 
                 render={() => 
                   <Main 
-                    ///
                     modalData={this.state.modalData}
                     modalStatus={this.state.modalStatus}
                     modalOpenChange={this.modalOpenChange}
@@ -94,11 +95,12 @@ class App extends Component {
               <Route
               path="/login"
               // component={Login}
-              render={() => <Login cookieSet={this.cookieSet} />}
+                render={() => <Login cookieSet={this.cookieSet} />}
               />
               <Route path="/mypage" component={Mypage} />
               <Route path="/search" component={Search} />
-              <Route path="/signUp" component={SignUp} />
+              <Route path="/signUp"  
+                render={() => <SignUp cookieSet={this.cookieSet} />} />
               <Route path="/find" 
                 render={() => 
                   <Find 

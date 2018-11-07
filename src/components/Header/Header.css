@@ -1,7 +1,7 @@
 .header_line {
-  margin: 30px 30px 70px;
+  margin: 30px 30px 50px;
   height: 80px;
-  background: url("/Header/logo.png") no-repeat;
+  background: url("./logo.png") no-repeat;
   background-size: 60px;
 }
 

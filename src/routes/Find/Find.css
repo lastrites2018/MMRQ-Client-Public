@@ -26,7 +26,7 @@
 }
 
 .article_title {
-  height: auto;
+  /* height: 325px; */
   font-family: 'Cute Font', cursive;
   font-size: 1.7em;
   margin-bottom: 15px;
@@ -93,4 +93,11 @@ button:focus {
   float: right;
   padding: 4px;
   font-size: 1em;
+}
+
+.noData {
+  padding: 115px;
+  text-align: center;
+  font-family: 'Sunflower', sans-serif;
+  font-size: 1.2em;
 }

@@ -43,16 +43,22 @@ export default class Main extends Component {
       return <div>loding....</div>;
     }
     return (
-      <div className="component_body">
+      <div>
+        <div className="component_body">
+        <button className="sideButton">
+          <div>신고 / 제보</div>
+          <div>등록하기</div>
+        </button>
         <MainSection1 findData={this.state.findData} modalDataChange={this.props.modalDataChange}/>
-        <MainSection2 
-          findData={this.state.findData} 
-          modalData={this.props.modalData}
-          modalStatus={this.props.modalStatus}
-          modalOpenChange={this.props.modalOpenChange}
-          modalDataChange={this.props.modalDataChange}
-          />
-        <MainSection3 witnessData={this.state.witnessData} modalOpenSet={this.props.modalOpenSet}/>
+          <MainSection2 
+            findData={this.state.findData} 
+            modalData={this.props.modalData}
+            modalStatus={this.props.modalStatus}
+            modalOpenChange={this.props.modalOpenChange}
+            modalDataChange={this.props.modalDataChange}
+            />
+          <MainSection3 witnessData={this.state.witnessData} modalOpenSet={this.props.modalOpenSet}/>
+        </div>
       </div>
     )}
 }

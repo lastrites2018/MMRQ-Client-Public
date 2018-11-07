@@ -31,10 +31,12 @@ const Wrapper = styled.div`
 `;
 
 const AuthButton = ({ children, onClick }) => (
+
   <Wrapper onClick={onClick}>
     {/* <Wrapper onClick={this.props.submit}> */}
     {children}
   </Wrapper>
+ 
 );
 
 export default AuthButton;

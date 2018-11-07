@@ -56,6 +56,7 @@ class App extends Component {
     const { cookies } = this.props;
     cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
+
   };
 
   logout = () => {
@@ -63,6 +64,7 @@ class App extends Component {
     cookies.remove('token');
     // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
     this.setState(prevState => ({ login: false }));
+    
   };
 
   modalOpenChange = () => {
@@ -71,55 +73,49 @@ class App extends Component {
     });
   };
 
+
   render() {
     return (
       <Router>
         <div>
-          <div>
-            <Header login={this.state.login} logout={this.logout} />
-          </div>
-          <Switch>
-            <Route
-              path="/main"
-              render={() => (
-                <Main
-                  ///
-                  modalData={this.state.modalData}
-                  modalStatus={this.state.modalStatus}
-                  modalOpenChange={this.modalOpenChange}
-                  modalDataChange={this.modalDataChange}
-                />
-              )}
-            />
-            <Route path="/post" component={Post} />
-            <Route
+            <div>
+              <Header login={this.state.login} logout={this.logout} />              
+            </div>
+            <Switch>
+              <Route path="/main" 
+                render={() => 
+                  <Main 
+                    modalData={this.state.modalData}
+                    modalStatus={this.state.modalStatus}
+                    modalOpenChange={this.modalOpenChange}
+                    modalDataChange={this.modalDataChange}
+                    />
+                } />
+              <Route path="/post" component={Post} />
+              <Route
               path="/login"
               // component={Login}
-              render={() => <Login cookieSet={this.cookieSet} />}
-            />
-            {/* <Route path="/mypage" component={Mypage} /> */}
-            <Route
-              path="/mypage"
-              render={() => <Mypage login={this.state.login} />}
-            />
-            <Route path="/search" component={Search} />
-            <Route path="/signUp" component={SignUp} />
-            <Route
-              path="/find"
-              render={() => (
-                <Find
-                  modalData={this.state.modalData}
-                  modalStatus={this.state.modalStatus}
-                  modalOpenChange={this.modalOpenChange}
-                  modalDataChange={this.modalDataChange}
-                />
-              )}
-            />
-            <Route path="/witness" component={Witness} />
-            <Route component={NoMatch} />
-          </Switch>
-          <div>
-            <Footer />
+                render={() => <Login cookieSet={this.cookieSet} />}
+              />
+              <Route path="/mypage" component={Mypage} />
+              <Route path="/search" component={Search} />
+              <Route path="/signUp"  
+                render={() => <SignUp cookieSet={this.cookieSet} />} />
+              <Route path="/find" 
+                render={() => 
+                  <Find 
+                    modalData={this.state.modalData}
+                    modalStatus={this.state.modalStatus}
+                    modalOpenChange={this.modalOpenChange}
+                    modalDataChange={this.modalDataChange}
+                  />
+                } />
+              <Route path="/witness" component={Witness} />
+              <Route component={NoMatch} />
+            </Switch>
+            <div>
+              <Footer />
+
           </div>
         </div>
       </Router>

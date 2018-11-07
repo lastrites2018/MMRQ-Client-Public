@@ -26,12 +26,10 @@ class Login extends Component {
 
   constructor(props) {
     super(props);
-    // console.log('로그인 쿠키셋 체크', this.props.cookieSet);
-    const { cookies } = props;
-    console.log('cookie!', cookies.get('test'));
     this.state = {
       canSubmit: false,
-      isLogin: false
+      isLogin: false,
+      loginTry: false
     };
     this.disableButton = this.disableButton.bind(this);
     this.enableButton = this.enableButton.bind(this);
@@ -44,13 +42,15 @@ class Login extends Component {
     this.setState({ canSubmit: true });
   }
   submit = data => {
-    // console.log('data', data);
-    Axios.post('http://localhost:5000/users', data)
+    console.log('login-data', data);
+    Axios.post('http://localhost:5000/auth/login', data)
+      // Axios.post('http://localhost:5000/users', data)
       .then(response => {
-        // console.log('response', response);
-        // console.log(this, '로그인 완료');
+        console.log('login - response', response.data);
+        console.log(this, '로그인 완료');
         this.setState({ isLogin: true });
-        this.props.cookieSet(data);
+        this.props.cookieSet(response.data);
+        // this.props.cookieSet(data);
         // this._isLogin = true;
         // cookies.set('test', data.email, { path: '/', maxAge: 3600 });
         // Cookies.save('token', 'token-value', {
@@ -60,7 +60,10 @@ class Login extends Component {
         // this.props.history.push('/main');
         // response && <Redirect to="/main" />;
       })
-      .catch(error => console.log('error', error));
+      .catch(error => {
+        // this.setState({ loginTry: true });
+        this.setState(prevState => ({ loginTry: true }));
+      });
 
     // alert(JSON.stringify(data, null, 4));
   };
@@ -70,6 +73,9 @@ class Login extends Component {
       <LoginStyle>
         <div>
           {this.state.isLogin && <Redirect to="/main" />}
+          {this.state.loginTry ? (
+            <div>이메일과 비밀번호가 일치하지 않습니다. </div>
+          ) : null}
           {/* {!this.isLogin ? <div>로그인이 필요합니다 </div> : null} */}
           {/* <h3>로그인</h3> */}
           <Formsy

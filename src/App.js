@@ -29,7 +29,7 @@ class App extends Component {
     this.state = {
       backGround: true
     };
-    cookies.get('test')
+    cookies.get('token')
       ? (this.state = { login: true })
       : (this.state = { login: false });
 
@@ -45,13 +45,13 @@ class App extends Component {
 
   cookieSet = data => {
     const { cookies } = this.props;
-    cookies.set('test', data.email, { path: '/', maxAge: 3600 });
+    cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
   };
 
   logout = () => {
     const { cookies } = this.props;
-    cookies.remove('test');
+    cookies.remove('token');
     // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
     this.setState(prevState => ({ login: false }));
   };

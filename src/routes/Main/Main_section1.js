@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import Slider from "react-slick";
 import { MainSectionList1 } from "./Main_sections_list";
 
@@ -18,8 +20,11 @@ export default class Main_section1 extends Component {
       <div>
         <Slider {...settings}>
           {this.props.findData.map((find, idx) => {
-            return( <MainSectionList1 find={find} key={idx} />
-          )})}
+            return( 
+            <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)}>
+              <MainSectionList1 find={find} key={idx} />
+            </Link>
+              )})}
         </Slider>
       </div>
     );

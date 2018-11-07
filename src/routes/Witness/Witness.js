@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+
+import axios from "axios";
 
 import WitnessSection1 from './Witness_section1';
 import WitnessHeader from './Witness_header';
 import WitnessButton from './Witness_button';
 import Modal from './Modal';
 
-import axios from 'axios';
 import _ from 'lodash';
 
 import './Witness.css';
@@ -26,8 +27,7 @@ export default class Find extends Component {
 
   componentDidMount() {
     axios
-      // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
-      .get('http://34.217.9.241/witness')
+      .get("http://34.217.9.241/witness")
       .then(res => {
         this.setState({
           witnessData: res.data,

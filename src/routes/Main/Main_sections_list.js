@@ -28,27 +28,33 @@ class MainSectionList1 extends Component {
 }
 
 
+
 class MainSectionList2 extends Component {
+  
+  pageChange = (e) => {
+    console.log(this.props)
+    // console.log("e.target.id",Number(e.target.id[e.target.id.length-1]))
+    var page = Number(e.target.id[e.target.id.length - 1]) || 0
+    this.props.modalPageChange(page)
+    this.props.modalOpenSet()
+  }
 
   render() {
-    // console.log(this.props.find)
     return (
-      <Link to="/find">
-        <article>
-            <img className="main_section2_post" src={`${this.props.find.petimage}`} alt=""/>
-            <div className="article_title">{
-              this.props.find.title.length > 24 ? 
-              `${this.props.find.title.slice(0,24)} ...` : this.props.find.title
-            }
-            </div>
-            <div className="article_location">실종장소: {this.props.find.location}</div>
-            <div className="article_pet_inf">종류: {this.props.find.species} / {this.props.find.sex}</div>
-            <div className="article_pet_reward">사례금: {this.props.find.reward}</div>
-            <div className="article_pet_post_date">Date: {this.props.find.postdate}</div>
-        </article>
-      </Link>
-    );
-  }
+      <article>
+        <img className="main_section2_post" src={`${this.props.find.petimage}`}/>
+        <div className="article_title"key={this.props.idx}>
+        {
+          this.props.find.title.length > 24 ? 
+          `${this.props.find.title.slice(0,24)} ...` : this.props.find.title
+        }
+        </div>
+        <div className="article_location" key={this.props.idx}>실종장소: {this.props.find.location}</div>
+        <div className="article_pet_inf" key={this.props.idx}>종류: {this.props.find.species} / {this.props.find.sex}</div>
+        <div className="article_pet_reward" key={this.props.idx}>사례금: {this.props.find.reward}</div>
+        <div className="article_pet_post_date" key={this.props.idx}>Date: {this.props.find.postdate}</div>
+      </article>
+      )}
 }
 
 

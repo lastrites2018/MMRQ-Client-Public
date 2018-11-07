@@ -34,7 +34,7 @@ export default class SignUp extends Component {
 
   submit = data => {
     console.log('data', data);
-    Axios.post('http://localhost:5000/users', data)
+    Axios.post('http://34.217.9.241/users', data)
       .then(response => {
         console.log('response', response);
         console.log(this, '회원가입 완료');

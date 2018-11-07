@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 import FindSection1 from "./Find_section1"
 import FindButton from "./Find_button"
-// import Modal from "./Modal";
-import Modal from "../Modal";
+import SearchLocation from "../Search_location"
 
 import axios from 'axios';
 import _ from 'lodash';
@@ -60,7 +59,39 @@ export default class Find extends Component {
     }
   }
   
+  _filterSearch = (city, district) => {
+    console.log("filter??")
+    console.log("city:", city,district);
+    let onlyCityURL = `http://34.217.9.241/find?citylocation=${city}`;
+    let cityDistrictURL = `http://34.217.9.241/find?citylocation=${city}&districtlocation=${district}`;
+
+    if (!district) {
+      axios
+        .get(onlyCityURL)
+        .then(res => {
+          this.setState(prevState => ({
+            findData: res.data,
+            pageCount: res.data.length / 15
+          }));
+        })
+        .catch(err => console.log("error description:::", err));
+    } else {
+      axios
+        .get(cityDistrictURL)
+        .then(res => {
+          console.log(res);
+          this.setState(prevState => ({
+            ...prevState,
+            findData: res.data,
+            pageCount: res.data.length / 15
+          }));
+        })
+        .catch(err => console.log("error description:::", err));
+    }
+  };
+
   render() {
+    console.log(this.state)
     const dataLimit = this.state.dataLimit;
     const FirstIdx = this.state.currentPageFirstIdx;
     const LastIdx = this.state.currentPageLastIdx;
@@ -74,7 +105,7 @@ export default class Find extends Component {
           <div className="main_section2_plzfind_note">가족을 잃은 슬픔에 애타게 기다리고 있습니다</div>
           <div className="main_section2_plzfind_note">많은 관심과 제보 부탁드립니다.</div>
         </div>
-
+        <SearchLocation _filterSearch={this._filterSearch}/>
         <FindSection1 
           findData={this.state.findData.slice(FirstIdx*dataLimit, LastIdx*dataLimit)} 
           modalData={this.props.modalData}

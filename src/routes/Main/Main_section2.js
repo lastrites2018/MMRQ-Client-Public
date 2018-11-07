@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { MainSectionList2 } from "./Main_sections_list"
 
+import Modal_section from "../Modal_section";
+
 
 export default class Main_section2 extends Component {
-  
+
   render() {
-    // console.log(this.props.findData)
+
     return (
       <div className="main_section2_contents">
         <div className="main_section2_plzfind_line" >
@@ -24,8 +26,17 @@ export default class Main_section2 extends Component {
         {/*---------------------article start----------------------*/}
           <div className="main_section2_posts">
            {this.props.findData.map((find, idx)=>{
-             return <MainSectionList2 find={find} key={idx} />;
-           })}
+             return (
+               <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)}>
+                <Modal_section 
+                  modalData={this.props.modalData}
+                  modalStatus={this.props.modalStatus}
+                  modalOpenChange={this.props.modalOpenChange}
+                  modalDataChange={this.props.modalDataChange}
+                />
+                 <MainSectionList2 find={find} key={idx}/>
+              </Link>  
+             )})}
           </div>
         {/*---------------------article end----------------------*/}            
         </div>

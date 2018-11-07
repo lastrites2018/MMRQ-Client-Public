@@ -15,7 +15,7 @@ export default class Main extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/find?id_lte=8")
+      .get("http://34.217.9.241/find?id_lte=8")
       .then(res => {
         // console.log("axios_get", res.data);
         this.setState({
@@ -25,7 +25,7 @@ export default class Main extends Component {
       .catch(err => console.log(err));
 
     axios
-      .get("http://localhost:5000/witness?id_lte=8")
+      .get("http://34.217.9.241/witness?id_lte=8")
       .then(res => {
         // console.log("axios_get", res.data);
         this.setState({
@@ -45,8 +45,17 @@ export default class Main extends Component {
     return (
       <div className="component_body">
         <MainSection1 findData={this.state.findData} />
-        <MainSection2 findData={this.state.findData} />
-        <MainSection3 witnessData={this.state.witnessData} />
+        <MainSection2 
+          findData={this.state.findData} 
+          modalOpenSet={this.props.modalOpenSet} 
+          modalPageChange={this.props.modalPageChange}
+          ///
+          modalData={this.props.modalData}
+          modalStatus={this.props.modalStatus}
+          modalOpenChange={this.props.modalOpenChange}
+          modalDataChange={this.props.modalDataChange}
+          />
+        <MainSection3 witnessData={this.state.witnessData} modalOpenSet={this.props.modalOpenSet}/>
       </div>
     )}
 }

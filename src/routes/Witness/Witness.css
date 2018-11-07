@@ -1,17 +1,15 @@
-.find {
-  width: 1100px;
-  margin: auto;
-}
-.component_body {
-  width: 1000px;
-  margin: auto;
+
+.witness {
+    width: 1000px;
+    margin: auto;
 }
 
-.witness_section2_posts {
-  overflow: hidden;
+.witness-header-button {
+  width: 20px;
 }
 
-.witness_section2_post {
+.witness-container-list {
+  display: inline-table;
   width: 300px;
   height: 300px;
   margin: 20px 30px 20px 0;
@@ -40,17 +38,9 @@
   text-align: center; 
 }
 
-/* ------------------------------ page move button ------------------------------------------- */
-
-.buttonForm {
-  text-align: center;
-  margin: 60px;
-}
-
-button {
-  margin: 3px;
-  padding: 5px 7px;
-  font-size: 0.7em;
+.witness-modal-img {
+  width: 200px;
+  height: 300px;
 }
 
 button:focus {

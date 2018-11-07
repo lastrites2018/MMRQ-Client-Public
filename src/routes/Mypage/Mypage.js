@@ -2,15 +2,20 @@ import React, { Component } from 'react'
 
 import { Redirect } from 'react-router-dom';
 
-export default class Mypage extends Component {
+import './Mypage.css';
+
+class Mypage extends Component {
+  
   render() {
-    const logged = false;
+    const successLogin = false;
     return (
       <div>
           {
-            !logged && <Redirect to="/login" />
+            
           }
       </div>
     )
   }
 }
+
+export default Mypage;

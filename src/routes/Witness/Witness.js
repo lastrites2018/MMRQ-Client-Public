@@ -102,7 +102,7 @@ export default class Find extends Component {
 
     // {console.log(this.props.backGroundSet)}
     if (this.state.witnessData.length === 0) {
-      return <div>loding....</div>;
+      return <div>loading....</div>;
     }
     return (
       <div className="component_body">

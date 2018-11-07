@@ -220,7 +220,6 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.featureData &&
-      this.state.rewardData &&
       this.state.imageData
     ) {
       this.setState({

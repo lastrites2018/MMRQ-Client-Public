@@ -395,7 +395,6 @@ class Post extends Component {
             등록하기
           </button>
         </div>
-        {console.log(this.state.postData)}
       </div>
     );
   }

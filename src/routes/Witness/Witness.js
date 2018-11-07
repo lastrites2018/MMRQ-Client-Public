@@ -27,7 +27,7 @@ export default class Find extends Component {
   componentDidMount() {
     axios
       // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
-      .get('http://localhost:5000/witness')
+      .get('http://34.217.9.241/witness')
       .then(res => {
         this.setState({
           witnessData: res.data,
@@ -67,8 +67,8 @@ export default class Find extends Component {
   };
 
   _filterSearch = (city, district) => {
-    let onlyCityURL = `http://localhost:5000/witness?citylocation=${city}`;
-    let cityDistrictURL = `http://localhost:5000/witness?citylocation=${city}&districtlocation=${district}`;
+    let onlyCityURL = `http://34.217.9.241/witness?citylocation=${city}`;
+    let cityDistrictURL = `http://34.217.9.241/witness?citylocation=${city}&districtlocation=${district}`;
 
     if (!district) {
       axios

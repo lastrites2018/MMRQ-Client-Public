@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import "./Search_location.css"
 
-class WitnessHeader extends Component {
+class Search_location extends Component {
   state = {
     currentCity: "",
     currentDistrict: [],
@@ -317,14 +318,15 @@ class WitnessHeader extends Component {
     }
   };
 
-  searchAddress = event => {
+  searchAddress = (event) => {
+    console.log('asd')
     event.preventDefault();
     this.props._filterSearch(this.state.currentCity, this.state.searchDistrict);
-    console.log('실행됨')
   };
 
+
   render() {
-    // console.log(this.state.currentCity)
+    console.log(this.state)
     // console.log(this.state.searchDistrict)
     // if(this.state.searchDistrict === ){
     //   return <div>loading...</div>
@@ -365,7 +367,7 @@ class WitnessHeader extends Component {
           </span>
           <button
             onClick={this.searchAddress}
-            className="searchButton"
+            className="SearchButton"
           >
             검색
           </button>
@@ -375,4 +377,5 @@ class WitnessHeader extends Component {
   }
 }
 
-export default WitnessHeader;
+export default Search_location;
+

@@ -8,7 +8,7 @@ import { MainSectionList1 } from "./Main_sections_list";
 export default class Main_section1 extends Component {
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,

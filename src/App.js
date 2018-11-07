@@ -19,19 +19,18 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 
 class App extends Component {
-  
   state = {
     modalOpen: false,
     backGround: false,
     modalPage: 1,
     modalData: [],
-    modalStatus: false,
+    modalStatus: false
   };
 
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
-  }
-  
+  };
+
   constructor(props) {
     super(props);
     const { cookies } = props;
@@ -46,11 +45,11 @@ class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  modalDataChange = (data) => {
+  modalDataChange = data => {
     this.setState({
       modalData: data,
-      modalStatus: true,
-    })
+      modalStatus: true
+    });
   };
 
   cookieSet = data => {
@@ -68,51 +67,59 @@ class App extends Component {
 
   modalOpenChange = () => {
     this.setState({
-      modalStatus: !this.state.modalStatus,
-    })
-  }
-  
+      modalStatus: !this.state.modalStatus
+    });
+  };
+
   render() {
     return (
       <Router>
         <div>
-            <div>
-              <Header login={this.state.login} logout={this.logout} />              
-            </div>
-            <Switch>
-              <Route path="/main" 
-                render={() => 
-                  <Main 
-                    ///
-                    modalData={this.state.modalData}
-                    modalStatus={this.state.modalStatus}
-                    modalOpenChange={this.modalOpenChange}
-                    modalDataChange={this.modalDataChange}
-                    />
-                } />
-              <Route path="/post" component={Post} />
-              <Route
+          <div>
+            <Header login={this.state.login} logout={this.logout} />
+          </div>
+          <Switch>
+            <Route
+              path="/main"
+              render={() => (
+                <Main
+                  ///
+                  modalData={this.state.modalData}
+                  modalStatus={this.state.modalStatus}
+                  modalOpenChange={this.modalOpenChange}
+                  modalDataChange={this.modalDataChange}
+                />
+              )}
+            />
+            <Route path="/post" component={Post} />
+            <Route
               path="/login"
               // component={Login}
               render={() => <Login cookieSet={this.cookieSet} />}
-              />
-              <Route path="/mypage" component={Mypage} />
-              <Route path="/search" component={Search} />
-              <Route path="/signUp" component={SignUp} />
-              <Route path="/find" 
-                render={() => 
-                  <Find 
-                    modalData={this.state.modalData}
-                    modalStatus={this.state.modalStatus}
-                    modalOpenChange={this.modalOpenChange}
-                    modalDataChange={this.modalDataChange}
-                  />
-                } />
-              <Route path="/witness" component={Witness} />
-              <Route component={NoMatch} />
-            </Switch>
-            <div>
-              <Footer />
+            />
+            {/* <Route path="/mypage" component={Mypage} /> */}
+            <Route
+              path="/mypage"
+              render={() => <Mypage login={this.state.login} />}
+            />
+            <Route path="/search" component={Search} />
+            <Route path="/signUp" component={SignUp} />
+            <Route
+              path="/find"
+              render={() => (
+                <Find
+                  modalData={this.state.modalData}
+                  modalStatus={this.state.modalStatus}
+                  modalOpenChange={this.modalOpenChange}
+                  modalDataChange={this.modalDataChange}
+                />
+              )}
+            />
+            <Route path="/witness" component={Witness} />
+            <Route component={NoMatch} />
+          </Switch>
+          <div>
+            <Footer />
           </div>
         </div>
       </Router>

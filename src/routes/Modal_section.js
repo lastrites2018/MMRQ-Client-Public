@@ -27,7 +27,7 @@ class Modal_section extends Component {
               <div> 작성자: {this.props.modalData.writer} </div>
               <div> 연락처: {this.props.modalData.handphone} </div>
             </div>
-            <img className='find-modal-img' src={this.props.modalData.petimage} alt='' /> : 'loading...'}
+            <img className='find-modal-img' src={this.props.modalData.petimage} alt='' />
             <div> 상세정보: {this.props.modalData.contents} </div>
           </div>
         </Modal>

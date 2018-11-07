@@ -44,12 +44,9 @@ export default class Main extends Component {
     }
     return (
       <div className="component_body">
-        <MainSection1 findData={this.state.findData} />
+        <MainSection1 findData={this.state.findData} modalDataChange={this.props.modalDataChange}/>
         <MainSection2 
           findData={this.state.findData} 
-          modalOpenSet={this.props.modalOpenSet} 
-          modalPageChange={this.props.modalPageChange}
-          ///
           modalData={this.props.modalData}
           modalStatus={this.props.modalStatus}
           modalOpenChange={this.props.modalOpenChange}

@@ -8,6 +8,7 @@ import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 // import { withRouter, Redirect } from 'react-router-dom';
 import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 
 const LoginStyle = styled.div`
   padding-top: 2rem;
@@ -19,15 +20,16 @@ const LoginStyle = styled.div`
 
 class Login extends Component {
   // _isLogin = false;
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
 
   constructor(props) {
     super(props);
-    // this.state = {
-    //   canSubmit: false
-    //  };
     this.state = {
       canSubmit: false,
-      isLogin: false
+      isLogin: false,
+      loginTry: false
     };
     this.disableButton = this.disableButton.bind(this);
     this.enableButton = this.enableButton.bind(this);
@@ -40,21 +42,28 @@ class Login extends Component {
     this.setState({ canSubmit: true });
   }
   submit = data => {
-    console.log('data', data);
-    Axios.post('http://localhost:5000/users', data)
+    console.log('login-data', data);
+    Axios.post('http://localhost:5000/auth/login', data)
+      // Axios.post('http://localhost:5000/users', data)
       .then(response => {
-        console.log('response', response);
+        console.log('login - response', response.data);
         console.log(this, '로그인 완료');
+        this.setState({ isLogin: true });
+        this.props.cookieSet(response.data);
+        // this.props.cookieSet(data);
         // this._isLogin = true;
-        // Cookies.set('test', data.email, { path: '/', maxAge: 3600 });
+        // cookies.set('test', data.email, { path: '/', maxAge: 3600 });
         // Cookies.save('token', 'token-value', {
         //   maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
         // });
-        this.setState({ isLogin: true });
+
         // this.props.history.push('/main');
         // response && <Redirect to="/main" />;
       })
-      .catch(error => console.log('error', error));
+      .catch(error => {
+        // this.setState({ loginTry: true });
+        this.setState(prevState => ({ loginTry: true }));
+      });
 
     // alert(JSON.stringify(data, null, 4));
   };
@@ -64,6 +73,9 @@ class Login extends Component {
       <LoginStyle>
         <div>
           {this.state.isLogin && <Redirect to="/main" />}
+          {this.state.loginTry ? (
+            <div>이메일과 비밀번호가 일치하지 않습니다. </div>
+          ) : null}
           {/* {!this.isLogin ? <div>로그인이 필요합니다 </div> : null} */}
           {/* <h3>로그인</h3> */}
           <Formsy
@@ -111,5 +123,5 @@ class Login extends Component {
 //   }
 // }
 
-export default Login;
+export default withCookies(Login);
 // export default withRouter(Login);

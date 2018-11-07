@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 import FindSection1 from "./Find_section1"
 import FindButton from "./Find_button"
 // import Modal from "./Modal";
 import Modal from "../Modal";
 
-import axios from "axios";
-import _ from "lodash";
+import axios from 'axios';
+import _ from 'lodash';
 
-import "./Find.css";
+import './Find.css';
 
 export default class Find extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +22,6 @@ export default class Find extends Component {
     };
   }
 
-  
-  
   componentDidMount() {
     axios
     // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
@@ -37,29 +34,29 @@ export default class Find extends Component {
     })
     .catch(err => console.log(err));
   }
-  
-  _pageIdxChange = (pageNumber) =>{
+
+  _pageIdxChange = pageNumber => {
     this.setState({
       currentPageFirstIdx: pageNumber - 1,
       currentPageLastIdx: pageNumber
     });
   };
-  
+
   _beforePageMove = () => {
-    if(this.state.currentPageFirstIdx !== 0){
+    if (this.state.currentPageFirstIdx !== 0) {
       return this.setState({
         currentPageFirstIdx: this.state.currentPageFirstIdx - 1,
         currentPageLastIdx: this.state.currentPageLastIdx - 1
-      })
+      });
     }
-  }
-  
+  };
+
   _nextPageMove = () => {
-    if(this.state.currentPageLastIdx !== this.state.numberOfButtons.length){
+    if (this.state.currentPageLastIdx !== this.state.numberOfButtons.length) {
       return this.setState({
         currentPageFirstIdx: this.state.currentPageFirstIdx + 1,
         currentPageLastIdx: this.state.currentPageLastIdx + 1
-      })
+      });
     }
   }
   
@@ -87,11 +84,19 @@ export default class Find extends Component {
         />
   
         <div className="buttonForm">
-          <button onClick={this._beforePageMove}>〈</button>  
-          {this.state.numberOfButtons.map((pageNumber,idx)=>{
+          <button onClick={this._beforePageMove}>〈</button>
+          {this.state.numberOfButtons.map((pageNumber, idx) => {
             return (
-              <FindButton pageIdxChange={this._pageIdxChange} pageNumber={pageNumber} currentPage={LastIdx} key={idx}/>
-            )})}
+              <FindButton
+                pageIdxChange={this._pageIdxChange}
+                pageNumber={pageNumber}
+                nowPage={this.state.nowPage}
+                toggle={this._toggle}
+                currentPage={LastIdx}
+                key={idx}
+              />
+            );
+          })}
           <button onClick={this._nextPageMove}>〉</button>
           {/* <div>마지막 페이지 입니다</div> */}
         </div>
@@ -99,4 +104,3 @@ export default class Find extends Component {
     );
   }
 }
-

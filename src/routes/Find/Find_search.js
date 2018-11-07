@@ -317,11 +317,11 @@ class WitnessHeader extends Component {
     }
   };
 
-  searchAddress = (event) => {
+  searchAddress = event => {
     event.preventDefault();
     this.props._filterSearch(this.state.currentCity, this.state.searchDistrict);
+    console.log('실행됨')
   };
-
 
   render() {
     // console.log(this.state.currentCity)
@@ -332,7 +332,7 @@ class WitnessHeader extends Component {
 
     return (
       <div>
-        <form className="witness-header-form">
+        <form className="searchForm">
           지역으로 검색해보기:
           <span className="location">
             <select
@@ -365,7 +365,7 @@ class WitnessHeader extends Component {
           </span>
           <button
             onClick={this.searchAddress}
-            className="witness-header-button"
+            className="searchButton"
           >
             검색
           </button>

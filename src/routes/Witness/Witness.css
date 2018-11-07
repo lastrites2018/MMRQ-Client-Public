@@ -1,23 +1,13 @@
-.container {
 
-}
 .witness {
     width: 1000px;
     margin: auto;
 }
-.witness-header {
-}
-.witness-header-form {
-}
-.witness-header-subtitle {
-}
-.witness-header-searchbar {
-}
+
 .witness-header-button {
   width: 20px;
 }
-.witness-header-write {
-}
+
 .witness-container-list {
   display: inline-table;
   width: 300px;
@@ -32,8 +22,7 @@
   height: 100px;
   float: left;
 }
-.witness-modal {
-}
+
 .witness-modal-img {
   width: 200px;
   height: 300px;

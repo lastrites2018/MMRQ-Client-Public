@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Witness_list from "./Witness_list";
-//import { Form, Select, Option} from 'informed';
+
 import axios from "axios";
 import AddressSelect from "../Post/AddressSelect";
-import DistrictSelect from "../Post/DistrictSelect";
 
 import "./Witness.css";
 
@@ -19,7 +18,7 @@ class Witness extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/witness")
+      .get("http://34.217.9.241/witness")
       .then(res => {
         this.setState({
           witnessData: res.data,

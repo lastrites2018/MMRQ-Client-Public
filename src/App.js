@@ -17,33 +17,60 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
 class App extends Component {
-
+  
   state = {
-    backGround: true
+    modalOpen: false,
+    backGround: false,
+    modalPage: 1,
+    modalData: [],
+    modalStatus: false,
   }
 
-  backGroundSet = () => {
+  modalDataChange = (data) => {
     this.setState({
-      backGround : !this.state.backGround
+      modalData: data,
+      modalStatus: true,
     })
   }
 
+  modalOpenChange = () => {
+    this.setState({
+      modalStatus: !this.state.modalStatus,
+    })
+  }
+  
   render() {
     return (
       <Router>
-        <div class={this.state.backGround ? "modalBack" : "a"}>
+        <div>
             <div>
               <Header />
             </div>
             <Switch>
-              <Route path="/main" component={Main} />
+              <Route path="/main" 
+                render={() => 
+                  <Main 
+                    ///
+                    modalData={this.state.modalData}
+                    modalStatus={this.state.modalStatus}
+                    modalOpenChange={this.modalOpenChange}
+                    modalDataChange={this.modalDataChange}
+                    />
+                } />
               <Route path="/post" component={Post} />
               <Route path="/login" component={Login} />
               <Route path="/mypage" component={Mypage} />
               <Route path="/search" component={Search} />
               <Route path="/signUp" component={SignUp} />
-              {/* <Route path="/find" component={Find} backGroundSet={this.backGroundSet}/> */}
-              <Route path="/find" render={() => <Find backGroundSet={this.backGroundSet}/>} />
+              <Route path="/find" 
+                render={() => 
+                  <Find 
+                    modalData={this.state.modalData}
+                    modalStatus={this.state.modalStatus}
+                    modalOpenChange={this.modalOpenChange}
+                    modalDataChange={this.modalDataChange}
+                  />
+                } />
               <Route path="/witness" component={Witness} />
               <Route component={NoMatch} />
             </Switch>

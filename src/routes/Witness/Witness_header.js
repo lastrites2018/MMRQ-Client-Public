@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
-class AddressSelect extends Component {
+class WitnessHeader extends Component {
   state = {
     currentCity: "",
     currentDistrict: [],
+    searchDistrict: "",
     city: [
       "서울",
       "경기",
@@ -287,11 +288,19 @@ class AddressSelect extends Component {
       제주: ["서귀포시", "제주시"]
     }
   };
+
   citySelect = event => {
     this.setState({
       currentCity: event.target.value
     });
   };
+
+  districtSelect = event => {
+    this.setState({
+      searchDistrict: event.target.value
+    });
+  };
+
   isCurrentCityExist = () => {
     if (this.state.currentCity) {
       return this.state.district[this.state.currentCity].map(
@@ -308,35 +317,62 @@ class AddressSelect extends Component {
     }
   };
 
+  searchAddress = (event) => {
+    event.preventDefault();
+    this.props._filterSearch(this.state.currentCity, this.state.searchDistrict);
+  };
+
+
   render() {
+    // console.log(this.state.currentCity)
+    // console.log(this.state.searchDistrict)
+    // if(this.state.searchDistrict === ){
+    //   return <div>loading...</div>
+    // }
+
     return (
-      <div className="location">
-        <select
-          id="citySelect"
-          onChange={event => {
-            this.citySelect(event);
-            this.props.changeLocationCity(event);
-          }}
-        >
-          <option value="">Select One...</option>
-          {this.state.city.map((city, index) => {
-            return (
-              <option value={city} key={index}>
-                {city}
-              </option>
-            );
-          })}
-        </select>
-        <select
-          id="districtSelect"
-          onChange={this.props.changeLocationDistrict}
-        >
-          <option value="">Select One...</option>
-          {this.isCurrentCityExist()}
-        </select>
+      <div>
+        <form className="witness-header-form">
+          지역으로 검색해보기:
+          <span className="location">
+            <select
+              id="citySelect"
+              onChange={event => {
+                this.citySelect(event);
+                // this.props.changeLocationCity(event);
+              }}
+            >
+              <option value="">Select One...</option>
+              {this.state.city.map((city, index) => {
+                return (
+                  <option value={city} key={index}>
+                    {city}
+                  </option>
+                );
+              })}
+            </select>
+
+            <select
+              id="districtSelect"
+              onChange={event => {
+                //  this.props.changeLocationDistrict();
+                this.districtSelect(event);
+              }}
+            >
+              <option value="">Select One...</option>
+              {this.isCurrentCityExist()}
+            </select>
+          </span>
+          <button
+            onClick={this.searchAddress}
+            className="witness-header-button"
+          >
+            검색
+          </button>
+        </form>
       </div>
     );
   }
 }
 
-export default AddressSelect;
+export default WitnessHeader;

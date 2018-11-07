@@ -67,8 +67,8 @@ export default class Find extends Component {
   };
 
   _filterSearch = (city, district) => {
-    let onlyCityURL = `http://localhost:5000/witness?citylocation=${city}`;
-    let cityDistrictURL = `http://localhost:5000/witness?citylocation=${city}&districtlocation=${district}`;
+    let onlyCityURL = `http://34.217.9.241/witness?citylocation=${city}`;
+    let cityDistrictURL = `http://34.217.9.241/witness?citylocation=${city}&districtlocation=${district}`;
 
     if (!district) {
       axios
@@ -102,7 +102,7 @@ export default class Find extends Component {
 
     // {console.log(this.props.backGroundSet)}
     if (this.state.witnessData.length === 0) {
-      return <div>loding....</div>;
+      return <div>loading....</div>;
     }
     return (
       <div className="component_body">

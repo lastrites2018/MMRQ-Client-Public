@@ -50,23 +50,20 @@ class Header extends Component {
   render() {
     return (
       <div className="header_line">
+      <span className="title_mm">멍멍</span> <span className="title_req">레스Q</span>
         <div className="header">
           <NavLink to="/post" className="item" activeClassName="active">
             신고/제보 등록하기
-          </NavLink>{' '}
-          {/*post*/}
+          </NavLink>
           <NavLink to="/main" className="item" activeClassName="active">
             HOME
-          </NavLink>{' '}
-          {/*main*/}
+          </NavLink>
           <NavLink to="/find" className="item" activeClassName="active">
             찾아주세요
-          </NavLink>{' '}
-          {/*find*/}
+          </NavLink>
           <NavLink to="/witness" className="item" activeClassName="active">
             목격했어요
-          </NavLink>{' '}
-          {/*witness*/}
+          </NavLink>
           {this.loginchange()}
         </div>
       </div>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 class MainSectionList1 extends Component {
   render() {
     return (
+      <div>
         <div className="main_section1_post" >
         <div className="notice_contents">
         <div className="notice_contents_back">
@@ -23,6 +24,7 @@ class MainSectionList1 extends Component {
         </div>
         <img src={this.props.find.petimage} className="main_pet_notice" alt=""/>
         </div>
+      </div>
     );
   }
 }
@@ -41,7 +43,7 @@ class MainSectionList2 extends Component {
 
   render() {
     return (
-      <article>
+      <article className="mainAticle">
         <img className="main_section2_post" src={`${this.props.find.petimage}`}/>
         <div className="article_title"key={this.props.idx}>
         {

@@ -26,8 +26,11 @@ export default class Find extends Component {
     // .get(`http://localhost:5000/find?id_lte=${this.state.datalimit}`)
     .get("http://34.217.9.241/find")
     .then(res => {
+      // console.log('11',res.data)
+      const reversedData = _.reverse(res.data)
+      // console.log('22',reversedData)
       this.setState({
-        findData: res.data,
+        findData: reversedData,
         numberOfButtons: _.range(1, Math.ceil(res.data.length / 15) + 1)
       });
     })

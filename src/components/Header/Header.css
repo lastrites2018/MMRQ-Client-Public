@@ -3,6 +3,19 @@
   height: 80px;
   background: url("./logo.png") no-repeat;
   background-size: 60px;
+  font-size: 41px;
+  color: black;
+  font-family: 'Gugi', cursive;
+}
+
+.title_mm {
+  font-size: 53px;
+  color: black;
+}
+
+.title_req {
+  border-left: 4px solid black;
+  padding-left: 10px;
 }
 
 .header {

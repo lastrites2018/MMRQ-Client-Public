@@ -14,27 +14,44 @@ class Modal_section extends Component {
   }
 
   render() {
+    console.log(this.props.modalData)
     return (
       <div>
-        <Modal className='find-modal' open={this.props.modalStatus} onClose={this.closeModal} center>
+        <Modal className='modalContainer' open={this.props.modalStatus} onClose={this.closeModal} center>
           <div className="modalContents">
-            <div className="find-modal-info">
-              <div className="modalInfoTitle"><h2>{`[${this.props.modalData.citylocation}] ${this.props.modalData.title}`}</h2></div>
+            <div className="modalInfo">
+              {/* <div className="modalInfoTitle"><h2>{`[${this.props.modalData.citylocation}] ${this.props.modalData.title}`}</h2></div> */}
+              <div className="modalInfoTitle"><h2><span className="locationInTitle">{`[${this.props.modalData.citylocation}]`}</span>{this.props.modalData.title}</h2></div>
               <div className="modalInfo">
-                <div className="tableInModal">
-                  <div> 목격장소: {this.props.modalData.citylocation}  {this.props.modalData.districtlocation} </div>
-                  <div> 이름: {this.props.modalData.petname} </div>
-                </div>< br/>
-                <div className="tableInModal">
-                  <div> 견종: {this.props.modalData.species} </div>
-                  <div> 성별: {this.props.modalData.sex} </div>
-                </div>< br />
-                <div className="tableInModal">
-                  <div> 작성자: {this.props.modalData.writer} </div>
-                  <div> 연락처: {this.props.modalData.handphone} </div>
-                </div>< br />
-                <img className='find-modal-img' src={this.props.modalData.petimage} alt='' />
-                <div> 상세정보: {this.props.modalData.contents} </div>
+              <table>
+                <tr>
+                  <td className="infoTitle">이름</td>
+                  <td className="infoContents">{this.props.modalData.petname}</td>
+                  <td className="infoTitle">장소</td>
+                  <td className="infoContents">{this.props.modalData.citylocation} {this.props.modalData.districtlocation}</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td className="infoTitle">견종</td>
+                  <td className="infoContents">{this.props.modalData.species}</td>
+                  <td className="infoTitle">날짜</td>
+                  <td className="infoContents">{this.props.modalData.postdate.slice(0,10)}</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td className="infoTitle">성별</td>
+                  <td className="infoContents">{this.props.modalData.sex}</td>
+                  <td className="infoTitle">연락처</td>
+                  <td className="infoContents">{this.props.modalData.handphone}</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td className="infoTitle">상세 주소</td>
+                  <td colspan="3" className="infoContents">{this.props.modalData.citylocation} {this.props.modalData.districtlocation} {this.props.modalData.detaillocation}</td>
+                </tr>
+              </table>
+                <img className='infoModalImg' src={this.props.modalData.petimage} alt='' />
+                <div className="modalInfoDescribe"> {this.props.modalData.contents} </div>
               </div>
             </div>
           </div>

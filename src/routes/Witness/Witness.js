@@ -26,8 +26,10 @@ export default class Witness extends Component {
     // .get(`http://localhost:5000/witness?id_lte=${this.state.datalimit}`)
     .get("http://34.217.9.241/witness")
     .then(res => {
+      const reversedData = _.reverse(res.data)
+      console.log(reversedData)
       this.setState({
-        witnessData: res.data,
+        witnessData: reversedData,
         numberOfButtons: _.range(1, Math.ceil(res.data.length / 15) + 1)
       });
     })

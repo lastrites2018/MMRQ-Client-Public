@@ -41,7 +41,7 @@ a{
   background: #FFF;
   border: 1px solid #E5E5E5;
   border-radius: 15px;
-  box-shadow: 5px 6px 3px #F5F5F5;
+  /* box-shadow: 5px 6px 3px #F5F5F5; */
   font-family: 'Jua', sans-serif; 
 }
 
@@ -156,7 +156,7 @@ a{
 }
 
 article {
-  /* height: 450px; */
+  height: 450px;
   width: 200px;
   float: left;
   margin-right: 50px;
@@ -164,6 +164,7 @@ article {
   font-family: 'Sunflower', sans-serif;
   font-weight: bold;
 }
+
 
 .article_title {
   /* height: 325px; */
@@ -177,12 +178,31 @@ article {
 /*------------------------------section2_end---------------------------------*/
 
 .sideButton {
-  position: absolute;
+  position: fixed;
   left: 76px;
-  top: 157px;
+  top: 160px;
   font-size: 17px;
   padding: 15px 4px;
   line-height: 29px;
   font-weight: 700;
   font-family: 'Jua', sans-serif;
+  border-radius: 15px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ddd));
+  border: 2px solid;
+  border-color: #ddd #bbb #999;
+  cursor: pointer;
+}
+
+.sideButton:hover{
+  background: #b1b1b1
+}
+
+.mainBackGround {
+  position: absolute;
+  top: 115px;
+  height: 465px;
+  background: #d7d7d7;
+  /* background: linear-gradient( to bottom, #d7d7d7, white); */
+  right: 0;
+  left: 0;
 }

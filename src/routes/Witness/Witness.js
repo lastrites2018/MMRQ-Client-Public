@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import WitnessSection1 from "./Witness_section1"
 import WitnessButton from "./Witness_button"
-import SearchLocation from "../Search_location"
+import SearchLocation from "../Search_location/Search_location"
 
 import axios from 'axios';
 import _ from 'lodash';
@@ -26,8 +26,10 @@ export default class Witness extends Component {
     // .get(`http://localhost:5000/witness?id_lte=${this.state.datalimit}`)
     .get("http://34.217.9.241/witness")
     .then(res => {
+      const reversedData = _.reverse(res.data)
+      console.log(reversedData)
       this.setState({
-        witnessData: res.data,
+        witnessData: reversedData,
         numberOfButtons: _.range(1, Math.ceil(res.data.length / 15) + 1)
       });
     })
@@ -96,7 +98,17 @@ export default class Witness extends Component {
     const FirstIdx = this.state.currentPageFirstIdx;
     const LastIdx = this.state.currentPageLastIdx;
     if (this.state.witnessData.length === 0) {
-      return <div>loding....</div>;
+      return (
+        <div className="component_body">
+          <div className="find_title">
+            <div className="main_section2_plzfind">길 잃은 아이를 목격했습니다</div>
+            <div className="main_section2_plzfind_note">가족을 잃은 슬픔에 애타게 기다리고 있습니다</div>
+            <div className="main_section2_plzfind_note">많은 관심과 제보 부탁드립니다.</div>
+          </div>
+          <SearchLocation _filterSearch={this._filterSearch} />
+          <div className="noData">해당 지역의 글이 0건 입니다.</div>
+        </div>
+      );
     }
     return (
       <div className="component_body">

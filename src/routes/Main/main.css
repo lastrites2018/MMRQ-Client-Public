@@ -41,13 +41,13 @@ a{
   background: #FFF;
   border: 1px solid #E5E5E5;
   border-radius: 15px;
-  box-shadow: 5px 6px 3px #F5F5F5;
+  /* box-shadow: 5px 6px 3px #F5F5F5; */
   font-family: 'Jua', sans-serif; 
 }
 
 .main_section1_post_back {
   padding: 1em;
-  background: url(/static/media/highlighting.20bb1a2e.png) no-repeat;
+  background: url("./highlighting.png") no-repeat;
   background-size: 300px 140px;
   background-position: center;
 }
@@ -108,7 +108,7 @@ a{
 .main_section2_post {
   width: 200px;
   height: 200px;
-  margin: 20px 30px 20px 0;
+  margin: 20px 30px 25px 0;
   background-position: center;
   background-size: 100%;
   padding: 9px;
@@ -135,7 +135,7 @@ a{
 }
 
 .main_section2_plzfind {
-  padding-top: 20px;
+  /* padding-top: 50px; */
   font-family: 'Jua', sans-serif;
   font-size: 2em
 }
@@ -143,9 +143,9 @@ a{
 .main_section2_plzfind_line {
   overflow: hidden;
   height: auto;
-  margin-top: 120px;
+  /* margin-top: 120px; */
   margin-bottom: 40px;
-  border-top: 1.4px dashed #E5E5E5;
+  /* border-top: 1.4px dashed #9f9f9f; */
 }
 
 
@@ -156,14 +156,18 @@ a{
 }
 
 article {
+  height: 450px;
   width: 200px;
   float: left;
   margin-right: 50px;
   text-align: center;
+  font-family: 'Sunflower', sans-serif;
+  font-weight: bold;
 }
 
+
 .article_title {
-  height: 325px;
+  /* height: 325px; */
   font-family: 'Cute Font', cursive;
   font-size: 1.7em;
   margin-bottom: 15px;
@@ -172,3 +176,33 @@ article {
 
 
 /*------------------------------section2_end---------------------------------*/
+
+.sideButton {
+  position: fixed;
+  left: 76px;
+  top: 160px;
+  font-size: 17px;
+  padding: 15px 4px;
+  line-height: 29px;
+  font-weight: 700;
+  font-family: 'Jua', sans-serif;
+  border-radius: 15px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ddd));
+  border: 2px solid;
+  border-color: #ddd #bbb #999;
+  cursor: pointer;
+}
+
+.sideButton:hover{
+  background: #b1b1b1
+}
+
+.mainBackGround {
+  position: absolute;
+  top: 115px;
+  height: 465px;
+  background: #d7d7d7;
+  /* background: linear-gradient( to bottom, #d7d7d7, white); */
+  right: 0;
+  left: 0;
+}

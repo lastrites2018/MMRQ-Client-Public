@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { MainSectionList2 } from "./Main_sections_list"
 
-import Modal_section from "../Modal_section";
+import Modal_section from "../Modal/Modal_section";
 
 
 export default class Main_section2 extends Component {

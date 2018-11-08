@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import './Mypage.css';
-import { withCookies, Cookies } from 'react-cookie';
-import Axios from 'axios';
-import { instanceOf } from 'prop-types';
+import React, { Component } from "react";
+import "./Mypage.css";
+import { withCookies, Cookies } from "react-cookie";
+import { instanceOf } from "prop-types";
 
 class Mypage extends Component {
   static propTypes = {
@@ -10,51 +9,41 @@ class Mypage extends Component {
   };
 
   state = {
-    userInfo: []
-  };
-
-  componentDidMount = () => {
-    this._loadUser();
-  };
-  _loadUser = () => {
-    // _loadUser = async () => {
-    const { cookies } = this.props;
-    const token = cookies.get('token');
-    const config = {
-      headers: { authorization: `Bearer ${token}` }
-    };
-    console.log('config', config);
-    // Axios.get('http://localhost:5000/auth/check', config).then(response => {
-    Axios.get('http://34.217.9.241/auth/check', config).then(response => {
-      console.log('response', response.data.userInfo);
-      this.setState({ userInfo: response.data.userInfo });
-    });
-    // let response = await Axios.get('http://34.217.9.241/auth/check', config);
-
-    // if (response
-    // await Axios.get('http://34.217.9.241/auth/check', config)
-    // Axios.get('http://34.217.9.241/auth/check', config)
-    // .then(response => {
-    //   console.log('login - response', response);
-    //   console.log('login - response.data', response.data);
-    //   this.setState({ userInfo: response.data });
-    // })
-    // .catch(error => {
-    //   this.setState(prevState => ({ loginTry: true }));
-    // });
+    userInfo: this.props.userInfo,
+    findData: [],
+    witnessData: []
   };
 
   render() {
-    if (!this.state.userInfo.name) {
+    console.log(this.state);
+    if (!this.state.userInfo) {
       return <div>loading...</div>;
     }
-    const successLogin = false;
     return (
-      <div>
-        <div>{`${this.state.userInfo.name}님 어서오세요.`}</div>
-        <div>{`님의 번호는 ${this.state.userInfo.handphone}이고`}</div>
-        <div>{`님의 이메일은 ${this.state.userInfo.email}이군요.`}</div>
-        <div>{`지금 찾아갑니다.`}</div>
+      <div className="mypageFrame">
+        <div className="mypageInsideFrame">
+          <div className="myInfoDiv">
+            <span>My Info</span>
+          </div>
+          <div className="usernameDiv">
+            <span>이름 </span>
+            {":"}
+            <span>{this.state.userInfo.name}</span>
+          </div>
+          <div className="phoneNumberDiv">
+            <span>연락처</span>
+            {":"}
+            <span>{this.state.userInfo.handphone}</span>
+          </div>
+          <div className="emailDiv">
+            <span>Email</span>
+            {":"}
+            <span>{this.state.userInfo.email}</span>
+          </div>
+          <div className="commentDiv">
+            <span>{`지금 찾아갑니다.`}</span>
+          </div>
+        </div>
       </div>
     );
   }

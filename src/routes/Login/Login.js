@@ -28,9 +28,9 @@ class Login extends Component {
     super(props);
     this.state = {
       canSubmit: false,
-
       loginTry: false
     };
+
     this.disableButton = this.disableButton.bind(this);
     this.enableButton = this.enableButton.bind(this);
   }
@@ -38,23 +38,23 @@ class Login extends Component {
   disableButton() {
     this.setState({ canSubmit: false });
   }
+
   enableButton() {
     this.setState({ canSubmit: true });
   }
+
   submit = data => {
-    console.log('login-data', data);
     Axios.post('http://34.217.9.241/auth/login', data)
       // Axios.post('http://localhost:5000/users', data)
       .then(response => {
-        console.log('login - response', response.data);
-        console.log(this, '로그인 완료');
+        // console.log('login - response', response.data);
+        // console.log('로그인 완료');
         this.props.cookieSet(response.data);
-        this.props._loadUser()
+        this.props._loadUser();
       })
       .catch(error => {
         this.setState(prevState => ({ loginTry: true }));
       });
-
   };
 
   render() {
@@ -63,7 +63,7 @@ class Login extends Component {
         <div>
           {this.props.login && <Redirect to="/main" />}
           {this.state.loginTry ? (
-            <div>이메일과 비밀번호가 일치하지 않습니다. </div>
+            <div>이메일과 비밀번호가 일치하지 않습니다.</div>
           ) : null}
           <Formsy
             onSubmit={this.submit}
@@ -75,7 +75,7 @@ class Login extends Component {
               name="email"
               title="이메일"
               validations="isEmail"
-              validationError="정확한 이메일 주소가 아닙니다."
+              validationError="정확한 이메일 주소를 입력해주세요."
               required
             />
             <MyInput

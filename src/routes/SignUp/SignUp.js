@@ -42,8 +42,7 @@ class SignUp extends Component {
       handphone: null,
       username: null,
       password: null,
-      passwordConfirm: null,
-      isLogin: false
+      passwordConfirm: null
     };
     this.submit = this.submit.bind(this);
   }
@@ -61,14 +60,14 @@ class SignUp extends Component {
     })
       .then(response => {
         console.log('response', response);
-        Axios.post('http://34.217.9.241/auth/login', {
+        return Axios.post('http://34.217.9.241/auth/login', {
           email: email,
           password: password
         });
       })
       .then(response => {
         console.log('response2', response);
-        this.setState({ isLogin: true });
+        this.props.cookieSet(response.data);
       });
   };
 

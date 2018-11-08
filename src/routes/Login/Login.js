@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import Formsy from 'formsy-react';
-import MyInput from './MyInput';
-import styled from 'styled-components';
-import './login.css';
-import Axios from 'axios';
+import React, { Component } from "react";
+import Formsy from "formsy-react";
+import MyInput from "./MyInput";
+import styled from "styled-components";
+import "./login.css";
+import Axios from "axios";
 // import { Router, Redirect } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 // import { withRouter, Redirect } from 'react-router-dom';
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from "react-cookie";
+import { instanceOf } from "prop-types";
 
 const LoginStyle = styled.div`
   padding-top: 2rem;
@@ -42,24 +42,18 @@ class Login extends Component {
     this.setState({ canSubmit: true });
   }
   submit = data => {
-    console.log('login-data', data);
-    Axios.post('http://34.217.9.241/auth/login', data)
+    console.log("login-data", data);
+    Axios.post("http://34.217.9.241/auth/login", data)
       // Axios.post('http://localhost:5000/users', data)
       .then(response => {
-        console.log('login - response', response.data);
-        console.log(this, '로그인 완료');
+        console.log("login - response", response.data);
+        console.log(this, "로그인 완료");
         this.setState({ isLogin: true });
         this.props.cookieSet(response.data);
-        // this.props.cookieSet(data);
-        // this._isLogin = true;
-        // cookies.set('test', data.email, { path: '/', maxAge: 3600 });
-        // Cookies.save('token', 'token-value', {
-        //   maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
-        // });
-
-        // this.props.history.push('/main');
-        // response && <Redirect to="/main" />;
       })
+      // .then(() => {
+      //   this.props.loadUser();
+      // })
       .catch(error => {
         // this.setState({ loginTry: true });
         this.setState(prevState => ({ loginTry: true }));
@@ -100,7 +94,7 @@ class Login extends Component {
             <button
               type="submit"
               disabled={!this.state.canSubmit}
-              className={!this.state.canSubmit ? 'disabled' : null}
+              className={!this.state.canSubmit ? "disabled" : null}
             >
               로그인
             </button>

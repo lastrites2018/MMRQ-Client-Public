@@ -19,24 +19,20 @@ import { withCookies, Cookies } from "react-cookie";
 import { instanceOf } from "prop-types";
 
 class App extends Component {
-  state = {
-    modalOpen: false,
-    backGround: false,
-    modalPage: 1,
-    modalData: [],
-    modalStatus: false
-  };
-
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
 
   constructor(props) {
     super(props);
-    const { cookies } = props;
     this.state = {
-      backGround: true
+      modalOpen: false,
+      backGround: false,
+      modalPage: 1,
+      modalData: [],
+      modalStatus: false
     };
+    const { cookies } = props;
 
     cookies.get("token")
       ? (this.state = { login: true })
@@ -65,11 +61,14 @@ class App extends Component {
     console.log("config", config);
     // Axios.get('http://localhost:5000/auth/check', config).then(response => {
     axios.get("http://34.217.9.241/auth/check", config).then(response => {
-      console.log("responseUserInfo", response.data.userInfo);
       this.setState({ userInfo: response.data.userInfo });
     });
   };
-
+  getUserInfo = value => {
+    this.setState({
+      userInfo: value
+    });
+  };
   cookieSet = data => {
     const { cookies } = this.props;
     cookies.set("token", data.access_token, { path: "/", maxAge: 3600 });
@@ -118,7 +117,12 @@ class App extends Component {
             <Route
               path="/login"
               // component={Login}
-              render={() => <Login cookieSet={this.cookieSet} />}
+              render={() => (
+                <Login
+                  cookieSet={this.cookieSet}
+                  getUserInfo={this.getUserInfo}
+                />
+              )}
             />
             <Route
               path="/mypage"

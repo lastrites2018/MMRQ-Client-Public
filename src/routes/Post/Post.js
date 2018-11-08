@@ -9,7 +9,7 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: this.props.userInfo,
+      userInfo: [],
       currentClassification: "",
       classificationData: "",
       writerData: "",
@@ -289,10 +289,21 @@ class Post extends Component {
         .catch(err => console.log(err, "실종신고 에러다아아아"));
     }
   };
-  componentDidMount() {
-    console.log(this.props.userInfo, "uuuuusususususu");
-  }
+  // componentWillMount() {
+  //   this.setState({
+  //     userInfo: this.props.userInfo
+  //   });
+  // }
+  // pushUserInfo = () => {
+  //   this.setState({
+  //     userInfo: this.props.userInfo
+  //   });
+  // };
+  // componentDidMount() {
+  //   this.pushUserInfo();
+  // }
   render() {
+    console.log(this.props.userInfo);
     return (
       <div className="postBody">
         <div className="postPictureBody">

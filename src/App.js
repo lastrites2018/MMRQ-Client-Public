@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import axios from "axios";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 
-import "./app.css";
+import './app.css';
 
-import Main from "./routes/Main/Main";
-import Post from "./routes/Post/Post";
-import Login from "./routes/Login/Login";
-import Mypage from "./routes/Mypage/Mypage";
-import SignUp from "./routes/SignUp/SignUp";
-import Find from "./routes/Find/Find";
-import Witness from "./routes/Witness/Witness";
-import NoMatch from "./routes/NoMatch/NoMatch";
+import Main from './routes/Main/Main';
+import Post from './routes/Post/Post';
+import Login from './routes/Login/Login';
+import Mypage from './routes/Mypage/Mypage';
+import SignUp from './routes/SignUp/SignUp';
+import Find from './routes/Find/Find';
+import Witness from './routes/Witness/Witness';
+import NoMatch from './routes/NoMatch/NoMatch';
 
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import { withCookies, Cookies } from "react-cookie";
-import { instanceOf } from "prop-types";
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 
 class App extends Component {
   state = {
@@ -38,7 +38,7 @@ class App extends Component {
       backGround: true
     };
 
-    cookies.get("token")
+    cookies.get('token')
       ? (this.state = { login: true })
       : (this.state = { login: false });
 
@@ -55,30 +55,32 @@ class App extends Component {
 
   componentDidMount = () => {
     if (this.state.login) {
-      this._loadUser()
-      // } 
+      this._loadUser();
+      // }
     }
   };
 
-//   componentDidUpdate = (prevProps, prevState) => {
-//     // if(prevState.input !== this.state.input){
-//       if (this.state.login) {
-//       this._loadUser()
-//     // } 
-//   }
-// }
+  // 바뀐게 없다니 커밋해봅니다
+
+  //   componentDidUpdate = (prevProps, prevState) => {
+  //     // if(prevState.input !== this.state.input){
+  //       if (this.state.login) {
+  //       this._loadUser()
+  //     // }
+  //   }
+  // }
 
   _loadUser = () => {
     // _loadUser = async () => {
     const { cookies } = this.props;
-    const token = cookies.get("token");
+    const token = cookies.get('token');
     const config = {
       headers: { authorization: `Bearer ${token}` }
     };
-    console.log("config", config);
+    console.log('config', config);
     // Axios.get('http://localhost:5000/auth/check', config).then(response => {
-    axios.get("http://34.217.9.241/auth/check", config).then(response => {
-      console.log("responseUserInfo", response.data.userInfo);
+    axios.get('http://34.217.9.241/auth/check', config).then(response => {
+      console.log('responseUserInfo', response.data.userInfo);
       // this.setState({ userInfo: response.data.userInfo });
       this.setState(prevState => ({ userInfo: response.data.userInfo }));
       console.log(this.state);
@@ -87,13 +89,13 @@ class App extends Component {
 
   cookieSet = data => {
     const { cookies } = this.props;
-    cookies.set("token", data.access_token, { path: "/", maxAge: 3600 });
+    cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
   };
 
   logout = () => {
     const { cookies } = this.props;
-    cookies.remove("token");
+    cookies.remove('token');
     // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
     this.setState(prevState => ({ login: false }));
   };
@@ -105,7 +107,7 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.userInfo &&this.state.login) {
+    if (!this.state.userInfo && this.state.login) {
       return <div>loading...</div>;
     }
     return (

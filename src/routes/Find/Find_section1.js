@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Modal_section from "../Modal_section";
+import Modal_section from "../Modal/Modal_section";
 
 
 

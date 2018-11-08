@@ -1,8 +1,21 @@
 .header_line {
-  margin: 30px 30px 70px;
+  margin: 30px 30px 50px;
   height: 80px;
-  background: url("/Header/logo.png") no-repeat;
+  background: url("./logo.png") no-repeat;
   background-size: 60px;
+  font-size: 41px;
+  color: black;
+  font-family: 'Gugi', cursive;
+}
+
+.title_mm {
+  font-size: 53px;
+  color: black;
+}
+
+.title_req {
+  border-left: 4px solid black;
+  padding-left: 10px;
 }
 
 .header {

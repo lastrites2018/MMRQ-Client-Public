@@ -19,7 +19,7 @@ class Post extends Component {
       locationDetailData: "",
       speciesData: "",
       sexData: "",
-      featureData: "",
+      contentsData: "",
       imageData: "",
       dogSpecies: [
         "골든 두들",
@@ -150,9 +150,14 @@ class Post extends Component {
       sexData: event.target.value
     });
   };
-  makeFeatureData = event => {
+  makeContentsData = event => {
     this.setState({
-      featureData: event.target.value
+      contentsData: event.target.value
+    });
+  };
+  makePetNameData = event => {
+    this.setState({
+      petNameData: event.target.value
     });
   };
   missingOrFoundPlace = () => {
@@ -193,47 +198,51 @@ class Post extends Component {
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData &&
+      this.state.contentsData &&
       this.state.rewardData &&
-      this.state.imageData
+      this.state.imageData &&
+      this.state.petNameData
     ) {
       this.setState({
         postData: {
           writer: this.state.writerData,
           title: this.state.titleData,
-          city: this.state.locationCityData,
-          district: this.state.locationDistrictData,
-          locationdetail: this.state.locationDetailData,
+          citylocation: this.state.locationCityData,
+          districtlocation: this.state.locationDistrictData,
+          detaillocation: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
-          feature: this.state.featureData,
+          contents: this.state.contentsData,
           reward: this.state.rewardData,
-          petimage: this.state.imageData
+          petimage: this.state.imageData,
+          petname: this.state.petNameData
         }
       });
     } else if (
-      this.state.classificationData &&
-      this.state.writerData &&
-      this.state.titleData &&
-      this.state.locationCityData &&
-      this.state.locationDistrictData &&
-      this.state.locationDetailData &&
-      this.state.speciesData &&
-      this.state.sexData &&
-      this.state.featureData &&
-      this.state.imageData
+      (this.state.classificationData &&
+        this.state.writerData &&
+        this.state.titleData &&
+        this.state.locationCityData &&
+        this.state.locationDistrictData &&
+        this.state.locationDetailData &&
+        this.state.speciesData &&
+        this.state.sexData &&
+        this.state.contentsData &&
+        this.state.imageData,
+      this.state.petNameData)
     ) {
       this.setState({
         postData: {
           writer: this.state.writerData,
           title: this.state.titleData,
-          city: this.state.locationCityData,
-          district: this.state.locationDistrictData,
-          locationdetail: this.state.locationDetailData,
+          citylocation: this.state.locationCityData,
+          districtlocation: this.state.locationDistrictData,
+          detaillocation: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
-          feature: this.state.featureData,
-          petimage: this.state.imageData
+          contents: this.state.contentsData,
+          petimage: this.state.imageData,
+          petname: this.state.petNameData
         }
       });
     } else {
@@ -252,8 +261,9 @@ class Post extends Component {
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData &&
-      this.state.imageData
+      this.state.contentsData &&
+      this.state.imageData &&
+      this.state.petNameData
     ) {
       axios
         .post("http://localhost:5000/witness", this.state.postData)
@@ -274,9 +284,10 @@ class Post extends Component {
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData &&
+      this.state.contentsData &&
       this.state.rewardData &&
-      this.state.imageData
+      this.state.imageData &&
+      this.state.petNameData
     ) {
       axios
         .post("http://localhost:5000/find", this.state.postData)
@@ -386,6 +397,16 @@ class Post extends Component {
               <option value="모르겠음">모르겠음</option>
             </select>
           </span>
+          <span>
+            <input
+              type="text"
+              name="dogName"
+              size="10"
+              placeholder="강아지 이름"
+              value={this.state.petNameData}
+              onChange={this.makePetNameData}
+            />
+          </span>
           {this.reward()}
         </div>
         <div className="explanation">
@@ -394,8 +415,8 @@ class Post extends Component {
             name="explanation"
             size="100"
             placeholder="특징 및 상세 설명"
-            value={this.state.featureData}
-            onChange={this.makeFeatureData}
+            value={this.state.contentsData}
+            onChange={this.makeContentsData}
           />
         </div>
         <div className="submitButton">

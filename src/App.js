@@ -77,7 +77,6 @@ class App extends Component {
       console.log("responseUserInfo", response.data.userInfo);
       // this.setState({ userInfo: response.data.userInfo });
       this.setState(prevState => ({ userInfo: response.data.userInfo }));
-      console.log(this.state);
     });
   };
   getUserInfo = value => {
@@ -105,9 +104,6 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.userInfo && this.state.login) {
-      return <div>loading...</div>;
-    }
     return (
       <Router>
         <div>

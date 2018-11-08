@@ -91,6 +91,7 @@ class App extends Component {
     const { cookies } = this.props;
     cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
+    // this.setState(({ login: true }));
   };
 
   logout = () => {
@@ -107,7 +108,8 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.userInfo && this.state.login) {
+    console.log(this.state,'aaaaa')
+    if (!this.state.userInfo &&this.state.login) {
       return <div>loading...</div>;
     }
     return (
@@ -135,7 +137,7 @@ class App extends Component {
             <Route
               path="/login"
               // component={Login}
-              render={() => <Login cookieSet={this.cookieSet} />}
+              render={() => <Login cookieSet={this.cookieSet} _loadUser={this._loadUser}login={this.state.login}/>}
             />
             <Route
               path="/mypage"

@@ -28,7 +28,7 @@ class Login extends Component {
     super(props);
     this.state = {
       canSubmit: false,
-      isLogin: false,
+
       loginTry: false
     };
     this.disableButton = this.disableButton.bind(this);
@@ -48,36 +48,23 @@ class Login extends Component {
       .then(response => {
         console.log('login - response', response.data);
         console.log(this, '로그인 완료');
-        this.setState({ isLogin: true });
         this.props.cookieSet(response.data);
-        // this.props.cookieSet(data);
-        // this._isLogin = true;
-        // cookies.set('test', data.email, { path: '/', maxAge: 3600 });
-        // Cookies.save('token', 'token-value', {
-        //   maxAge: 3600 // Will expire after 1hr (value is in number of sec.)
-        // });
-
-        // this.props.history.push('/main');
-        // response && <Redirect to="/main" />;
+        this.props._loadUser()
       })
       .catch(error => {
-        // this.setState({ loginTry: true });
         this.setState(prevState => ({ loginTry: true }));
       });
 
-    // alert(JSON.stringify(data, null, 4));
   };
 
   render() {
     return (
       <LoginStyle>
         <div>
-          {this.state.isLogin && <Redirect to="/main" />}
+          {this.props.login && <Redirect to="/main" />}
           {this.state.loginTry ? (
             <div>이메일과 비밀번호가 일치하지 않습니다. </div>
           ) : null}
-          {/* {!this.isLogin ? <div>로그인이 필요합니다 </div> : null} */}
-          {/* <h3>로그인</h3> */}
           <Formsy
             onSubmit={this.submit}
             onValid={this.enableButton}

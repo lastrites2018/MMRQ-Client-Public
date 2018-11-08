@@ -48,9 +48,22 @@ class App extends Component {
       modalStatus: true
     });
   };
+
   componentDidMount = () => {
-    this._loadUser();
+    if (this.state.login) {
+      this._loadUser();
+      // }
+    }
   };
+
+  //   componentDidUpdate = (prevProps, prevState) => {
+  //     // if(prevState.input !== this.state.input){
+  //       if (this.state.login) {
+  //       this._loadUser()
+  //     // }
+  //   }
+  // }
+
   _loadUser = () => {
     // _loadUser = async () => {
     const { cookies } = this.props;
@@ -61,7 +74,10 @@ class App extends Component {
     console.log("config", config);
     // Axios.get('http://localhost:5000/auth/check', config).then(response => {
     axios.get("http://34.217.9.241/auth/check", config).then(response => {
-      this.setState({ userInfo: response.data.userInfo });
+      console.log("responseUserInfo", response.data.userInfo);
+      // this.setState({ userInfo: response.data.userInfo });
+      this.setState(prevState => ({ userInfo: response.data.userInfo }));
+      console.log(this.state);
     });
   };
   getUserInfo = value => {
@@ -89,7 +105,7 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.userInfo) {
+    if (!this.state.userInfo && this.state.login) {
       return <div>loading...</div>;
     }
     return (

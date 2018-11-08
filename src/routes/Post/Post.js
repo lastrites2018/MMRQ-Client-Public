@@ -9,7 +9,6 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: [],
       currentClassification: "",
       classificationData: "",
       writerData: "",
@@ -115,11 +114,11 @@ class Post extends Component {
       rewardData: event.target.value
     });
   };
-  makeWriterData = event => {
-    this.setState({
-      writerData: event.target.value
-    });
-  };
+  // makeWriterData = event => {
+  //   this.setState({
+  //     writerData: event.target.value
+  //   });
+  // };
   makeTitleData = event => {
     this.setState({
       titleData: event.target.value
@@ -187,11 +186,17 @@ class Post extends Component {
       );
     }
   };
+  makePostDate = () => {
+    var date = new Date();
+    this.setState({
+      postDateData: date
+    });
+  };
 
   makePostData = () => {
     if (
       this.state.classificationData &&
-      this.state.writerData &&
+      // this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -205,7 +210,7 @@ class Post extends Component {
     ) {
       this.setState({
         postData: {
-          writer: this.state.writerData,
+          writer: this.props.userInfo.name,
           title: this.state.titleData,
           citylocation: this.state.locationCityData,
           districtlocation: this.state.locationDistrictData,
@@ -215,25 +220,30 @@ class Post extends Component {
           contents: this.state.contentsData,
           reward: this.state.rewardData,
           petimage: this.state.imageData,
-          petname: this.state.petNameData
+          petname: this.state.petNameData,
+          userid: this.props.userInfo.userid,
+          // username: this.props.userInfo.name,
+          postdate: this.state.postDateData,
+          handphone: this.props.userInfo.handphone,
+          email: this.props.userInfo.email
         }
       });
     } else if (
-      (this.state.classificationData &&
-        this.state.writerData &&
-        this.state.titleData &&
-        this.state.locationCityData &&
-        this.state.locationDistrictData &&
-        this.state.locationDetailData &&
-        this.state.speciesData &&
-        this.state.sexData &&
-        this.state.contentsData &&
-        this.state.imageData,
-      this.state.petNameData)
+      this.state.classificationData &&
+      // this.state.writerData &&
+      this.state.titleData &&
+      this.state.locationCityData &&
+      this.state.locationDistrictData &&
+      this.state.locationDetailData &&
+      this.state.speciesData &&
+      this.state.sexData &&
+      this.state.contentsData &&
+      this.state.imageData &&
+      this.state.petNameData
     ) {
       this.setState({
         postData: {
-          writer: this.state.writerData,
+          writer: this.props.userInfo.name,
           title: this.state.titleData,
           citylocation: this.state.locationCityData,
           districtlocation: this.state.locationDistrictData,
@@ -242,7 +252,12 @@ class Post extends Component {
           sex: this.state.sexData,
           contents: this.state.contentsData,
           petimage: this.state.imageData,
-          petname: this.state.petNameData
+          petname: this.state.petNameData,
+          userid: this.props.userInfo.userid,
+          // username: this.props.userInfo.name,
+          postdate: this.state.postDateData,
+          handphone: this.props.userInfo.handphone,
+          email: this.props.userInfo.email
         }
       });
     } else {
@@ -254,7 +269,7 @@ class Post extends Component {
     if (
       this.state.currentClassification === "목격했어요" &&
       this.state.classificationData &&
-      this.state.writerData &&
+      // this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -277,7 +292,7 @@ class Post extends Component {
     } else if (
       this.state.currentClassification === "찾아주세요" &&
       this.state.classificationData &&
-      this.state.writerData &&
+      // this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -300,23 +315,15 @@ class Post extends Component {
         .catch(err => console.log(err, "실종신고 에러다아아아"));
     }
   };
-  // componentWillMount() {
-  //   this.setState({
-  //     userInfo: this.props.userInfo
-  //   });
-  // }
-  // pushUserInfo = () => {
-  //   this.setState({
-  //     userInfo: this.props.userInfo
-  //   });
-  // };
-  // componentDidMount() {
-  //   this.pushUserInfo();
-  // }
+
   render() {
-    console.log(this.props.userInfo);
+    if (!this.props.userInfo) {
+      alert("로그인 해주세요");
+      this.props.history.push("/login");
+    }
     return (
       <div className="postBody">
+        {console.log(this.props.userInfo)}
         <div className="postPictureBody">
           <img src={this.state.imageData} alt="" className="uploadImg" />
         </div>
@@ -337,7 +344,7 @@ class Post extends Component {
           </select>
         </div>
         {/* <FileUploadTool /> */}
-        <div className="writer">
+        {/* <div className="writer">
           <div>작성자</div>
           <input
             onChange={this.makeWriterData}
@@ -347,7 +354,7 @@ class Post extends Component {
             size="8"
             placeholder="글쓴이"
           />
-        </div>
+        </div> */}
         <div className="title">
           <div>글제목</div>
           <input
@@ -397,7 +404,8 @@ class Post extends Component {
               <option value="모르겠음">모르겠음</option>
             </select>
           </span>
-          <span>
+          <span className="dogname">
+            <span>이름:</span>
             <input
               type="text"
               name="dogName"
@@ -423,6 +431,7 @@ class Post extends Component {
           <button
             type="submit"
             onClick={async () => {
+              await this.makePostDate();
               await this.makePostData();
               await this.submitData();
             }}

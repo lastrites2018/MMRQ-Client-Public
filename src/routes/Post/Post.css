@@ -34,14 +34,14 @@
   font-weight: 600;
 }
 .missngPlace {
-  margin: 10px;
+  margin: 20px;
   line-height: 20px;
   font-family: "Sunflower", sans-serif;
   font-size: 1.3em;
   font-weight: 600;
 }
 .iFound {
-  margin: 10px;
+  margin: 20px;
   line-height: 20px;
   font-family: "Sunflower", sans-serif;
   font-size: 1.3em;
@@ -56,8 +56,7 @@
 .dogInfo {
   margin: 5px 20px;
 }
-.sex,
-.reward {
+.sex {
   margin-left: 10px;
 }
 .sex span {
@@ -66,9 +65,7 @@
   font-size: 1.3em;
   font-weight: 600;
 }
-.reward input {
-  margin-left: 10px;
-}
+
 .sexSelect {
   margin: 10px;
   width: auto;
@@ -186,4 +183,28 @@
 }
 input[type="file"] {
   color: transparent;
+}
+.dogname span {
+  line-height: 20px;
+  font-family: "Sunflower", sans-serif;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+.dogname input {
+  margin: 10px;
+  width: auto;
+  height: auto;
+  font-size: 20px;
+}
+.reward {
+  line-height: 20px;
+  font-family: "Sunflower", sans-serif;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+.reward input {
+  margin: 10px;
+  width: auto;
+  height: auto;
+  font-size: 20px;
 }

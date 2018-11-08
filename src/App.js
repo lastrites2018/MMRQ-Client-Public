@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import axios from "axios";
 
-import './app.css';
+import "./app.css";
 
-import Main from './routes/Main/Main';
-import Post from './routes/Post/Post';
-import Login from './routes/Login/Login';
-import Mypage from './routes/Mypage/Mypage';
-import Search from './routes/Search/Search';
-import SignUp from './routes/SignUp/SignUp';
-import Find from './routes/Find/Find';
-import Witness from './routes/Witness/Witness';
-import NoMatch from './routes/NoMatch/NoMatch';
+import Main from "./routes/Main/Main";
+import Post from "./routes/Post/Post";
+import Login from "./routes/Login/Login";
+import Mypage from "./routes/Mypage/Mypage";
+import SignUp from "./routes/SignUp/SignUp";
+import Find from "./routes/Find/Find";
+import Witness from "./routes/Witness/Witness";
+import NoMatch from "./routes/NoMatch/NoMatch";
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { withCookies, Cookies } from "react-cookie";
+import { instanceOf } from "prop-types";
 
 class App extends Component {
   state = {
@@ -37,7 +37,8 @@ class App extends Component {
     this.state = {
       backGround: true
     };
-    cookies.get('token')
+
+    cookies.get("token")
       ? (this.state = { login: true })
       : (this.state = { login: false });
 
@@ -51,20 +52,35 @@ class App extends Component {
       modalStatus: true
     });
   };
+  componentDidMount = () => {
+    this._loadUser();
+  };
+  _loadUser = () => {
+    // _loadUser = async () => {
+    const { cookies } = this.props;
+    const token = cookies.get("token");
+    const config = {
+      headers: { authorization: `Bearer ${token}` }
+    };
+    console.log("config", config);
+    // Axios.get('http://localhost:5000/auth/check', config).then(response => {
+    axios.get("http://34.217.9.241/auth/check", config).then(response => {
+      console.log("responseUserInfo", response.data.userInfo);
+      this.setState({ userInfo: response.data.userInfo });
+    });
+  };
 
   cookieSet = data => {
     const { cookies } = this.props;
-    cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
+    cookies.set("token", data.access_token, { path: "/", maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
-
   };
 
   logout = () => {
     const { cookies } = this.props;
-    cookies.remove('token');
+    cookies.remove("token");
     // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
     this.setState(prevState => ({ login: false }));
-    
   };
 
   modalOpenChange = () => {
@@ -73,57 +89,71 @@ class App extends Component {
     });
   };
 
-
   render() {
+    if (!this.state.userInfo) {
+      return <div>loading...</div>;
+    }
     return (
       <Router>
         <div>
-            <div>
-              <Header login={this.state.login} logout={this.logout} />              
-            </div>
-            <Switch>
-              <Route path="/main" 
-                render={() => 
-                  <Main 
-                    modalData={this.state.modalData}
-                    modalStatus={this.state.modalStatus}
-                    modalOpenChange={this.modalOpenChange}
-                    modalDataChange={this.modalDataChange}
-                    />
-                } />
-              <Route path="/post" component={Post} />
-              <Route
+          <div>
+            <Header login={this.state.login} logout={this.logout} />
+          </div>
+          <Switch>
+            <Route
+              path="/main"
+              render={() => (
+                <Main
+                  modalData={this.state.modalData}
+                  modalStatus={this.state.modalStatus}
+                  modalOpenChange={this.modalOpenChange}
+                  modalDataChange={this.modalDataChange}
+                />
+              )}
+            />
+            <Route
+              path="/post"
+              render={() => <Post userInfo={this.state.userInfo} />}
+            />
+            <Route
               path="/login"
               // component={Login}
-                render={() => <Login cookieSet={this.cookieSet} />}
-              />
-              <Route path="/mypage" component={Mypage} />
-              <Route path="/search" component={Search} />
-              <Route path="/signUp"  
-                render={() => <SignUp cookieSet={this.cookieSet} />} />
-              <Route path="/find" 
-                render={() => 
-                  <Find 
-                    modalData={this.state.modalData}
-                    modalStatus={this.state.modalStatus}
-                    modalOpenChange={this.modalOpenChange}
-                    modalDataChange={this.modalDataChange}
-                  />
-                } />
-              <Route path="/witness" 
-                render={() => 
-                  <Witness 
-                    modalData={this.state.modalData}
-                    modalStatus={this.state.modalStatus}
-                    modalOpenChange={this.modalOpenChange}
-                    modalDataChange={this.modalDataChange}
-                  />
-                } />
-              <Route component={NoMatch} />
-            </Switch>
-            <div>
-              <Footer />
-
+              render={() => <Login cookieSet={this.cookieSet} />}
+            />
+            <Route
+              path="/mypage"
+              render={() => <Mypage userInfo={this.state.userInfo} />}
+            />
+            <Route
+              path="/signUp"
+              render={() => <SignUp cookieSet={this.cookieSet} />}
+            />
+            <Route
+              path="/find"
+              render={() => (
+                <Find
+                  modalData={this.state.modalData}
+                  modalStatus={this.state.modalStatus}
+                  modalOpenChange={this.modalOpenChange}
+                  modalDataChange={this.modalDataChange}
+                />
+              )}
+            />
+            <Route
+              path="/witness"
+              render={() => (
+                <Witness
+                  modalData={this.state.modalData}
+                  modalStatus={this.state.modalStatus}
+                  modalOpenChange={this.modalOpenChange}
+                  modalDataChange={this.modalDataChange}
+                />
+              )}
+            />
+            <Route component={NoMatch} />
+          </Switch>
+          <div>
+            <Footer />
           </div>
         </div>
       </Router>

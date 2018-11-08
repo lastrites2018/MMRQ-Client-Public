@@ -7,7 +7,6 @@ import Main from './routes/Main/Main';
 import Post from './routes/Post/Post';
 import Login from './routes/Login/Login';
 import Mypage from './routes/Mypage/Mypage';
-import Search from './routes/Search/Search';
 import SignUp from './routes/SignUp/SignUp';
 import Find from './routes/Find/Find';
 import Witness from './routes/Witness/Witness';
@@ -98,7 +97,6 @@ class App extends Component {
                 render={() => <Login cookieSet={this.cookieSet} />}
               />
               <Route path="/mypage" component={Mypage} />
-              <Route path="/search" component={Search} />
               <Route path="/signUp"  
                 render={() => <SignUp cookieSet={this.cookieSet} />} />
               <Route path="/find" 

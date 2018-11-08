@@ -202,12 +202,12 @@ class Post extends Component {
           title: this.state.titleData,
           city: this.state.locationCityData,
           district: this.state.locationDistrictData,
-          locationDetail: this.state.locationDetailData,
+          locationdetail: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
           feature: this.state.featureData,
           reward: this.state.rewardData,
-          image: this.state.imageData
+          petimage: this.state.imageData
         }
       });
     } else if (
@@ -220,7 +220,6 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.featureData &&
-      this.state.rewardData &&
       this.state.imageData
     ) {
       this.setState({
@@ -229,11 +228,11 @@ class Post extends Component {
           title: this.state.titleData,
           city: this.state.locationCityData,
           district: this.state.locationDistrictData,
-          locationDetail: this.state.locationDetailData,
+          locationdetail: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
           feature: this.state.featureData,
-          image: this.state.imageData
+          petimage: this.state.imageData
         }
       });
     } else {
@@ -253,7 +252,6 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.featureData &&
-      this.state.rewardData &&
       this.state.imageData
     ) {
       axios

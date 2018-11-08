@@ -1,0 +1,73 @@
+.mypageFrame {
+  width: 1000px;
+  height: auto;
+  margin: auto;
+  margin-bottom: 50px;
+  border: 1px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}
+.mypageInsideFrame {
+  width: auto;
+  margin: 6em 6em;
+  padding: 5em;
+  border: 1px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+  text-align: left;
+}
+.myInfoDiv {
+  margin: 20px;
+  padding: 10px;
+}
+.myInfoDiv span {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}
+.usernameDiv {
+  margin: 20px;
+  padding: 10px;
+}
+.usernameDiv span {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}
+.phoneNumberDiv {
+  margin: 20px;
+  padding: 10px;
+}
+.phoneNumberDiv span {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}
+.emailDiv {
+  margin: 20px;
+  padding: 10px;
+}
+.emailDiv span {
+  margin: 20px;
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}
+.commentDiv {
+  margin: 20px;
+  padding: 10px;
+}
+.commentDiv span {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}

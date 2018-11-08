@@ -110,7 +110,15 @@ class App extends Component {
                     modalDataChange={this.modalDataChange}
                   />
                 } />
-              <Route path="/witness" component={Witness} />
+              <Route path="/witness" 
+                render={() => 
+                  <Witness 
+                    modalData={this.state.modalData}
+                    modalStatus={this.state.modalStatus}
+                    modalOpenChange={this.modalOpenChange}
+                    modalDataChange={this.modalDataChange}
+                  />
+                } />
               <Route component={NoMatch} />
             </Switch>
             <div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 import "./main.css";
 import MainSection1 from "./Main_section1";
 import MainSection2 from "./Main_section2"
@@ -45,10 +46,15 @@ export default class Main extends Component {
     return (
       <div>
         <div className="component_body">
-        <button className="sideButton">
-          <div>신고 / 제보</div>
-          <div>등록하기</div>
-        </button>
+        <div className="mainBackGround">
+          <button className="sideButton">
+            <div>신고 / 제보</div>
+            <div>등록하기</div>
+          </button>
+            <Link to="/find">asdasd</Link>        
+            <Link to="/find">asdasd</Link>        
+            <Link to="/find">asdasd</Link>        
+        </div>
         <MainSection1 findData={this.state.findData} modalDataChange={this.props.modalDataChange}/>
           <MainSection2 
             findData={this.state.findData} 

@@ -15,6 +15,7 @@ class Mypage extends Component {
   };
 
   render() {
+    console.log(this.props);
     if (!this.state.userInfo.name) {
       return <div>loading...</div>;
     }

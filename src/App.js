@@ -56,32 +56,17 @@ class App extends Component {
   componentDidMount = () => {
     if (this.state.login) {
       this._loadUser()
-      // } 
     }
   };
 
-//   componentDidUpdate = (prevProps, prevState) => {
-//     // if(prevState.input !== this.state.input){
-//       if (this.state.login) {
-//       this._loadUser()
-//     // } 
-//   }
-// }
-
   _loadUser = () => {
-    // _loadUser = async () => {
     const { cookies } = this.props;
     const token = cookies.get("token");
     const config = {
       headers: { authorization: `Bearer ${token}` }
     };
-    console.log("config", config);
-    // Axios.get('http://localhost:5000/auth/check', config).then(response => {
     axios.get("http://34.217.9.241/auth/check", config).then(response => {
-      console.log("responseUserInfo", response.data.userInfo);
-      // this.setState({ userInfo: response.data.userInfo });
       this.setState(prevState => ({ userInfo: response.data.userInfo }));
-      console.log(this.state);
     });
   };
 
@@ -89,13 +74,11 @@ class App extends Component {
     const { cookies } = this.props;
     cookies.set("token", data.access_token, { path: "/", maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
-    // this.setState(({ login: true }));
   };
 
   logout = () => {
     const { cookies } = this.props;
-    cookies.remove("token");
-    // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
+    cookies.remove("token"); 
     this.setState(prevState => ({ login: false }));
   };
 
@@ -106,7 +89,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state,'aaaaa')
     if (!this.state.userInfo &&this.state.login) {
       return <div>loading...</div>;
     }

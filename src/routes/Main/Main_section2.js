@@ -23,11 +23,11 @@ export default class Main_section2 extends Component {
           <div className="main_section2_posts">
            {this.props.findData.map((find, idx)=>{
              return (
-               <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)}>
+               <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)} key={idx}>
                  <MainSectionList2 find={find} key={idx}/>
               </Link>  
              )})}
-          </div>        
+          </div>
         </div>
       </div>
     );

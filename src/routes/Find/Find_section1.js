@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Modal_section from "../Modal/Modal_section";
+import Modal_Section from "../Modal/Modal_section";
 
 
 
@@ -11,7 +11,7 @@ class Find_section1 extends Component {
       <div>
         {
         this.props.modalStatus ?
-        <Modal_section 
+        <Modal_Section 
         modalStatus={this.props.modalStatus}
         modalOpenChange={this.props.modalOpenChange}
         modalDataChange={this.props.modalDataChange}

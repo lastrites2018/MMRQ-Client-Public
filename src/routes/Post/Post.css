@@ -17,12 +17,6 @@
   box-shadow: -2px -2px 1px 1px #f5f5f5;
   border-radius: 15px;
 }
-.uploadImg {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
 .classificationButton {
   margin: 10px;
 }
@@ -181,9 +175,9 @@
   width: auto;
   height: auto;
 }
-input[type="file"] {
+/* input[type="file"] {
   color: transparent;
-}
+} */
 .dogname span {
   line-height: 20px;
   font-family: "Sunflower", sans-serif;
@@ -207,4 +201,26 @@ input[type="file"] {
   width: auto;
   height: auto;
   font-size: 20px;
+}
+.photoUpload {
+  text-align: center;
+}
+.photoUpload button {
+  font-size: 13px;
+  border: 3px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}
+.photoUpload input[type="file"] {
+  width: 14em;
+  font-size: 16px;
+  border: 3px solid #e5e5e5;
+  box-shadow: -2px -2px 1px 1px #f5f5f5;
+  border-radius: 15px;
+}
+#img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }

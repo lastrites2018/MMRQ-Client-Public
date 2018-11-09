@@ -1,49 +1,44 @@
 .Home-main {
-  min-height: 100%;
-  min-width: 1025px;
-  width: 100%;
-  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
 }
+.test {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: black;
+  position: absolute;
+  opacity: 0.3;
+}
+
 .Home-main-header {
-  background-color: grey;
+  background-color: whitesmoke;
   padding: 15px;
 }
 .Home-main-picture {
-  background: url("./dog.jpg") no-repeat center center fixed;
+  background: url("./newDog.jpeg") no-repeat center center fixed;
   min-height: 100%;
-  background-size: 100%;
-  padding-top: 10%;
+  background-size: cover;
+  padding-top: 30%;
 }
-.Home-main-footer {
-  background-color: grey;
-  padding: 20px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-.Home-main-logo {
-  border: 3px solid black;
-  border-radius: 7px;
-  background-color: white;
-  opacity: 0.9;
-  color: black;
-  font-size: 30px;
-  font-weight: 800;
-  padding: 5px;
-}
+
 .Home-main-comment {
   text-align: center;
-  font-size: 100px;
+  font-size: 70px;
+  font-family: "Sunflower", sans-serif;
   color: white;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px gray;
   opacity: 0.8;
 }
+.homeButtonsAll {
+}
 .buttons {
   text-align: center;
-  margin-top: 200px;
+  margin-top: 3em;
 }
 .Home-main-button1 button {
   background: gray;
@@ -58,6 +53,7 @@
   transition: 800ms ease all;
   outline: none;
   margin-right: 30px;
+  opacity: 0.8;
 }
 .Home-main-button1 button:hover {
   background: black;
@@ -88,6 +84,7 @@
 }
 
 .Home-main-button2 button {
+  opacity: 0.8;
   background: lightskyblue;
   color: #fff;
   border: none;
@@ -132,6 +129,7 @@
   text-align: center;
 }
 .homeToMain a {
+  opacity: 0.8;
   background: white;
   color: black;
   border: none;
@@ -169,4 +167,9 @@
 .homeToMain a:hover:after {
   width: 100%;
   transition: 800ms ease all;
+}
+#logo {
+  width: 10em;
+  border: 1px solid whitesmoke;
+  border-radius: 13px;
 }

@@ -65,7 +65,7 @@ class App extends Component {
 
   cookieSet = data => {
     const { cookies } = this.props;
-    cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
+    cookies.set("token", data.access_token, { path: "/", maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
     // this.setState(({ login: true }));
   };
@@ -80,14 +80,14 @@ class App extends Component {
     //console.log('App.js 토큰 확인', config);
     // Axios.get('http://localhost:5000/auth/check', config).then(response => {
     axios
-      .get('http://34.217.9.241/auth/check', config)
+      .get("http://34.217.9.241/auth/check", config)
       .then(response => {
-        console.log('response', response);
+        console.log("response", response);
         this.setState(prevState => ({ userInfo: response.data.userInfo }));
       })
       .catch(error => {
-        console.log('유저정보획득실패', error);
-        cookies.remove('token'); // 잘못된 쿠키 삭제
+        console.log("유저정보획득실패", error);
+        cookies.remove("token"); // 잘못된 쿠키 삭제
       });
   };
 

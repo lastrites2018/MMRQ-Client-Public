@@ -21,6 +21,7 @@ class Post extends Component {
       contentsData: "",
       imageData: "",
       dogSpecies: [
+        "모르겠음",
         "골든 두들",
         "골든 리트리버",
         "그레이 하운드",
@@ -204,7 +205,7 @@ class Post extends Component {
     ) {
       this.setState({
         postData: {
-          username: this.props.userInfo.username,
+          username: this.props.userInfo.name,
           title: this.state.titleData,
           citylocation: this.state.locationCityData,
           districtlocation: this.state.locationDistrictData,
@@ -230,12 +231,11 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.contentsData &&
-      this.state.imageData &&
-      this.state.petNameData
+      this.state.imageData
     ) {
       this.setState({
         postData: {
-          username: this.props.userInfo.username,
+          username: this.props.userInfo.name,
           title: this.state.titleData,
           citylocation: this.state.locationCityData,
           districtlocation: this.state.locationDistrictData,
@@ -244,7 +244,6 @@ class Post extends Component {
           sex: this.state.sexData,
           contents: this.state.contentsData,
           petimage: this.state.imageData,
-          petname: this.state.petNameData,
           userid: this.props.userInfo.userid,
           postdate: this.state.postDateData,
           handphone: this.props.userInfo.handphone,
@@ -267,18 +266,19 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.contentsData &&
-      this.state.imageData &&
-      this.state.petNameData
+      this.state.imageData
     ) {
       axios
-        .post("http://localhost:5000/witness", this.state.postData)
-        .then(response => {
-          console.log("목격 리스폰스으으으으");
+        .post("http://34.217.9.241/witness", this.state.postData)
+        .then(res => {
+          console.log("목격했어요 리스폰스 성고오오옹");
         })
         .then(() => {
-          this.props.history.push("/witness");
+          setTimeout(() => {
+            this.props.history.push("/witness");
+          }, 500);
         })
-        .catch(err => console.log(err, "목격 에러다아아아아"));
+        .catch(err => console.log("목격했어요 에러러러러러러러럴"));
     } else if (
       this.state.currentClassification === "찾아주세요" &&
       this.state.classificationData &&
@@ -289,20 +289,59 @@ class Post extends Component {
       this.state.speciesData &&
       this.state.sexData &&
       this.state.contentsData &&
-      this.state.rewardData &&
       this.state.imageData &&
       this.state.petNameData
     ) {
       axios
-        .post("http://localhost:5000/find", this.state.postData)
-        .then(response => {
-          console.log("실종신고 리스폰스으으으");
+        .post("http://34.217.9.241/find", this.state.postData)
+        .then(res => {
+          console.log("실종신고 리스폰스 성고오오오오오옹");
         })
         .then(() => {
-          this.props.history.push("/find");
+          setTimeout(() => {
+            this.props.history.push("/find");
+          }, 500);
         })
-        .catch(err => console.log(err, "실종신고 에러다아아아"));
+        .catch(err => console.log("실종신고 에러러러러러러러럴"));
     }
+  };
+  petName = () => {
+    if (this.state.currentClassification === "찾아주세요") {
+      return (
+        <span className="dogname">
+          <span>이름:</span>
+          <input
+            type="text"
+            name="dogName"
+            size="10"
+            placeholder="강아지 이름"
+            value={this.state.petNameData}
+            onChange={this.makePetNameData}
+          />
+        </span>
+      );
+    }
+  };
+  postImage = () => {
+    const fd = new FormData();
+    fd.append("image", this.state.imageData, this.state.imageData.name);
+    axios
+      .post("http://34.217.9.241/fileupload", fd, {
+        onUploadProgress: progressEvent => {
+          console.log(
+            "Upload Progress: " +
+              Math.round((progressEvent.loaded / progressEvent.total) * 100) +
+              "%"
+          );
+        }
+      })
+      .then(res => {
+        console.log(res, "실종신고 리스폰스으으으");
+      })
+      .then(() => {
+        this.props.history.push("/find");
+      })
+      .catch(err => console.log(err, "실종신고 에러러러러러러러"));
   };
 
   render() {
@@ -312,9 +351,8 @@ class Post extends Component {
     }
     return (
       <div className="postBody">
-        {console.log(this.props.userInfo)}
         <div className="postPictureBody">
-          <img src={this.state.imageData} alt="" className="uploadImg" />
+          <img id="img" src={this.state.imageData} alt="" />
         </div>
         <PhotoUpload
           makingImage={this.makeImageData}
@@ -381,17 +419,7 @@ class Post extends Component {
               <option value="모르겠음">모르겠음</option>
             </select>
           </span>
-          <span className="dogname">
-            <span>이름:</span>
-            <input
-              type="text"
-              name="dogName"
-              size="10"
-              placeholder="강아지 이름"
-              value={this.state.petNameData}
-              onChange={this.makePetNameData}
-            />
-          </span>
+          {this.petName()}
           {this.reward()}
         </div>
         <div className="explanation">
@@ -416,6 +444,7 @@ class Post extends Component {
             등록하기
           </button>
         </div>
+        {console.log(this.state.imageData, "postimmmmmmgggdata")}
       </div>
     );
   }

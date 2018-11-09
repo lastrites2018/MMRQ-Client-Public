@@ -1,56 +1,43 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class PhotoUpload extends Component {
   state = {
-    selectedFile: null,
-    base64Img: null
+    selectedFile: null
   };
 
-  makeBaseImg = () => {
-    let file = document.querySelector("input[type=file]").files[0];
-    let reader = new FileReader();
+  fileSelectedHandler = event => {
+    this.setState({
+      selectedFile: event.target.files[0]
+    });
+    // this.props.makingImage(event.target.files[0]);
+  };
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append("profile", this.state.selectedFile, this.state.selectedFile.name); //"profile" 이 부분은, 저장소에서 받기로 한 명칭과 같아야함
+    axios
+      .post("http://34.217.9.241/fileupload", fd, {
+        onUploadProgress: progressEvent => {
+          console.log(
+            "Upload Progress: " +
+              (progressEvent.loaded / progressEvent.total) * 100 +
+              "%"
+          );
+        }
+      })
+      .then(res => {
+        console.log(res.data, "resssponsive successs");
+        this.props.makingImage(res.data.url);
+      });
+  };
 
-    reader.addEventListener(
-      "load",
-      () => {
-        this.setState({
-          base64Img: reader.result
-        });
-        this.props.makingImage(reader.result);
-      },
-      false
-    );
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-  sendImageToPost = () => {
-    this.props.makingImage(this.state.base64Img);
-  };
-  selectOrDeleteImg = () => {
-    if (!this.props.photoSelectedOrNot) {
-      return (
-        <div>
-          <input type="file" onChange={this.makeBaseImg} />
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <div>
-            <input type="file" onChange={this.makeBaseImg} />
-          </div>
-          <div>
-            <button className="cancelPhoto" onClick={this.props.cancelPhoto}>
-              취소
-            </button>
-          </div>
-        </div>
-      );
-    }
-  };
   render() {
-    return <div className="photoInput">{this.selectOrDeleteImg()}</div>;
+    return (
+      <div className="photoUpload">
+        <input type="file" onChange={this.fileSelectedHandler} name="profile" />
+        <button onClick={this.fileUploadHandler}>사진 업로드</button>
+      </div>
+    );
   }
 }
 

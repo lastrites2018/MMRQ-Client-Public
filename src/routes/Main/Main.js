@@ -16,7 +16,7 @@ export default class Main extends Component {
 
   componentDidMount() {
     axios
-      .get("http://34.217.9.241/find?id_lte=8")
+      .get("http://34.217.9.241/find?id_lte=7")
       .then(res => {
         // console.log("axios_get", res.data);
         this.setState({
@@ -26,7 +26,7 @@ export default class Main extends Component {
       .catch(err => console.log(err));
 
     axios
-      .get("http://34.217.9.241/witness?id_lte=8")
+      .get("http://34.217.9.241/witness?id_lte=7")
       .then(res => {
         // console.log("axios_get", res.data);
         this.setState({
@@ -51,9 +51,6 @@ export default class Main extends Component {
             <div>신고 / 제보</div>
             <div>등록하기</div>
           </button>
-            <Link to="/find">asdasd</Link>        
-            <Link to="/find">asdasd</Link>        
-            <Link to="/find">asdasd</Link>        
         </div>
         <MainSection1 findData={this.state.findData} modalDataChange={this.props.modalDataChange}/>
           <MainSection2 

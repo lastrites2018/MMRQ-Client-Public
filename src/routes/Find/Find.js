@@ -129,15 +129,12 @@ export default class Find extends Component {
   
         <div className="buttonForm">
           <button onClick={this._beforePageMove}>〈</button>
-          {this.state.numberOfButtons.map((pageNumber, idx) => {
+          {this.state.numberOfButtons.map((pageNumber) => {
             return (
               <FindButton
                 pageIdxChange={this._pageIdxChange}
                 pageNumber={pageNumber}
-                nowPage={this.state.nowPage}
-                toggle={this._toggle}
                 currentPage={LastIdx}
-                key={idx}
               />
             );
           })}

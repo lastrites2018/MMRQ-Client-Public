@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.css';
+import logo from "./MMREQ_logo.png"
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-// import { Z_DEFAULT_COMPRESSION } from 'zlib';
+
 
 class Header extends Component {
   static propTypes = {
@@ -13,8 +14,6 @@ class Header extends Component {
   constructor(props) {
     super(props);
     const { cookies } = props;
-    // console.log('header', this.props.logout);
-    // console.log('header cookie!', cookies.get('test'));
     cookies.get('test')
       ? (this.state = { login: true })
       : (this.state = { login: false });
@@ -50,7 +49,10 @@ class Header extends Component {
   render() {
     return (
       <div className="header_line">
+      <div>
+        {/* <img src={logo} alt="" /> */}
       <span className="title_mm">멍멍</span> <span className="title_req">레스Q</span>
+
         <div className="header">
           <NavLink to="/post" className="item" activeClassName="active">
             신고/제보 등록하기
@@ -66,6 +68,8 @@ class Header extends Component {
           </NavLink>
           {this.loginchange()}
         </div>
+
+      </div>
       </div>
     );
   }

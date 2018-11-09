@@ -44,7 +44,7 @@ class MainSectionList2 extends Component {
   render() {
     return (
       <article className="mainAticle">
-        <img className="main_section2_post" src={`${this.props.find.petimage}`}/>
+        <img className="main_section2_post" src={`${this.props.find.petimage}`} alt=""/>
         <div className="article_title"key={this.props.idx}>
         {
           this.props.find.title.length > 24 ? 

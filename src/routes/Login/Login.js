@@ -44,6 +44,7 @@ class Login extends Component {
   }
 
   submit = data => {
+    // console.log('login.js');
     Axios.post('http://34.217.9.241/auth/login', data)
       // Axios.post('http://localhost:5000/users', data)
       .then(response => {

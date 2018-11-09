@@ -1,53 +1,75 @@
-import React, { Component } from 'react';
-import './Mypage.css';
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+import React, { Component } from "react";
+import axios from "axios";
+import MyPageSection1 from "./Mypage_section1"
+import MyPageSection2 from "./Mypage_section2"
+
+import _ from "lodash";
+import "./Mypage.css";
 
 class Mypage extends Component {
-  static propTypes = {
-    cookies: instanceOf(Cookies).isRequired
-  };
-
   state = {
     userInfo: this.props.userInfo,
-    findData: [],
-    witnessData: []
+    personalFindData: [],
+    personalWitnessData: []
   };
+
+  
+  componentDidMount() {
+    console.log(this.state.userInfo)
+    axios
+    .get("http://34.217.9.241/find")
+    .then(res => {
+      const reversedData = _.reverse(res.data);
+      console.log('reversedData',reversedData)
+      const userData = []
+      reversedData.map((data) => {
+        if(data.email === this.state.userInfo.email){
+          userData.push(data);
+        }
+      })
+      this.setState({
+        personalFindData: userData,
+      });
+    })
+    .catch(err => console.log(err));
+
+    axios
+      .get("http://34.217.9.241/witness")
+      .then(res => {
+        const reversedData = _.reverse(res.data);
+        const userData = []
+        reversedData.map((data) => {
+          if (data.email === this.state.userInfo.email){
+            userData.push(data);
+          }
+        })
+        this.setState({
+          personalWitnessData: userData,
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+
 
   render() {
     if (!this.state.userInfo) {
       return <div>loading...</div>;
     }
     return (
-      <div className="mypageFrame">
-        <div className="mypageInsideFrame">
-          <div className="myInfoDiv">
-            <span>My Info</span>
-          </div>
-          <div className="usernameDiv">
-            <span>이름 </span>
-            {':'}
-            {/* {name -> username으로 변경했습니다. 구체적이지 않아서요. db 데이터도 수정되었니다.} */}
-            <span>{this.state.userInfo.username}</span>
-          </div>
-          <div className="phoneNumberDiv">
-            <span>연락처</span>
-            {':'}
-            <span>{this.state.userInfo.handphone}</span>
-          </div>
-          <div className="emailDiv">
-            <span>Email</span>
-            {':'}
-            <span>{this.state.userInfo.email}</span>
-          </div>
-          <div className="commentDiv">
-            <span>{`지금 찾아갑니다.`}</span>
-          </div>
+      <div className="mypage">
+        <MyPageSection1 userInfo={this.state.userInfo} />
+          <div>
+          <MyPageSection2 
+            personalFindData={this.state.personalFindData} 
+            personalWitnessData={this.state.personalWitnessData} 
+            userInfo={this.state.userInfo}
+            modalDataChange={this.props.modalDataChange}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default withCookies(Mypage);
-// export default Mypage;
+export default Mypage;

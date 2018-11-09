@@ -55,14 +55,6 @@ class App extends Component {
     }
   };
 
-  //   componentDidUpdate = (prevProps, prevState) => {
-  //     // if(prevState.input !== this.state.input){
-  //       if (this.state.login) {
-  //       this._loadUser()
-  //     // }
-  //   }
-  // }
-
   cookieSet = data => {
     const { cookies } = this.props;
     cookies.set("token", data.access_token, { path: "/", maxAge: 3600 });
@@ -77,8 +69,6 @@ class App extends Component {
       headers: { authorization: `Bearer ${token}` }
     };
 
-    //console.log('App.js 토큰 확인', config);
-    // Axios.get('http://localhost:5000/auth/check', config).then(response => {
     axios
       .get("http://34.217.9.241/auth/check", config)
       .then(response => {
@@ -93,8 +83,7 @@ class App extends Component {
 
   logout = () => {
     const { cookies } = this.props;
-    cookies.remove("token");
-    // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
+    cookies.remove('token');
     this.setState(prevState => ({ login: false, userInfo: false }));
   };
 
@@ -144,7 +133,11 @@ class App extends Component {
             />
             <Route
               path="/mypage"
-              render={() => <Mypage userInfo={this.state.userInfo} />}
+              render={() => 
+              <Mypage
+               userInfo={this.state.userInfo}
+               modalDataChange={this.modalDataChange}
+              />}
             />
             <Route
               path="/signUp"

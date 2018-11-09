@@ -21,7 +21,7 @@ export default class Main_section1 extends Component {
         <Slider {...settings}>
           {this.props.findData.map((find, idx) => {
             return( 
-            <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)}>
+            <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)} key="idx">
               <MainSectionList1 find={find} key={idx} />
             </Link>
               )})}

@@ -11,7 +11,6 @@ export default class Main_section2 extends Component {
     return (
       <div className="main_section2_contents">
         <div className="main_section2_plzfind_line" >
-
           <div className="main_section2_plzfind_title">
             <Link to ="/find">
               <div className="main_section2_plzfind">우리 아이를 찾아주세요</div>
@@ -19,15 +18,14 @@ export default class Main_section2 extends Component {
               <div className="main_section2_plzfind_note">많은 관심과 제보 부탁드립니다.</div>
             </Link>
           </div>
-        
           <div className="main_section2_posts">
            {this.props.findData.map((find, idx)=>{
              return (
-               <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)}>
+              <Link to={"/find"} onClick={() =>this.props.modalDataChange(find)} key={idx}>
                  <MainSectionList2 find={find} key={idx}/>
-              </Link>  
+               </Link>  
              )})}
-          </div>        
+          </div>
         </div>
       </div>
     );

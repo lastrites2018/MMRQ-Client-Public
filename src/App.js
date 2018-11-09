@@ -56,11 +56,8 @@ class App extends Component {
   componentDidMount = () => {
     if (this.state.login) {
       this._loadUser();
-      // }
     }
   };
-
-  // 바뀐게 없다니 커밋해봅니다
 
   //   componentDidUpdate = (prevProps, prevState) => {
   //     // if(prevState.input !== this.state.input){
@@ -70,23 +67,6 @@ class App extends Component {
   //   }
   // }
 
-  _loadUser = () => {
-    // _loadUser = async () => {
-    const { cookies } = this.props;
-    const token = cookies.get('token');
-    const config = {
-      headers: { authorization: `Bearer ${token}` }
-    };
-    console.log('config', config);
-    // Axios.get('http://localhost:5000/auth/check', config).then(response => {
-    axios.get('http://34.217.9.241/auth/check', config).then(response => {
-      console.log('responseUserInfo', response.data.userInfo);
-      // this.setState({ userInfo: response.data.userInfo });
-      this.setState(prevState => ({ userInfo: response.data.userInfo }));
-      console.log(this.state);
-    });
-  };
-
   cookieSet = data => {
     const { cookies } = this.props;
     cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
@@ -94,11 +74,32 @@ class App extends Component {
     // this.setState(({ login: true }));
   };
 
+  _loadUser = () => {
+    const { cookies } = this.props;
+    const token = cookies.get('token');
+    const config = {
+      headers: { authorization: `Bearer ${token}` }
+    };
+
+    //console.log('App.js 토큰 확인', config);
+    // Axios.get('http://localhost:5000/auth/check', config).then(response => {
+    axios
+      .get('http://34.217.9.241/auth/check', config)
+      .then(response => {
+        console.log('response', response);
+        this.setState(prevState => ({ userInfo: response.data.userInfo }));
+      })
+      .catch(error => {
+        console.log('유저정보획득실패', error);
+        cookies.remove('token'); // 잘못된 쿠키 삭제
+      });
+  };
+
   logout = () => {
     const { cookies } = this.props;
     cookies.remove('token');
     // this.setState = { login: false }; // 여기서 setState로 하면 헤더 변화 없음.
-    this.setState(prevState => ({ login: false }));
+    this.setState(prevState => ({ login: false, userInfo: false }));
   };
 
   modalOpenChange = () => {
@@ -108,9 +109,9 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state,'aaaaa')
-    if (!this.state.userInfo &&this.state.login) {
-      return <div>loading...</div>;
+    console.log(this.state);
+    if (this.state.login && !this.state.userInfo) {
+      return <div>loading.....</div>;
     }
     return (
       <Router>
@@ -137,7 +138,13 @@ class App extends Component {
             <Route
               path="/login"
               // component={Login}
-              render={() => <Login cookieSet={this.cookieSet} _loadUser={this._loadUser}login={this.state.login}/>}
+              render={() => (
+                <Login
+                  cookieSet={this.cookieSet}
+                  _loadUser={this._loadUser}
+                  login={this.state.login}
+                />
+              )}
             />
             <Route
               path="/mypage"
@@ -145,7 +152,13 @@ class App extends Component {
             />
             <Route
               path="/signUp"
-              render={() => <SignUp cookieSet={this.cookieSet} />}
+              render={() => (
+                <SignUp
+                  login={this.state.login}
+                  _loadUser={this._loadUser}
+                  cookieSet={this.cookieSet}
+                />
+              )}
             />
             <Route
               path="/find"
@@ -180,5 +193,4 @@ class App extends Component {
   }
 }
 
-// export default App;
 export default withCookies(App);

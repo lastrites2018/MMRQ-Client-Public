@@ -42,15 +42,14 @@ class SignUp extends Component {
       handphone: null,
       username: null,
       password: null,
-      passwordConfirm: null,
-      isLogin: false
+      passwordConfirm: null
     };
     this.submit = this.submit.bind(this);
   }
 
   submit = async (email, handphone, username, password, passwordConfirm) => {
-    //event.preventDefault();
-    //console.log('signup data:::')
+    const { cookies } = this.props;
+    cookies.remove('token');
 
     Axios.post('http://34.217.9.241/users', {
       email: email,
@@ -61,22 +60,59 @@ class SignUp extends Component {
     })
       .then(response => {
         console.log('response', response);
-        Axios.post('http://34.217.9.241/auth/login', {
+        return new Promise(function(resolve, reject) {
+          setTimeout(() => {
+            console.log('1 초 지나고!');
+            resolve();
+          }, 1000);
+        });
+      })
+      .then(response => {
+        console.log('response2', response);
+        // return Axios.post('http://localhost:5000/auth/login', {
+        return Axios.post('http://34.217.9.241/auth/login', {
           email: email,
           password: password
         });
       })
       .then(response => {
-        console.log('response2', response);
-        this.setState({ isLogin: true });
+        console.log('respons3', response);
+        this.props.cookieSet(response.data);
+        this.props._loadUser();
       });
   };
+
+  //   Axios.post('http://localhost:5000/users', {
+  //     // Axios.post('http://34.217.9.241/users', {
+  //     email: email,
+  //     handphone: handphone,
+  //     username: username,
+  //     password: password,
+  //     passwordConfirm: passwordConfirm
+  //   })
+  //     .then(response => {
+  //       console.log('response', response);
+  //       setTimeout(function() {
+  //         console.log('Works!')
+  //       }, 2000);
+
+  //       return Axios.post('http://localhost:5000/auth/login', {
+  //         // return Axios.post('http://34.217.9.241/auth/login', {
+  //         email: email,
+  //         password: password
+  //       });
+  //     })
+  //     .then(response => {
+  //       console.log('response2', response);
+  //       this.props.cookieSet(response.data);
+  //     });
+  // };
 
   // await console.log('response', response);
 
   // const response2 = await Axios.post('http://34.217.9.241/auth/login', {
   //   email: email,
-  //   password: password
+  //   password: password.
   // });
   // await console.log('response2', response2);
 
@@ -113,7 +149,7 @@ class SignUp extends Component {
     // console.log('this.state.passwordConfirm:::', this.state.passwordConfirm)
     return (
       <Wrapp>
-        {this.state.isLogin && <Redirect to="/main" />}
+        {this.props.login && <Redirect to="/main" />}
         <Form id="validate-form">
           <AuthContent title="회원가입">
             {/* <label htmlFor="validate-color">이메일 </label> */}

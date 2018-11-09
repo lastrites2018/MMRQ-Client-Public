@@ -11,7 +11,7 @@ class Post extends Component {
     this.state = {
       currentClassification: "",
       classificationData: "",
-      writerData: "",
+      usernameData: "",
       titleData: "",
       locationCityData: "",
       locationDistrictData: "",
@@ -114,11 +114,6 @@ class Post extends Component {
       rewardData: event.target.value
     });
   };
-  // makeWriterData = event => {
-  //   this.setState({
-  //     writerData: event.target.value
-  //   });
-  // };
   makeTitleData = event => {
     this.setState({
       titleData: event.target.value
@@ -196,7 +191,6 @@ class Post extends Component {
   makePostData = () => {
     if (
       this.state.classificationData &&
-      // this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -210,7 +204,7 @@ class Post extends Component {
     ) {
       this.setState({
         postData: {
-          writer: this.props.userInfo.name,
+          username: this.props.userInfo.username,
           title: this.state.titleData,
           citylocation: this.state.locationCityData,
           districtlocation: this.state.locationDistrictData,
@@ -222,7 +216,6 @@ class Post extends Component {
           petimage: this.state.imageData,
           petname: this.state.petNameData,
           userid: this.props.userInfo.userid,
-          // username: this.props.userInfo.name,
           postdate: this.state.postDateData,
           handphone: this.props.userInfo.handphone,
           email: this.props.userInfo.email
@@ -230,7 +223,6 @@ class Post extends Component {
       });
     } else if (
       this.state.classificationData &&
-      // this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -243,7 +235,7 @@ class Post extends Component {
     ) {
       this.setState({
         postData: {
-          writer: this.props.userInfo.name,
+          username: this.props.userInfo.username,
           title: this.state.titleData,
           citylocation: this.state.locationCityData,
           districtlocation: this.state.locationDistrictData,
@@ -254,7 +246,6 @@ class Post extends Component {
           petimage: this.state.imageData,
           petname: this.state.petNameData,
           userid: this.props.userInfo.userid,
-          // username: this.props.userInfo.name,
           postdate: this.state.postDateData,
           handphone: this.props.userInfo.handphone,
           email: this.props.userInfo.email
@@ -269,7 +260,6 @@ class Post extends Component {
     if (
       this.state.currentClassification === "목격했어요" &&
       this.state.classificationData &&
-      // this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -292,7 +282,6 @@ class Post extends Component {
     } else if (
       this.state.currentClassification === "찾아주세요" &&
       this.state.classificationData &&
-      // this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
@@ -343,18 +332,6 @@ class Post extends Component {
             <option value="목격했어요">목격했어요</option>
           </select>
         </div>
-        {/* <FileUploadTool /> */}
-        {/* <div className="writer">
-          <div>작성자</div>
-          <input
-            onChange={this.makeWriterData}
-            value={this.state.writerData}
-            type="text"
-            name="writtenBy"
-            size="8"
-            placeholder="글쓴이"
-          />
-        </div> */}
         <div className="title">
           <div>글제목</div>
           <input

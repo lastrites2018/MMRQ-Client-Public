@@ -23,22 +23,36 @@
   background: url("./newDog.jpeg") no-repeat center center fixed;
   min-height: 100%;
   background-size: cover;
-  padding-top: 30%;
+  padding-top: 29%;
 }
-
+#mm {
+  background: url(/static/media/logo.bc57a94f.png) no-repeat;
+  background-size: 72px;
+  font-size: 70px;
+  color: orange;
+  font-family: "Gugi", cursive;
+  display: inline-block;
+  height: 90px;
+  opacity: 0.6;
+}
+#rq {
+  background-size: 72px;
+  font-size: 70px;
+  color: black;
+  font-family: "Gugi", cursive;
+  opacity: 0.7;
+}
+#line {
+}
 .Home-main-comment {
   text-align: center;
-  font-size: 70px;
-  font-family: "Sunflower", sans-serif;
-  color: white;
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px gray;
-  opacity: 0.8;
 }
+
 .homeButtonsAll {
 }
 .buttons {
   text-align: center;
-  margin-top: 3em;
+  margin-top: 1em;
 }
 .Home-main-button1 button {
   background: gray;

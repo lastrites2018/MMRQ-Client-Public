@@ -9,7 +9,7 @@ const HomeMainButton2 = ({ history }) => {
           history.push("/witness");
         }}
       >
-        Witness Report
+        목격 제보
       </button>
     </span>
   );

@@ -10,7 +10,7 @@ const HomeMainButton1 = ({ history }) => {
           history.push("/find");
         }}
       >
-        Missing Report
+        실종 신고
       </button>
     </span>
   );

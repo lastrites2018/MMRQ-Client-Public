@@ -9,19 +9,19 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: this.props.userInfo,
       currentClassification: "",
       classificationData: "",
-      writerData: "",
+      usernameData: "",
       titleData: "",
       locationCityData: "",
       locationDistrictData: "",
       locationDetailData: "",
       speciesData: "",
       sexData: "",
-      featureData: "",
+      contentsData: "",
       imageData: "",
       dogSpecies: [
+        "모르겠음",
         "골든 두들",
         "골든 리트리버",
         "그레이 하운드",
@@ -115,11 +115,6 @@ class Post extends Component {
       rewardData: event.target.value
     });
   };
-  makeWriterData = event => {
-    this.setState({
-      writerData: event.target.value
-    });
-  };
   makeTitleData = event => {
     this.setState({
       titleData: event.target.value
@@ -150,9 +145,14 @@ class Post extends Component {
       sexData: event.target.value
     });
   };
-  makeFeatureData = event => {
+  makeContentsData = event => {
     this.setState({
-      featureData: event.target.value
+      contentsData: event.target.value
+    });
+  };
+  makePetNameData = event => {
+    this.setState({
+      petNameData: event.target.value
     });
   };
   missingOrFoundPlace = () => {
@@ -182,58 +182,72 @@ class Post extends Component {
       );
     }
   };
+  makePostDate = () => {
+    var date = new Date();
+    this.setState({
+      postDateData: date
+    });
+  };
 
   makePostData = () => {
     if (
       this.state.classificationData &&
-      this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData &&
+      this.state.contentsData &&
       this.state.rewardData &&
-      this.state.imageData
+      this.state.imageData &&
+      this.state.petNameData
     ) {
       this.setState({
         postData: {
-          writer: this.state.writerData,
+          username: this.props.userInfo.name,
           title: this.state.titleData,
-          city: this.state.locationCityData,
-          district: this.state.locationDistrictData,
-          locationdetail: this.state.locationDetailData,
+          citylocation: this.state.locationCityData,
+          districtlocation: this.state.locationDistrictData,
+          detaillocation: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
-          feature: this.state.featureData,
+          contents: this.state.contentsData,
           reward: this.state.rewardData,
-          petimage: this.state.imageData
+          petimage: this.state.imageData,
+          petname: this.state.petNameData,
+          userid: this.props.userInfo.userid,
+          postdate: this.state.postDateData,
+          handphone: this.props.userInfo.handphone,
+          email: this.props.userInfo.email
         }
       });
     } else if (
       this.state.classificationData &&
-      this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData &&
+      this.state.contentsData &&
       this.state.imageData
     ) {
       this.setState({
         postData: {
-          writer: this.state.writerData,
+          username: this.props.userInfo.name,
           title: this.state.titleData,
-          city: this.state.locationCityData,
-          district: this.state.locationDistrictData,
-          locationdetail: this.state.locationDetailData,
+          citylocation: this.state.locationCityData,
+          districtlocation: this.state.locationDistrictData,
+          detaillocation: this.state.locationDetailData,
           species: this.state.speciesData,
           sex: this.state.sexData,
-          feature: this.state.featureData,
-          petimage: this.state.imageData
+          contents: this.state.contentsData,
+          petimage: this.state.imageData,
+          userid: this.props.userInfo.userid,
+          postdate: this.state.postDateData,
+          handphone: this.props.userInfo.handphone,
+          email: this.props.userInfo.email
         }
       });
     } else {
@@ -245,58 +259,100 @@ class Post extends Component {
     if (
       this.state.currentClassification === "목격했어요" &&
       this.state.classificationData &&
-      this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData &&
+      this.state.contentsData &&
       this.state.imageData
     ) {
       axios
-        .post("http://localhost:5000/witness", this.state.postData)
-        .then(response => {
-          console.log("목격 리스폰스으으으으");
+        .post("http://34.217.9.241/witness", this.state.postData)
+        .then(res => {
+          console.log("목격했어요 리스폰스 성고오오옹");
         })
         .then(() => {
-          this.props.history.push("/witness");
+          setTimeout(() => {
+            this.props.history.push("/witness");
+          }, 500);
         })
-        .catch(err => console.log(err, "목격 에러다아아아아"));
+        .catch(err => console.log("목격했어요 에러러러러러러러럴"));
     } else if (
       this.state.currentClassification === "찾아주세요" &&
       this.state.classificationData &&
-      this.state.writerData &&
       this.state.titleData &&
       this.state.locationCityData &&
       this.state.locationDistrictData &&
       this.state.locationDetailData &&
       this.state.speciesData &&
       this.state.sexData &&
-      this.state.featureData &&
-      this.state.rewardData &&
-      this.state.imageData
+      this.state.contentsData &&
+      this.state.imageData &&
+      this.state.petNameData
     ) {
       axios
-        .post("http://localhost:5000/find", this.state.postData)
-        .then(response => {
-          console.log("실종신고 리스폰스으으으");
+        .post("http://34.217.9.241/find", this.state.postData)
+        .then(res => {
+          console.log("실종신고 리스폰스 성고오오오오오옹");
         })
         .then(() => {
-          this.props.history.push("/find");
+          setTimeout(() => {
+            this.props.history.push("/find");
+          }, 500);
         })
-        .catch(err => console.log(err, "실종신고 에러다아아아"));
+        .catch(err => console.log("실종신고 에러러러러러러러럴"));
     }
   };
-  componentDidMount() {
-    console.log(this.props.userInfo, "uuuuusususususu");
-  }
+  petName = () => {
+    if (this.state.currentClassification === "찾아주세요") {
+      return (
+        <span className="dogname">
+          <span>이름:</span>
+          <input
+            type="text"
+            name="dogName"
+            size="10"
+            placeholder="강아지 이름"
+            value={this.state.petNameData}
+            onChange={this.makePetNameData}
+          />
+        </span>
+      );
+    }
+  };
+  postImage = () => {
+    const fd = new FormData();
+    fd.append("image", this.state.imageData, this.state.imageData.name);
+    axios
+      .post("http://34.217.9.241/fileupload", fd, {
+        onUploadProgress: progressEvent => {
+          console.log(
+            "Upload Progress: " +
+              Math.round((progressEvent.loaded / progressEvent.total) * 100) +
+              "%"
+          );
+        }
+      })
+      .then(res => {
+        console.log(res, "실종신고 리스폰스으으으");
+      })
+      .then(() => {
+        this.props.history.push("/find");
+      })
+      .catch(err => console.log(err, "실종신고 에러러러러러러러"));
+  };
+
   render() {
+    if (!this.props.userInfo) {
+      alert("로그인 해주세요");
+      this.props.history.push("/login");
+    }
     return (
       <div className="postBody">
         <div className="postPictureBody">
-          <img src={this.state.imageData} alt="" className="uploadImg" />
+          <img id="img" src={this.state.imageData} alt="" />
         </div>
         <PhotoUpload
           makingImage={this.makeImageData}
@@ -313,18 +369,6 @@ class Post extends Component {
             <option value="찾아주세요">찾아주세요</option>
             <option value="목격했어요">목격했어요</option>
           </select>
-        </div>
-        {/* <FileUploadTool /> */}
-        <div className="writer">
-          <div>작성자</div>
-          <input
-            onChange={this.makeWriterData}
-            value={this.state.writerData}
-            type="text"
-            name="writtenBy"
-            size="8"
-            placeholder="글쓴이"
-          />
         </div>
         <div className="title">
           <div>글제목</div>
@@ -375,6 +419,7 @@ class Post extends Component {
               <option value="모르겠음">모르겠음</option>
             </select>
           </span>
+          {this.petName()}
           {this.reward()}
         </div>
         <div className="explanation">
@@ -383,14 +428,15 @@ class Post extends Component {
             name="explanation"
             size="100"
             placeholder="특징 및 상세 설명"
-            value={this.state.featureData}
-            onChange={this.makeFeatureData}
+            value={this.state.contentsData}
+            onChange={this.makeContentsData}
           />
         </div>
         <div className="submitButton">
           <button
             type="submit"
             onClick={async () => {
+              await this.makePostDate();
               await this.makePostData();
               await this.submitData();
             }}
@@ -398,6 +444,7 @@ class Post extends Component {
             등록하기
           </button>
         </div>
+        {console.log(this.state.imageData, "postimmmmmmgggdata")}
       </div>
     );
   }

@@ -7,7 +7,7 @@ import { Form } from 'informed';
 import Axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 // const validate = value => {
 //   return !value || value.length < 4
@@ -42,15 +42,15 @@ class SignUp extends Component {
       handphone: null,
       username: null,
       password: null,
-      passwordConfirm: null,
-      isLogin: false,
-    }
+      passwordConfirm: null
+    };
     this.submit = this.submit.bind(this);
   }
 
-  submit = (email, handphone, username, password, passwordConfirm) => {
-    //event.preventDefault();
-    //console.log('signup data:::');
+  submit = async (email, handphone, username, password, passwordConfirm) => {
+    const { cookies } = this.props;
+    cookies.remove('token');
+
     Axios.post('http://34.217.9.241/users', {
       email: email,
       handphone: handphone,
@@ -58,22 +58,88 @@ class SignUp extends Component {
       password: password,
       passwordConfirm: passwordConfirm
     })
-      // .then(
-      //   Axios.get('http://34.217.9.241/')
-      // )
       .then(response => {
-        
-        console.log('response:::', response.data);
-        console.log(this, '회원가입 완료');
-        //this.props.cookieSet(response.data);
-        // 가입 처리 하고
-        // 로그인 확인을 해야 한다. setcookie에서 지정해주거나?
-        // 어디선가 해줘야겠지?
-        this.setState({isLogin: true});
-        this.props.cookieSet(response.data);
+        console.log('response', response);
+        return new Promise(function(resolve, reject) {
+          setTimeout(() => {
+            console.log('1 초 지나고!');
+            resolve();
+          }, 1000);
+        });
       })
-      .catch(error => console.log('error', error));
+      .then(response => {
+        console.log('response2', response);
+        // return Axios.post('http://localhost:5000/auth/login', {
+        return Axios.post('http://34.217.9.241/auth/login', {
+          email: email,
+          password: password
+        });
+      })
+      .then(response => {
+        console.log('respons3', response);
+        this.props.cookieSet(response.data);
+        this.props._loadUser();
+      });
   };
+
+  //   Axios.post('http://localhost:5000/users', {
+  //     // Axios.post('http://34.217.9.241/users', {
+  //     email: email,
+  //     handphone: handphone,
+  //     username: username,
+  //     password: password,
+  //     passwordConfirm: passwordConfirm
+  //   })
+  //     .then(response => {
+  //       console.log('response', response);
+  //       setTimeout(function() {
+  //         console.log('Works!')
+  //       }, 2000);
+
+  //       return Axios.post('http://localhost:5000/auth/login', {
+  //         // return Axios.post('http://34.217.9.241/auth/login', {
+  //         email: email,
+  //         password: password
+  //       });
+  //     })
+  //     .then(response => {
+  //       console.log('response2', response);
+  //       this.props.cookieSet(response.data);
+  //     });
+  // };
+
+  // await console.log('response', response);
+
+  // const response2 = await Axios.post('http://34.217.9.241/auth/login', {
+  //   email: email,
+  //   password: password.
+  // });
+  // await console.log('response2', response2);
+
+  // await this.setState({ isLogin: true });
+
+  // Axios.post('http://34.217.9.241/users', {
+  //   email: email,
+  //   handphone: handphone,
+  //   username: username,
+  //   password: password,
+  //   passwordConfirm: passwordConfirm
+  // })
+  //   // .then(
+  //   //   Axios.get('http://34.217.9.241/')
+  //   // )
+  //   .then(response => {
+
+  //     console.log('response:::', response.data);
+  //     console.log(this, '회원가입 완료');
+  //     //this.props.cookieSet(response.data);
+  //     // 가입 처리 하고
+  //     // 로그인 확인을 해야 한다. setcookie에서 지정해주거나?
+  //     // 어디선가 해줘야겠지?
+  //     this.setState({isLogin: true});
+  //     this.props.cookieSet(response.data);
+  //   })
+  //   .catch(error => console.log('error', error));
 
   render() {
     // console.log('this.state.email:::', this.state.email)
@@ -83,43 +149,62 @@ class SignUp extends Component {
     // console.log('this.state.passwordConfirm:::', this.state.passwordConfirm)
     return (
       <Wrapp>
-        {this.state.isLogin && <Redirect to="/main" />}
+        {this.props.login && <Redirect to="/main" />}
         <Form id="validate-form">
           <AuthContent title="회원가입">
             {/* <label htmlFor="validate-color">이메일 </label> */}
             {/* <Text field="email" id="validate-email" validate={validate} /> */}
-            <InputWithLabel 
-            onChange={(event) => this.setState({email: event.target.value})} 
-            label="이메일" 
-            name="email" 
-            placeholder="이메일" 
+            <InputWithLabel
+              onChange={event => this.setState({ email: event.target.value })}
+              label="이메일"
+              name="email"
+              placeholder="이메일"
             />
             <InputWithLabel
-              onChange={(event) => this.setState({handphone: event.target.value})}
+              onChange={event =>
+                this.setState({ handphone: event.target.value })
+              }
               label="연락처"
               name="handphone"
               placeholder="연락처"
             />
             <InputWithLabel
-              onChange={(event) => this.setState({username: event.target.value})}
+              onChange={event =>
+                this.setState({ username: event.target.value })
+              }
               label="닉네임"
               name="username"
               placeholder="닉네임"
             />
             <InputWithLabel
-              onChange={(event) => this.setState({password: event.target.value})}
+              onChange={event =>
+                this.setState({ password: event.target.value })
+              }
               label="비밀번호"
               name="password"
               placeholder="비밀번호"
             />
             <InputWithLabel
-              onChange={(event) => this.setState({passwordConfirm: event.target.value})}
+              onChange={event =>
+                this.setState({ passwordConfirm: event.target.value })
+              }
               label="비밀번호 확인"
               name="passwordConfirm"
               placeholder="비밀번호 확인"
             />
-            <AuthButton 
-            onClick={() => this.submit(this.state.email, this.state.handphone, this.state.username, this.state.password, this.state.passwordConfirm)} >회원가입</AuthButton>
+            <AuthButton
+              onClick={() =>
+                this.submit(
+                  this.state.email,
+                  this.state.handphone,
+                  this.state.username,
+                  this.state.password,
+                  this.state.passwordConfirm
+                )
+              }
+            >
+              회원가입
+            </AuthButton>
           </AuthContent>
         </Form>
       </Wrapp>

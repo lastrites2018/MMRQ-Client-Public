@@ -8,8 +8,7 @@ import "./Mypage.css";
 
 class Mypage extends Component {
   state = {
-    // userInfo: this.props.userInfo,  //데이터 제대로 들어오면 이거로 사용해야됨
-    userInfo: {email: "test@test.com",handphone: "054-4981-3393",id: 1,writer: "예은",password: "test",userid: 1},
+    userInfo: this.props.userInfo,
     personalFindData: [],
     personalWitnessData: []
   };
@@ -22,10 +21,9 @@ class Mypage extends Component {
     .then(res => {
       const reversedData = _.reverse(res.data);
       console.log('reversedData',reversedData)
-      // console.log('this.state.userInfo',reversedData)
       const userData = []
       reversedData.map((data) => {
-        if(data.writer.slice(0,2) === this.state.userInfo.writer){
+        if(data.email === this.state.userInfo.email){
           userData.push(data);
         }
       })
@@ -41,9 +39,7 @@ class Mypage extends Component {
         const reversedData = _.reverse(res.data);
         const userData = []
         reversedData.map((data) => {
-          // console.log("reversedData", data.writer)
-          // console.log("111111", this.state.userInfo.writer)
-          if (data.writer.slice(0, 2) === this.state.userInfo.writer) {
+          if (data.email === this.state.userInfo.email){
             userData.push(data);
           }
         })
@@ -61,12 +57,16 @@ class Mypage extends Component {
       return <div>loading...</div>;
     }
     return (
-      <div>
-        <MyPageSection1 personalFindData={this.state.personalFindData} userInfo={this.state.userInfo} />
-        <MyPageSection2 
-          personalFindData={this.state.personalFindData} 
-          personalWitnessData={this.state.personalWitnessData} 
-          userInfo={this.state.userInfo} />
+      <div className="mypage">
+        <MyPageSection1 userInfo={this.state.userInfo} />
+          <div>
+          <MyPageSection2 
+            personalFindData={this.state.personalFindData} 
+            personalWitnessData={this.state.personalWitnessData} 
+            userInfo={this.state.userInfo}
+            modalDataChange={this.props.modalDataChange}
+          />
+        </div>
       </div>
     );
   }

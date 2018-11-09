@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import axios from "axios";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 
-import "./app.css";
+import './app.css';
 
-import Main from "./routes/Main/Main";
-import Post from "./routes/Post/Post";
-import Login from "./routes/Login/Login";
-import Mypage from "./routes/Mypage/Mypage";
-import SignUp from "./routes/SignUp/SignUp";
-import Find from "./routes/Find/Find";
-import Witness from "./routes/Witness/Witness";
-import NoMatch from "./routes/NoMatch/NoMatch";
+import Main from './routes/Main/Main';
+import Post from './routes/Post/Post';
+import Login from './routes/Login/Login';
+import Mypage from './routes/Mypage/Mypage';
+import SignUp from './routes/SignUp/SignUp';
+import Find from './routes/Find/Find';
+import Witness from './routes/Witness/Witness';
+import NoMatch from './routes/NoMatch/NoMatch';
 
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import { withCookies, Cookies } from "react-cookie";
-import { instanceOf } from "prop-types";
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 
 class App extends Component {
   state = {
@@ -38,7 +38,7 @@ class App extends Component {
       backGround: true
     };
 
-    cookies.get("token")
+    cookies.get('token')
       ? (this.state = { login: true })
       : (this.state = { login: false });
 
@@ -55,31 +55,40 @@ class App extends Component {
 
   componentDidMount = () => {
     if (this.state.login) {
-      this._loadUser()
+      this._loadUser();
     }
-  };
-
-  _loadUser = () => {
-    const { cookies } = this.props;
-    const token = cookies.get("token");
-    const config = {
-      headers: { authorization: `Bearer ${token}` }
-    };
-    axios.get("http://34.217.9.241/auth/check", config).then(response => {
-      this.setState(prevState => ({ userInfo: response.data.userInfo }));
-    });
   };
 
   cookieSet = data => {
     const { cookies } = this.props;
-    cookies.set("token", data.access_token, { path: "/", maxAge: 3600 });
+    cookies.set('token', data.access_token, { path: '/', maxAge: 3600 });
     this.setState(prevState => ({ login: true }));
+    // this.setState(({ login: true }));
+  };
+
+  _loadUser = () => {
+    const { cookies } = this.props;
+    const token = cookies.get('token');
+    const config = {
+      headers: { authorization: `Bearer ${token}` }
+    };
+
+    axios
+      .get('http://34.217.9.241/auth/check', config)
+      .then(response => {
+        console.log('response', response);
+        this.setState(prevState => ({ userInfo: response.data.userInfo }));
+      })
+      .catch(error => {
+        console.log('유저정보획득실패', error);
+        cookies.remove('token'); 
+      });
   };
 
   logout = () => {
     const { cookies } = this.props;
-    cookies.remove("token"); 
-    this.setState(prevState => ({ login: false }));
+    cookies.remove('token');
+    this.setState(prevState => ({ login: false, userInfo: false }));
   };
 
   modalOpenChange = () => {
@@ -89,8 +98,9 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.userInfo &&this.state.login) {
-      return <div>loading...</div>;
+    console.log(this.state);
+    if (this.state.login && !this.state.userInfo) {
+      return <div>loading.....</div>;
     }
     return (
       <Router>
@@ -117,15 +127,31 @@ class App extends Component {
             <Route
               path="/login"
               // component={Login}
-              render={() => <Login cookieSet={this.cookieSet} _loadUser={this._loadUser}login={this.state.login}/>}
+              render={() => (
+                <Login
+                  cookieSet={this.cookieSet}
+                  _loadUser={this._loadUser}
+                  login={this.state.login}
+                />
+              )}
             />
             <Route
               path="/mypage"
-              render={() => <Mypage userInfo={this.state.userInfo} />}
+              render={() => 
+              <Mypage
+               userInfo={this.state.userInfo}
+               modalDataChange={this.modalDataChange}
+              />}
             />
             <Route
               path="/signUp"
-              render={() => <SignUp cookieSet={this.cookieSet} />}
+              render={() => (
+                <SignUp
+                  login={this.state.login}
+                  _loadUser={this._loadUser}
+                  cookieSet={this.cookieSet}
+                />
+              )}
             />
             <Route
               path="/find"
@@ -160,5 +186,4 @@ class App extends Component {
   }
 }
 
-// export default App;
 export default withCookies(App);

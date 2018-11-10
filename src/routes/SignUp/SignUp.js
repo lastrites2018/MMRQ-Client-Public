@@ -9,18 +9,6 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-// const validate = value => {
-//   return !value || value.length < 4
-//     ? '최소 4글자 이상은 입력해주셔야 합니다.'
-//     : null;
-// };
-
-// const numberValidate = value => {
-//   // pattern="^\d{3}-\d{4}-\d{4}$"
-//   return !value || value.length < 4
-//     ? '최소 4글자 이상은 입력해주셔야 합니다.'
-//     : null;
-// };
 const Wrapp = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -38,11 +26,11 @@ class SignUp extends Component {
     super(props);
 
     this.state = {
-      email: null,
-      handphone: null,
-      username: null,
-      password: null,
-      passwordConfirm: null
+      email: false,
+      handphone: false,
+      username: false,
+      password: false,
+      passwordConfirm: false
     };
     this.submit = this.submit.bind(this);
   }
@@ -50,6 +38,11 @@ class SignUp extends Component {
   submit = async (email, handphone, username, password, passwordConfirm) => {
     const { cookies } = this.props;
     cookies.remove('token');
+
+    if (!email || !handphone || !username || !password || !passwordConfirm) {
+      alert('데이터를 전부 입력해주세요.');
+      return;
+    }
 
     Axios.post('http://34.217.9.241/users', {
       email: email,
@@ -82,71 +75,7 @@ class SignUp extends Component {
       });
   };
 
-  //   Axios.post('http://localhost:5000/users', {
-  //     // Axios.post('http://34.217.9.241/users', {
-  //     email: email,
-  //     handphone: handphone,
-  //     username: username,
-  //     password: password,
-  //     passwordConfirm: passwordConfirm
-  //   })
-  //     .then(response => {
-  //       console.log('response', response);
-  //       setTimeout(function() {
-  //         console.log('Works!')
-  //       }, 2000);
-
-  //       return Axios.post('http://localhost:5000/auth/login', {
-  //         // return Axios.post('http://34.217.9.241/auth/login', {
-  //         email: email,
-  //         password: password
-  //       });
-  //     })
-  //     .then(response => {
-  //       console.log('response2', response);
-  //       this.props.cookieSet(response.data);
-  //     });
-  // };
-
-  // await console.log('response', response);
-
-  // const response2 = await Axios.post('http://34.217.9.241/auth/login', {
-  //   email: email,
-  //   password: password.
-  // });
-  // await console.log('response2', response2);
-
-  // await this.setState({ isLogin: true });
-
-  // Axios.post('http://34.217.9.241/users', {
-  //   email: email,
-  //   handphone: handphone,
-  //   username: username,
-  //   password: password,
-  //   passwordConfirm: passwordConfirm
-  // })
-  //   // .then(
-  //   //   Axios.get('http://34.217.9.241/')
-  //   // )
-  //   .then(response => {
-
-  //     console.log('response:::', response.data);
-  //     console.log(this, '회원가입 완료');
-  //     //this.props.cookieSet(response.data);
-  //     // 가입 처리 하고
-  //     // 로그인 확인을 해야 한다. setcookie에서 지정해주거나?
-  //     // 어디선가 해줘야겠지?
-  //     this.setState({isLogin: true});
-  //     this.props.cookieSet(response.data);
-  //   })
-  //   .catch(error => console.log('error', error));
-
   render() {
-    // console.log('this.state.email:::', this.state.email)
-    // console.log('this.state.handphone:::', this.state.handphone)
-    // console.log('this.state.username:::', this.state.username)
-    // console.log('this.state.password:::', this.state.password)
-    // console.log('this.state.passwordConfirm:::', this.state.passwordConfirm)
     return (
       <Wrapp>
         {this.props.login && <Redirect to="/main" />}
@@ -181,6 +110,7 @@ class SignUp extends Component {
                 this.setState({ password: event.target.value })
               }
               label="비밀번호"
+              type="password"
               name="password"
               placeholder="비밀번호"
             />
@@ -189,6 +119,7 @@ class SignUp extends Component {
                 this.setState({ passwordConfirm: event.target.value })
               }
               label="비밀번호 확인"
+              type="password"
               name="passwordConfirm"
               placeholder="비밀번호 확인"
             />

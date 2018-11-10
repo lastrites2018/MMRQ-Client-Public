@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Modal_section from "../Modal/Modal_section";
+import Moment from "react-moment";
 
 class Witness_section1 extends Component {
   render() {
@@ -41,7 +42,10 @@ class Witness_section1 extends Component {
                 </div>
                 {/* <div className="article_pet_reward">사례금: {witness.reward}</div> */}
                 <div className="article_pet_post_date">
-                  Date: {witness.postdate}
+                  Date:
+                  <Moment format="D.MMM.YYYY" withTitle>
+                    {witness.postdate}
+                  </Moment>
                 </div>
               </article>
             </div>

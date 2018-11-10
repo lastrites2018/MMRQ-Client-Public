@@ -11,3 +11,6 @@ compiled/
 .package-lock.json
 package-lock.json
 .yarn.lock
+
+#build
+build/

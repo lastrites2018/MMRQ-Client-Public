@@ -41,7 +41,8 @@ class Main extends Component {
       this.state.findData.length === 0 ||
       this.state.witnessData.length === 0
     ) {
-      return <div>loding....</div>;
+      return <div style={{textAlign:"center"}}><img src="http://blog.hivelab.co.kr/wp-content/uploads/2017/10/004.gif" /></div>;
+      // return <div>loding....</div>;
     }
     return (
       <div>

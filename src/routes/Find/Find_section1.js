@@ -24,7 +24,7 @@ class Find_section1 extends Component {
             {this.props.findData.map((find, idx) => <div >
                 <article className="find_article" id={idx} onClick={()=>this.props.modalDataChange(find)}>
                   <img className="find_section2_post" src={`${find.petimage}`} alt="" />
-                  <div className="article_title">
+                  <div className="find_Article_Title">
                     {find.title.length > 24
                       ? `${find.title.slice(0, 24)} ...`
                       : find.title}

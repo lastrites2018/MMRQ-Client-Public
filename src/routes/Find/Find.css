@@ -24,14 +24,15 @@
   border-radius: 15px;
   float: left;
 }
-
-.article_title {
-  /* height: 325px; */
+ 
+.find_Article_Title {
+  height: 410px;
   font-family: 'Cute Font', cursive;
   font-size: 1.7em;
   margin-bottom: 15px;
   font-weight: bold;
 }
+
 
 .find_article {
   height: 490px;

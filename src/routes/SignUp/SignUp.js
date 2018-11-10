@@ -3,11 +3,12 @@ import AuthContent from './AuthContent';
 import InputWithLabel from './InputWithLabel';
 import AuthButton from './AuthButton';
 import styled from 'styled-components';
-import { Form } from 'informed';
+// import { Form } from 'informed';
 import Axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import { Redirect } from 'react-router-dom';
+// import { Formik } from 'formik';
 
 // const validate = value => {
 //   return !value || value.length < 4
@@ -21,6 +22,7 @@ import { Redirect } from 'react-router-dom';
 //     ? '최소 4글자 이상은 입력해주셔야 합니다.'
 //     : null;
 // };
+
 const Wrapp = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -38,19 +40,26 @@ class SignUp extends Component {
     super(props);
 
     this.state = {
-      email: null,
-      handphone: null,
-      username: null,
-      password: null,
-      passwordConfirm: null
+      email: false,
+      handphone: false,
+      username: false,
+      password: false,
+      passwordConfirm: false
     };
     this.submit = this.submit.bind(this);
   }
 
-  submit = async (email, handphone, username, password, passwordConfirm) => {
+  submit = (email, handphone, username, password, passwordConfirm) => {
     const { cookies } = this.props;
+    console.log('arg', email, handphone, username);
     cookies.remove('token');
+    if (!email || !handphone || !username || !password || !passwordConfirm) {
+      console.log(' 실행 체크');
+      alert('데이터를 전부 입력해주세요.');
+      return;
+    }
 
+    // console.log('아래 실행 체크');
     Axios.post('http://34.217.9.241/users', {
       email: email,
       handphone: handphone,
@@ -82,65 +91,6 @@ class SignUp extends Component {
       });
   };
 
-  //   Axios.post('http://localhost:5000/users', {
-  //     // Axios.post('http://34.217.9.241/users', {
-  //     email: email,
-  //     handphone: handphone,
-  //     username: username,
-  //     password: password,
-  //     passwordConfirm: passwordConfirm
-  //   })
-  //     .then(response => {
-  //       console.log('response', response);
-  //       setTimeout(function() {
-  //         console.log('Works!')
-  //       }, 2000);
-
-  //       return Axios.post('http://localhost:5000/auth/login', {
-  //         // return Axios.post('http://34.217.9.241/auth/login', {
-  //         email: email,
-  //         password: password
-  //       });
-  //     })
-  //     .then(response => {
-  //       console.log('response2', response);
-  //       this.props.cookieSet(response.data);
-  //     });
-  // };
-
-  // await console.log('response', response);
-
-  // const response2 = await Axios.post('http://34.217.9.241/auth/login', {
-  //   email: email,
-  //   password: password.
-  // });
-  // await console.log('response2', response2);
-
-  // await this.setState({ isLogin: true });
-
-  // Axios.post('http://34.217.9.241/users', {
-  //   email: email,
-  //   handphone: handphone,
-  //   username: username,
-  //   password: password,
-  //   passwordConfirm: passwordConfirm
-  // })
-  //   // .then(
-  //   //   Axios.get('http://34.217.9.241/')
-  //   // )
-  //   .then(response => {
-
-  //     console.log('response:::', response.data);
-  //     console.log(this, '회원가입 완료');
-  //     //this.props.cookieSet(response.data);
-  //     // 가입 처리 하고
-  //     // 로그인 확인을 해야 한다. setcookie에서 지정해주거나?
-  //     // 어디선가 해줘야겠지?
-  //     this.setState({isLogin: true});
-  //     this.props.cookieSet(response.data);
-  //   })
-  //   .catch(error => console.log('error', error));
-
   render() {
     // console.log('this.state.email:::', this.state.email)
     // console.log('this.state.handphone:::', this.state.handphone)
@@ -150,7 +100,7 @@ class SignUp extends Component {
     return (
       <Wrapp>
         {this.props.login && <Redirect to="/main" />}
-        <Form id="validate-form">
+        <form id="validate-form">
           <AuthContent title="회원가입">
             {/* <label htmlFor="validate-color">이메일 </label> */}
             {/* <Text field="email" id="validate-email" validate={validate} /> */}
@@ -174,7 +124,9 @@ class SignUp extends Component {
               }
               label="닉네임"
               name="username"
+              id="validate-nickname"
               placeholder="닉네임"
+              validate={validate}
             />
             <InputWithLabel
               onChange={event =>
@@ -206,7 +158,7 @@ class SignUp extends Component {
               회원가입
             </AuthButton>
           </AuthContent>
-        </Form>
+        </form>
       </Wrapp>
     );
   }

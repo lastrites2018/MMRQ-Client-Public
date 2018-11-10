@@ -45,7 +45,7 @@ class MainSectionList2 extends Component {
     return (
       <article className="mainAticle">
         <img className="main_section2_post" src={`${this.props.find.petimage}`} alt=""/>
-        <div className="article_title"key={this.props.idx}>
+        <div className="main_article_title"key={this.props.idx}>
         {
           this.props.find.title.length > 24 ? 
           `${this.props.find.title.slice(0,24)} ...` : this.props.find.title
@@ -68,8 +68,7 @@ class MainSectionList3 extends Component {
       <Link to="/find">
         <article>
             <img className="main_section2_post" src={`${this.props.witness.petimage}`} alt="idx" />
-            {/* <div className="article_title">{this.props.witness.title}</div> */}
-            <div className="article_title">{
+            <div className="main_article_title">{
               this.props.witness.title.length > 24 ? 
               `${this.props.witness.title.slice(0,24)} ...` : this.props.witness.title
             }

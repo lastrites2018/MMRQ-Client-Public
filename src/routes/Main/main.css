@@ -166,8 +166,8 @@ article {
 }
 
 
-.article_title {
-  /* height: 325px; */
+.main_article_title {
+  height: 325px;
   font-family: 'Cute Font', cursive;
   font-size: 1.7em;
   margin-bottom: 15px;

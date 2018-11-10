@@ -28,7 +28,7 @@ class Witness_section1 extends Component {
                   src={`${witness.petimage}`}
                   alt=""
                 />
-                <div className="article_title">
+                <div className="witness_Article_Title">
                   {witness.title.length > 24
                     ? `${witness.title.slice(0, 24)} ...`
                     : witness.title}

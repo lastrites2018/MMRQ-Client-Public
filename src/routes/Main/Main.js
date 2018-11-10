@@ -8,7 +8,7 @@ import MainSection3 from "./Main_section3"
 
 import axios from "axios";
 
-export default class Main extends Component {
+class Main extends Component {
   state = {
     findData: [],
     witnessData: []
@@ -47,10 +47,6 @@ export default class Main extends Component {
       <div>
         <div className="component_body">
         <div className="mainBackGround">
-          <button className="sideButton">
-            <div>신고 / 제보</div>
-            <div>등록하기</div>
-          </button>
         </div>
         <MainSection1 findData={this.state.findData} modalDataChange={this.props.modalDataChange}/>
           <MainSection2 
@@ -65,3 +61,5 @@ export default class Main extends Component {
       </div>
     )}
 }
+
+export default Main

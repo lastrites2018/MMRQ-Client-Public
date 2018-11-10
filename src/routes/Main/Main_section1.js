@@ -18,6 +18,9 @@ export default class Main_section1 extends Component {
     };
     return (
       <div>
+      <Link to="/find">
+        <button className="movePostButton">신고 / 제보 등록하기</button>
+      </Link>
         <Slider {...settings}>
           {this.props.findData.map((find, idx) => {
             return( 

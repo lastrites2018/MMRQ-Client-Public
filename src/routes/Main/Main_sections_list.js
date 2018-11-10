@@ -45,16 +45,16 @@ class MainSectionList2 extends Component {
     return (
       <article className="mainAticle">
         <img className="main_section2_post" src={`${this.props.find.petimage}`} alt=""/>
-        <div className="article_title"key={this.props.idx}>
+        <div className="main_article_title"key={this.props.idx}>
         {
           this.props.find.title.length > 24 ? 
           `${this.props.find.title.slice(0,24)} ...` : this.props.find.title
         }
         </div>
-        <div className="article_location" key={this.props.idx}>실종장소: {this.props.find.location}</div>
+        <div className="article_location" key={this.props.idx}>실종장소: {this.props.find.citylocation} {this.props.find.districtlocation}</div>
         <div className="article_pet_inf" key={this.props.idx}>종류: {this.props.find.species} / {this.props.find.sex}</div>
         <div className="article_pet_reward" key={this.props.idx}>사례금: {this.props.find.reward}</div>
-        <div className="article_pet_post_date" key={this.props.idx}>Date: {this.props.find.postdate}</div>
+        <div className="article_pet_post_date" key={this.props.idx}>{this.props.find.postdate.slice(0,10)}</div>
       </article>
       )}
 }
@@ -68,15 +68,14 @@ class MainSectionList3 extends Component {
       <Link to="/find">
         <article>
             <img className="main_section2_post" src={`${this.props.witness.petimage}`} alt="idx" />
-            {/* <div className="article_title">{this.props.witness.title}</div> */}
-            <div className="article_title">{
+            <div className="main_article_title">{
               this.props.witness.title.length > 24 ? 
               `${this.props.witness.title.slice(0,24)} ...` : this.props.witness.title
             }
             </div>
-            <div className="article_location">목격장소: {this.props.witness.location}</div>
+            <div className="article_location">실종장소: {this.props.witness.citylocation} {this.props.witness.districtlocation}</div>
             <div className="article_pet_inf">종류: {this.props.witness.species} / {this.props.witness.sex}</div>
-            <div className="article_pet_post_date">Date: {this.props.witness.postdate}</div>
+            <div className="article_pet_post_date">{this.props.witness.postdate.slice(0,10)}</div>
         </article>
       </Link>
     );

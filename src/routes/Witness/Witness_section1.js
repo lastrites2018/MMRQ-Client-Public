@@ -27,21 +27,21 @@ class Witness_section1 extends Component {
                   src={`${witness.petimage}`}
                   alt=""
                 />
-                <div className="article_title">
+                <div className="witness_Article_Title">
                   {witness.title.length > 24
                     ? `${witness.title.slice(0, 24)} ...`
                     : witness.title}
                 </div>
                 <div className="article_location">
                   {" "}
-                  실종장소: {witness.location}
+                  실종장소: {witness.citylocation} {witness.districtlocation}
                 </div>
                 <div className="article_pet_inf">
                   종류: {witness.species} / {witness.sex}
                 </div>
                 {/* <div className="article_pet_reward">사례금: {witness.reward}</div> */}
                 <div className="article_pet_post_date">
-                  Date: {witness.postdate}
+                  {witness.postdate.slice(0,10)}
                 </div>
               </article>
             </div>

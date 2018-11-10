@@ -3,25 +3,11 @@ import AuthContent from './AuthContent';
 import InputWithLabel from './InputWithLabel';
 import AuthButton from './AuthButton';
 import styled from 'styled-components';
-// import { Form } from 'informed';
+import { Form } from 'informed';
 import Axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import { Redirect } from 'react-router-dom';
-// import { Formik } from 'formik';
-
-// const validate = value => {
-//   return !value || value.length < 4
-//     ? '최소 4글자 이상은 입력해주셔야 합니다.'
-//     : null;
-// };
-
-// const numberValidate = value => {
-//   // pattern="^\d{3}-\d{4}-\d{4}$"
-//   return !value || value.length < 4
-//     ? '최소 4글자 이상은 입력해주셔야 합니다.'
-//     : null;
-// };
 
 const Wrapp = styled.div`
   padding-top: 2rem;
@@ -49,17 +35,15 @@ class SignUp extends Component {
     this.submit = this.submit.bind(this);
   }
 
-  submit = (email, handphone, username, password, passwordConfirm) => {
+  submit = async (email, handphone, username, password, passwordConfirm) => {
     const { cookies } = this.props;
-    console.log('arg', email, handphone, username);
     cookies.remove('token');
+
     if (!email || !handphone || !username || !password || !passwordConfirm) {
-      console.log(' 실행 체크');
       alert('데이터를 전부 입력해주세요.');
       return;
     }
 
-    // console.log('아래 실행 체크');
     Axios.post('http://34.217.9.241/users', {
       email: email,
       handphone: handphone,
@@ -92,15 +76,10 @@ class SignUp extends Component {
   };
 
   render() {
-    // console.log('this.state.email:::', this.state.email)
-    // console.log('this.state.handphone:::', this.state.handphone)
-    // console.log('this.state.username:::', this.state.username)
-    // console.log('this.state.password:::', this.state.password)
-    // console.log('this.state.passwordConfirm:::', this.state.passwordConfirm)
     return (
       <Wrapp>
         {this.props.login && <Redirect to="/main" />}
-        <form id="validate-form">
+        <Form id="validate-form">
           <AuthContent title="회원가입">
             {/* <label htmlFor="validate-color">이메일 </label> */}
             {/* <Text field="email" id="validate-email" validate={validate} /> */}
@@ -124,7 +103,6 @@ class SignUp extends Component {
               }
               label="닉네임"
               name="username"
-              id="validate-nickname"
               placeholder="닉네임"
             />
             <InputWithLabel
@@ -132,6 +110,7 @@ class SignUp extends Component {
                 this.setState({ password: event.target.value })
               }
               label="비밀번호"
+              type="password"
               name="password"
               placeholder="비밀번호"
             />
@@ -140,6 +119,7 @@ class SignUp extends Component {
                 this.setState({ passwordConfirm: event.target.value })
               }
               label="비밀번호 확인"
+              type="password"
               name="passwordConfirm"
               placeholder="비밀번호 확인"
             />
@@ -157,7 +137,7 @@ class SignUp extends Component {
               회원가입
             </AuthButton>
           </AuthContent>
-        </form>
+        </Form>
       </Wrapp>
     );
   }

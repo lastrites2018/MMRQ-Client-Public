@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import Modal_Section from "../Modal/Modal_section";
 
-
-
 class Find_section1 extends Component {
-  
   render() {
-    return ( 
+    return (
       <div>
         {
         this.props.modalStatus ?
@@ -41,5 +38,3 @@ class Find_section1 extends Component {
 }
 
 export default Find_section1;
-
-

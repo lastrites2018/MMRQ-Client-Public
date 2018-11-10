@@ -36,11 +36,23 @@ class Main extends Component {
       .catch(err => console.log(err));
   }
 
+  spiner = () => {
+    return (
+    <div class="loading">
+      <div class="loading"></div>
+    </div>
+  )}
+
   render() {
     if (
-      this.state.findData.length === 0 ||
+      this.state.findData.length !== 0 ||
       this.state.witnessData.length === 0
     ) {
+      return (
+        <div>
+        {this.spiner()}
+        </div>
+        );
       return <div style={{textAlign:"center"}}><img src="http://blog.hivelab.co.kr/wp-content/uploads/2017/10/004.gif" /></div>;
       // return <div>loding....</div>;
     }

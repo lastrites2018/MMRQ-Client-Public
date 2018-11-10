@@ -126,7 +126,6 @@ class SignUp extends Component {
               name="username"
               id="validate-nickname"
               placeholder="닉네임"
-              validate={validate}
             />
             <InputWithLabel
               onChange={event =>

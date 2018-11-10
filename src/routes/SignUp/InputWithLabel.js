@@ -29,7 +29,7 @@ const Input = styled.input`
 const InputWithLabel = ({ label, ...rest }) => (
   <Wrapper>
     <Label>{label}</Label>
-    <Field {...rest} />
+    <Input {...rest} />
   </Wrapper>
 );
 

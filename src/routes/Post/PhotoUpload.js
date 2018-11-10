@@ -30,12 +30,18 @@ class PhotoUpload extends Component {
         this.props.makingImage(res.data.url);
       });
   };
-
+  preventNoImg = () => {
+    if (!this.state.selectedFile) {
+      alert("사진을 넣어주세요");
+    } else {
+      this.fileUploadHandler();
+    }
+  };
   render() {
     return (
       <div className="photoUpload">
         <input type="file" onChange={this.fileSelectedHandler} name="profile" />
-        <button onClick={this.fileUploadHandler}>사진 업로드</button>
+        <button onClick={this.preventNoImg}>사진 업로드</button>
       </div>
     );
   }

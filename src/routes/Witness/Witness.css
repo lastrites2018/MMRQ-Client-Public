@@ -25,15 +25,16 @@
   float: left;
 }
 
-.article_title {
-  /* height: 325px; */
-  font-family: "Cute Font", cursive;
+.witness_Article_Title {
+  height: 410px;
+  font-family: 'Cute Font', cursive;
   font-size: 1.7em;
   margin-bottom: 15px;
   font-weight: bold;
 }
 
 .witness_article {
+  height: 490px;
   width: 283px;
   float: left;
   margin-right: 50px;

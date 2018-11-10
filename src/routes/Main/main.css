@@ -233,3 +233,36 @@ body {
   margin: 32px;
   opacity: 0.8;
 }
+
+.loading {
+    background: transparent;
+    width: 2em;
+    height: 20em;
+    position: relative;
+    margin:0 auto;
+  }
+  .loading:after {
+    display: block;
+    content: "";
+    border-radius: 50%;
+    height: 2px;
+    width: 2px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 10px 0 0 2px #333, 7px 7px 0 2px #999, 0 10px 0 2px #999, -7px 7px 0 2px #999, -10px 0 0 2px #999, -7px -7px 0 2px #999, 0 -10px 0 2px #333, 7px -7px 0 2px #111;
+    -webkit-animation: rotate 0.7s steps(8) infinite;
+    -o-animation: rotate 0.7s steps(8) infinite;
+    animation: rotate 0.7s steps(8) infinite;
+  }
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

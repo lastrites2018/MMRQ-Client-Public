@@ -29,10 +29,10 @@ class Find_section1 extends Component {
                       ? `${find.title.slice(0, 24)} ...`
                       : find.title}
                   </div>
-                  <div className="article_location"> 실종장소: {find.location}</div>
+                  <div className="article_location"> 실종장소: {find.citylocation} {find.districtlocation}</div>
                   <div className="article_pet_inf">종류: {find.species} / {find.sex}</div>
                   <div className="article_pet_reward">사례금: {find.reward}</div>
-                  <div className="article_pet_post_date">Date: {find.postdate}</div>
+                  <div className="article_pet_post_date">{find.postdate.slice(0,10)}</div>
                 </article>
             </div>)}
           </div>

@@ -193,32 +193,36 @@ article {
   cursor: pointer;
 }
 
-.sideButton:hover{
-  background: #b1b1b1
+.movePostButton:hover{
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e2e2e2), color-stop(1, #a9a9a9));
+  border-color: #ddd #bbb #999;
 }
 
 .mainBackGround {
   position: absolute;
-  /* position: fixed; */
   top: 115px;
   height: 465px;
-  /* height: 800px; */
-  background: #d7d7d7;
-  /* background: linear-gradient( to bottom, #f1f1f1, #c0c0c0, #f1f1f1); */
+  background: linear-gradient( to left, #c0c0c0, #f1f1f1, #c0c0c0);
   right: 0;
   left: 0;
-  z-index: -999;
 }
 
-/* position: fixed;
-top: 115px;
-height: 800px;
-/* background: #d7d7d7; */
-/* background: linear-gradient( to bottom, white, #c0c0c0, white);
-right: 0; */
-/* left: 0; */
-/* z-index: -999; */ 
 
+.movePostButton {
+  position: relative;
+  font-size: 17px;
+  line-height: 29px;
+  font-weight: 700;
+  font-family: 'Gugi', cursive;
+  border-radius: 15px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ddd));
+  border: 0px solid;
+  border-color: #ddd #bbb #999;
+  cursor: pointer;
+  letter-spacing: 4px;
+  padding: 2px 16px;
+  margin: -8px 3px 8px 1px;
+}
 
 body {
   border-left: 6px solid;
